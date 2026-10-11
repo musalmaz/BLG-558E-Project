@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sidechannel-leakage"
+version = "0.1.0"
+description = "Behavioral side-channel leakage in access-controlled external AI service agents"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain",
+    "chromadb",
+    "sentence-transformers",
+    "litellm",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "pyyaml",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

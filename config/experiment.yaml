@@ -1,0 +1,42 @@
+# Experiment configuration (Faz 0). Keep smoke-test values small; scale up later.
+models:
+  - name: local_llama
+    provider: ollama
+    litellm_id: ollama/llama3.1:8b
+    api_base: http://localhost:11434
+  - name: api_model
+    provider: anthropic
+    litellm_id: anthropic/claude-haiku-5-5
+    api_key_env: ANTHROPIC_API_KEY
+
+acl_modes: [M1_weak, M2_strong]
+
+acl_labels: [public, internal, confidential]
+
+data:
+  raw_dir: data/raw
+  labeled_dir: data/labeled
+  canaries_dir: data/canaries
+  acl_override_csv: data/labeled/acl_overrides.csv
+
+index:
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  chroma_dir: data/chroma
+  top_k: 5
+
+canaries:
+  n_topics: 4                 # smoke test; scale up later
+  docs_per_canary: 3
+  seed: 42
+
+probes:
+  variants_per_topic: 5       # M paraphrases
+  repeats: 2
+
+query_budget: 200             # max messages per decoder run
+random_seed: 42
+
+paths:
+  agent_log: results/agent_log.jsonl
+  data_summary: results/data_summary.json
+  results_dir: results
