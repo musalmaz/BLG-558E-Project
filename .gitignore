@@ -7,3 +7,5 @@ data/raw/*
 data/chroma/
 !data/raw/.gitkeep
 results/agent_log.jsonl
+# Regenerable from the Enron archive (seeded): loader + acl_labeler
+data/labeled/*.jsonl

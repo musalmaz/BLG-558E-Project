@@ -17,6 +17,7 @@ dependencies = [
     "numpy",
     "pyyaml",
     "pytest",
+    "python-dotenv",
 ]
 
 [tool.setuptools.packages.find]
