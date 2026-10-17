@@ -49,11 +49,17 @@ canaries:
 probes:
   variants_per_topic: 5       # M paraphrases
   repeats: 2
+  probes_file: data/probes/probes.json
+  direct_queries_file: data/probes/direct_queries.json
+  length_tolerance: 0.25      # max relative char-length gap between paired probe/control
+  smoke: {topics: [c00, c04], variants: 2, repeats: 1}
 
 query_budget: 200             # max messages per decoder run
 random_seed: 42
 
 paths:
   agent_log: results/agent_log.jsonl
+  probe_run_summary: results/probe_run_summary.json
+  baseline_check: results/baseline_check.json
   data_summary: results/data_summary.json
   results_dir: results

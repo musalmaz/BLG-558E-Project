@@ -9,3 +9,4 @@ data/chroma/
 results/agent_log.jsonl
 # Regenerable from the Enron archive (seeded): loader + acl_labeler
 data/labeled/*.jsonl
+results/agent_log_*smoke*.jsonl

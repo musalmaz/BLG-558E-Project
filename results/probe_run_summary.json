@@ -1,0 +1,11 @@
+{
+  "total": 16,
+  "skipped_resume": 0,
+  "run": 16,
+  "prompt_tokens": 10397,
+  "completion_tokens": 1733,
+  "parse_errors": 0,
+  "latency_ms_sum": 108827.29582000047,
+  "latency_ms_mean": 6801.705988750029,
+  "decision_agreement_across_repeats": null
+}
