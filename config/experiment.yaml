@@ -1,13 +1,23 @@
 # Experiment configuration (Faz 0). Keep smoke-test values small; scale up later.
 models:
-  - name: local_llama
+  - name: gemma3
     provider: ollama
-    litellm_id: ollama_chat/gemma4:26b
+    litellm_id: ollama_chat/gemma3:latest
     api_base: http://localhost:11434
-  - name: api_model
-    provider: anthropic
-    litellm_id: anthropic/claude-haiku-5-5
-    api_key_env: ANTHROPIC_API_KEY
+  - name: qwen2.5
+    provider: ollama
+    litellm_id: ollama_chat/qwen2.5:7b
+    api_base: http://localhost:11434
+  # API model (needs ANTHROPIC_API_KEY in .env); swap in without code changes:
+  # - name: api_model
+  #   provider: anthropic
+  #   litellm_id: anthropic/claude-haiku-5-5
+  #   api_key_env: ANTHROPIC_API_KEY
+
+agent:
+  temperature: 0
+  max_retries: 2
+  routing_targets: [billing, technical_support, account_management, legal, sales, operations, none]
 
 acl_modes: [M1_weak, M2_strong]
 

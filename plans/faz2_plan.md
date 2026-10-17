@@ -1,6 +1,6 @@
 # Faz 2 Planı — Ajan boru hattı
 
-Durum: **plan, onay bekliyor** (2026-10-12). Faz 0 (`5108fb1`) ve Faz 1 (`c56c8a0`) tamam.
+Durum: **uygulandı** (2026-10-17; modeller: gemma3 + qwen2.5:7b, routing sabit küme). Faz 0 (`5108fb1`) ve Faz 1 (`c56c8a0`) tamam.
 
 ## Hedef
 
