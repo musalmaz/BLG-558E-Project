@@ -54,6 +54,20 @@ probes:
   length_tolerance: 0.25      # max relative char-length gap between paired probe/control
   smoke: {topics: [c00, c04], variants: 2, repeats: 1}
 
+decoders:
+  seed: 42
+  n_row_perm: 200            # row-level label shuffles per group
+  n_boot: 200                # bootstrap resamples (CI, messages_needed)
+  fpr: 0.01
+  auc_target: 0.9            # topic-level AUC target for messages_needed
+  C: 1.0                     # fixed logistic-regression regularization (no tuning)
+  pca_components: 5          # for the embedding block
+  groups: [behavior_nolat, behavior, text, behavior+text]
+  embeddings_cache: results/cache/embeddings.npz
+  features_csv: results/features.csv
+  results_csv: results/decoder_results.csv
+  stat_tests_json: results/stat_tests.json
+
 query_budget: 200             # max messages per decoder run
 random_seed: 42
 

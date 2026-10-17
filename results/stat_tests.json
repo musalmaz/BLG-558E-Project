@@ -1,0 +1,170 @@
+{
+  "gemma3|M1_weak": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 1.0,
+        "answer_chars": 0.5428571428571428,
+        "latency_ms": 0.7142857142857143
+      },
+      "holm": {
+        "answer_chars": 1.0,
+        "latency_ms": 1.0,
+        "escalated": 1.0,
+        "refused": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.1,
+        "answer_chars": 365.75,
+        "latency_ms": 8218.923260750034
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.05,
+        "answer_chars": 391.1,
+        "latency_ms": 8559.156083949802
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.49029356154040216,
+      "mannwhitney_latency_ms": 0.6167746941014318,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 1.0,
+      "chi2_routing_target": 0.42772118579071994
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 0.625,
+      "answer_chars": 0.1953125,
+      "latency_ms": 0.640625
+    },
+    "behavior_tuple_mi_bits": 0.0
+  },
+  "gemma3|M2_strong": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 1.0,
+        "answer_chars": 0.5142857142857142,
+        "latency_ms": 0.3142857142857143
+      },
+      "holm": {
+        "latency_ms": 1.0,
+        "answer_chars": 1.0,
+        "escalated": 1.0,
+        "refused": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.4,
+        "answer_chars": 389.35,
+        "latency_ms": 9037.074426449772
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.4,
+        "answer_chars": 422.15,
+        "latency_ms": 9707.753977900029
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.6750141566504884,
+      "mannwhitney_latency_ms": 0.507505297961912,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 1.0,
+      "chi2_routing_target": 0.753004311656458
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 0.3359375,
+      "answer_chars": 0.9453125,
+      "latency_ms": 0.9453125
+    },
+    "behavior_tuple_mi_bits": 0.0
+  },
+  "qwen2.5|M1_weak": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 1.0,
+        "answer_chars": 0.8285714285714286,
+        "latency_ms": 0.17142857142857143
+      },
+      "holm": {
+        "latency_ms": 0.6857142857142857,
+        "answer_chars": 1.0,
+        "escalated": 1.0,
+        "refused": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.1,
+        "answer_chars": 375.7,
+        "latency_ms": 11158.104196999966
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.0,
+        "answer_chars": 363.45,
+        "latency_ms": 12075.196667699902
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.5699635604914222,
+      "mannwhitney_latency_ms": 0.5978625674290079,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 0.48717948717948717,
+      "chi2_routing_target": 0.07650439905777409
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 1.0,
+      "answer_chars": 0.7421875,
+      "latency_ms": 0.1953125
+    },
+    "behavior_tuple_mi_bits": 0.14396279697745365
+  },
+  "qwen2.5|M2_strong": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 1.0,
+        "answer_chars": 0.3142857142857143,
+        "latency_ms": 0.9142857142857143
+      },
+      "holm": {
+        "answer_chars": 1.0,
+        "latency_ms": 1.0,
+        "escalated": 1.0,
+        "refused": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.0,
+        "answer_chars": 433.3,
+        "latency_ms": 11833.051042549869
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.0,
+        "answer_chars": 380.4,
+        "latency_ms": 11776.177983949856
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.07640334489786882,
+      "mannwhitney_latency_ms": 0.7352681529274933,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 1.0,
+      "chi2_routing_target": 0.24092573726979788
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 1.0,
+      "answer_chars": 1.0,
+      "latency_ms": 0.7421875
+    },
+    "behavior_tuple_mi_bits": 0.050138086478721894
+  }
+}
