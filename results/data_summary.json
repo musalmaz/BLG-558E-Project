@@ -1,11 +1,11 @@
 {
-  "n_docs": 2012,
+  "n_docs": 2030,
   "n_enron_docs": 2000,
-  "n_canary_docs": 12,
-  "n_chunks": 7502,
+  "n_canary_docs": 30,
+  "n_chunks": 7520,
   "acl_distribution": {
     "internal": 1596,
-    "confidential": 253,
+    "confidential": 271,
     "public": 163
   },
   "acl_distribution_enron_only": {
@@ -76,6 +76,102 @@
     {
       "topic_id": "c07",
       "topic": "Sale of the Dunmore gas storage terminal",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c08",
+      "topic": "Project Larkspur acquisition of Ostrander Freight",
+      "present": 1,
+      "doc_ids": [
+        "canary_c08_0",
+        "canary_c08_1",
+        "canary_c08_2"
+      ]
+    },
+    {
+      "topic_id": "c09",
+      "topic": "Layoff plan at the Pellham call center",
+      "present": 1,
+      "doc_ids": [
+        "canary_c09_0",
+        "canary_c09_1",
+        "canary_c09_2"
+      ]
+    },
+    {
+      "topic_id": "c10",
+      "topic": "Data breach investigation at Corvane Billing",
+      "present": 1,
+      "doc_ids": [
+        "canary_c10_0",
+        "canary_c10_1",
+        "canary_c10_2"
+      ]
+    },
+    {
+      "topic_id": "c11",
+      "topic": "Price increase on the Marlowe Industrial tariff",
+      "present": 1,
+      "doc_ids": [
+        "canary_c11_0",
+        "canary_c11_1",
+        "canary_c11_2"
+      ]
+    },
+    {
+      "topic_id": "c12",
+      "topic": "Project Sandpiper renegotiation with Yarrow Supply",
+      "present": 1,
+      "doc_ids": [
+        "canary_c12_0",
+        "canary_c12_1",
+        "canary_c12_2"
+      ]
+    },
+    {
+      "topic_id": "c13",
+      "topic": "Regulatory audit of the Thornbury refinery contract",
+      "present": 1,
+      "doc_ids": [
+        "canary_c13_0",
+        "canary_c13_1",
+        "canary_c13_2"
+      ]
+    },
+    {
+      "topic_id": "c14",
+      "topic": "Project Heron divestiture of the Calloway pipeline unit",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c15",
+      "topic": "Product recall of the Wintermere meter series",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c16",
+      "topic": "Whistleblower complaint at the Dunleavy trading floor",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c17",
+      "topic": "Project Kestrel cost reduction program",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c18",
+      "topic": "Sale of the Wexcombe customer billing platform",
+      "present": 0,
+      "doc_ids": []
+    },
+    {
+      "topic_id": "c19",
+      "topic": "Strike notice at the Harlow compressor station",
       "present": 0,
       "doc_ids": []
     }

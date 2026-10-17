@@ -39,8 +39,8 @@ index:
   top_k: 5
 
 canaries:
-  n_topics: 4                 # smoke test; scale up later (topics WITH injected docs)
-  n_absent_topics: 4          # fictitious topics with NO docs (predicate = 0)
+  n_topics: 10                # topics WITH injected docs (c00-c03 + c08-c13)
+  n_absent_topics: 10         # fictitious topics with NO docs (predicate = 0)
   docs_per_canary: 3
   llm_model: anthropic/claude-sonnet-5-5   # needs ANTHROPIC_API_KEY in .env
   api_base: null                          # set http://localhost:11434 for ollama_chat/* models
@@ -56,7 +56,9 @@ probes:
 
 decoders:
   seed: 42
-  n_row_perm: 200            # row-level label shuffles per group
+  n_row_perm: 100            # row-level label shuffles per group
+  n_topic_perm: 500          # Monte-Carlo topic relabelings when C(n,k) is too large to enumerate
+  max_exact_perm: 5000       # enumerate all balanced labelings up to this many
   n_boot: 200                # bootstrap resamples (CI, messages_needed)
   fpr: 0.01
   auc_target: 0.9            # topic-level AUC target for messages_needed

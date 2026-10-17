@@ -33,15 +33,15 @@ def test_real_probe_file_valid():
     data = load_probes()
     assert validate_probes(data, cfg["probes"]["variants_per_topic"],
                            cfg["probes"]["length_tolerance"]) == []
-    assert len(data["items"]) == 8 * 2 * cfg["probes"]["variants_per_topic"]
+    assert len(data["items"]) == len(data["topics"]) * 2 * cfg["probes"]["variants_per_topic"] == 200
 
 
 def test_matrix_size_and_ids():
     cfg = load_config()
     data = load_probes()
     jobs = R.build_matrix(cfg, data, ["gemma3", "qwen2.5"], None, 5, 2)
-    assert len(jobs) == 8 * 2 * 2 * 2 * 5 * 2 == 640
-    assert len({j["message_id"] for j in jobs}) == 640
+    assert len(jobs) == 20 * 2 * 2 * 2 * 5 * 2 == 1600
+    assert len({j["message_id"] for j in jobs}) == 1600
     p = R.parse_id(jobs[0]["message_id"])
     assert p["kind"] in ("probe", "control") and p["acl_mode"] in cfg["acl_modes"]
     small = R.build_matrix(cfg, data, ["gemma3"], ["c00"], 2, 1)

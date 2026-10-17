@@ -2,21 +2,23 @@
 import numpy as np
 
 from src.decoders import metrics as M
-from src.decoders.classifier import balanced_labelings, loto_scores
+from src.decoders.classifier import labelings, loto_scores
 
 
 def topic_permutation_test(X, topics, true_y, emb_idx, cfg) -> dict:
-    """Run the same LOTO decoder under every balanced topic relabeling (incl. the true one).
+    """Run the same LOTO decoder under balanced topic relabelings (all of them, or Monte-Carlo if too many).
 
-    p = share of labelings with AUC >= the true AUC (one-sided, min 1/70 for 4 of 8 topics);
-    advantage = true AUC - mean null AUC (should be ~0 when there is no signal).
+    p = (1 + #labelings with AUC >= true AUC) / (1 + N) (one-sided); advantage = true AUC - mean null AUC
+    (should be ~0 when there is no signal). The true labeling is excluded from the null.
     """
+    d = cfg["decoders"]
     topics, true_y = np.asarray(topics), np.asarray(true_y)
     ids = sorted(set(topics))
     truth = {t: int(true_y[topics == t][0]) for t in ids}
     real = M.auc(true_y, loto_scores(X, true_y, topics, emb_idx, cfg))
+    labs, exact = labelings(ids, sum(truth.values()), d["max_exact_perm"], d["n_topic_perm"], d["seed"])
     null = []
-    for lab in balanced_labelings(ids, sum(truth.values())):
+    for lab in labs:
         if lab == truth:
             continue
         y = np.array([lab[t] for t in topics])
@@ -24,7 +26,8 @@ def topic_permutation_test(X, topics, true_y, emb_idx, cfg) -> dict:
     null = np.array(null)
     return {"real_auc": real, "null_mean": float(null.mean()), "null_sd": float(null.std()),
             "advantage": float(real - null.mean()),
-            "p_topic_perm": float((1 + np.sum(null >= real)) / (1 + len(null))), "n_perm": len(null) + 1}
+            "p_topic_perm": float((1 + np.sum(null >= real)) / (1 + len(null))),
+            "n_perm": len(null) + 1, "exact": exact}
 
 
 def row_shuffle_test(X, y, topics, emb_idx, cfg, seed: int) -> dict:

@@ -7,7 +7,7 @@ from src.config import load_config
 from src.decoders import metrics as M
 from src.decoders import randomized_control as RC
 from src.decoders import stat_test as ST
-from src.decoders.classifier import assemble, balanced_labelings, loto_scores
+from src.decoders.classifier import assemble, balanced_labelings, labelings, loto_scores
 from src.decoders.run_all import run
 from src.features.behavioral import behavioral_features
 from src.features.textual import STYLO_NAMES, embedding_block, stylometry
@@ -164,3 +164,22 @@ def test_loto_intercept_artifact_removed(cfg):
     noise = [M.auc(y, loto_scores(np.random.default_rng(s).normal(size=(40, 5)), y, topics, None, cfg))
              for s in range(10)]
     assert 0.3 < np.mean(noise) < 0.55  # residual LOTO bias exists; the permutation null accounts for it
+
+
+def test_labelings_exact_vs_montecarlo():
+    ids = [f"t{i}" for i in range(8)]
+    labs, exact = labelings(ids, 4, 5000, 500, 0)
+    assert exact and len(labs) == 70
+    ids20 = [f"t{i}" for i in range(20)]
+    labs, exact = labelings(ids20, 10, 5000, 300, 0)
+    assert not exact and len(labs) == 300 and len({tuple(sorted(l.items())) for l in labs}) == 300
+    assert all(sum(l.values()) == 10 for l in labs)
+
+
+def test_perm_p_montecarlo_and_exact():
+    rng = np.random.default_rng(0)
+    lab = np.array([1] * 10 + [0] * 10)
+    assert ST.perm_p(lab + rng.normal(0, 0.05, 20), lab, n_mc=500) < 0.01  # strong separation, MC
+    assert ST.perm_p(rng.normal(0, 1, 20), lab, n_mc=500) > 0.05  # noise
+    lab8 = np.array([1] * 4 + [0] * 4)
+    assert ST.perm_p(lab8.astype(float), lab8) == pytest.approx(2 / 70)  # exact, two-sided

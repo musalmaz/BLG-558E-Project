@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from src.decoders.classifier import balanced_labelings
+from src.decoders.classifier import labelings
 
 
 def holm(pvals: dict[str, float]) -> dict[str, float]:
@@ -25,26 +25,26 @@ def topic_summary(df: pd.DataFrame) -> pd.DataFrame:
                                      latency_ms=("latency_ms", "mean"))
 
 
-def exact_perm_p(values: np.ndarray, labels: np.ndarray) -> float:
-    """Two-sided exact permutation p of |mean(pos)-mean(neg)| over all balanced topic labelings."""
+def perm_p(values: np.ndarray, labels: np.ndarray, max_exact: int = 5000, n_mc: int = 2000,
+           seed: int = 42) -> float:
+    """Two-sided permutation p of |mean(pos)-mean(neg)| over balanced topic labelings (exact or Monte-Carlo)."""
     ids = list(range(len(values)))
     obs = abs(values[labels == 1].mean() - values[labels == 0].mean())
-    n_pos = int(labels.sum())
-    ds = []
-    for lab in balanced_labelings(ids, n_pos):
-        m = np.array([lab[i] for i in ids])
-        ds.append(abs(values[m == 1].mean() - values[m == 0].mean()))
-    return float(np.mean(np.array(ds) >= obs - 1e-12))
+    labs, exact = labelings(ids, int(labels.sum()), max_exact, n_mc, seed)
+    ds = np.array([abs(values[np.array([lab[i] for i in ids]) == 1].mean()
+                       - values[np.array([lab[i] for i in ids]) == 0].mean()) for lab in labs])
+    hits = np.sum(ds >= obs - 1e-12)
+    return float(hits / len(ds)) if exact else float((1 + hits) / (1 + len(ds)))
 
 
 def topic_level_tests(probe: pd.DataFrame) -> dict:
     """Descriptive exact tests on topic summaries (present vs absent), with Holm over the 4 statistics.
 
-    With 4+4 topics the smallest two-sided p is 2/70 ~ 0.029, so Holm over 4 stats can never reach 0.05:
-    these are reported, but the channel decision uses the single pre-specified permutation test (see run_all).
+    With few topics (4+4: smallest two-sided p = 2/70) Holm over 4 stats can never reach 0.05; with more topics
+    it can. The channel decision still uses the single pre-specified permutation test (see run_all).
     """
     s = topic_summary(probe)
-    p = {c: exact_perm_p(s[c].to_numpy(float), s["present"].to_numpy(int))
+    p = {c: perm_p(s[c].to_numpy(float), s["present"].to_numpy(int))
          for c in ["escalated", "refused", "answer_chars", "latency_ms"]}
     return {"raw": p, "holm": holm(p), "means_present": s[s.present == 1].drop(columns="present").mean().to_dict(),
             "means_absent": s[s.present == 0].drop(columns="present").mean().to_dict()}

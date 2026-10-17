@@ -1,5 +1,6 @@
 """Predicate decoder: fixed logistic regression, leave-one-topic-out evaluation per feature group."""
 from itertools import combinations
+from math import comb
 
 import numpy as np
 from sklearn.compose import ColumnTransformer
@@ -76,6 +77,20 @@ def balanced_labelings(topic_ids: list[str], n_pos: int):
     """All ways to label n_pos of the topics positive (70 for 4 of 8)."""
     for pos in combinations(topic_ids, n_pos):
         yield {t: int(t in pos) for t in topic_ids}
+
+
+def labelings(topic_ids: list[str], n_pos: int, max_exact: int, n_mc: int, seed: int) -> tuple[list[dict], bool]:
+    """Balanced topic relabelings: all of them if C(n, k) <= max_exact, else n_mc distinct random ones.
+
+    Returns (labelings, exact). Monte-Carlo p-values should use (1 + #>=) / (1 + N).
+    """
+    if comb(len(topic_ids), n_pos) <= max_exact:
+        return list(balanced_labelings(topic_ids, n_pos)), True
+    rng = np.random.default_rng(seed)
+    seen: set[tuple] = set()
+    while len(seen) < n_mc:
+        seen.add(tuple(sorted(rng.choice(len(topic_ids), n_pos, replace=False))))
+    return [{t: int(i in pos) for i, t in enumerate(topic_ids)} for pos in sorted(seen)], False
 
 
 def evaluate_group(X, y, topics, emb_idx, cfg, seed: int) -> dict:
