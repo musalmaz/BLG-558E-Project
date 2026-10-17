@@ -1,11 +1,20 @@
 {
-  "total": 320,
-  "skipped_resume": 0,
-  "run": 320,
-  "prompt_tokens": 209226,
-  "completion_tokens": 36835,
+  "log": "results/runs/probe_matrix_20topics_repeats1.jsonl",
+  "total": 800,
   "parse_errors": 0,
-  "latency_ms_sum": 3322822.5113199833,
-  "latency_ms_mean": 10383.820347874947,
-  "decision_agreement_across_repeats": null
+  "prompt_tokens": 528433,
+  "completion_tokens": 88291,
+  "latency_s": {
+    "gemma3": {
+      "median": 5.6,
+      "p95": 8.5,
+      "max": 37.9
+    },
+    "qwen2.5": {
+      "median": 10.3,
+      "p95": 14.1,
+      "max": 17.6
+    }
+  },
+  "note": "run in chunks (40 calls) with Ollama unload + unlogged warm-up between chunks; first 145 rows from earlier partial run kept"
 }

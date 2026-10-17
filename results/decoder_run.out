@@ -1,0 +1,37 @@
+/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/torch/cuda/__init__.py:228: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at /__w/pytorch/pytorch/c10/cuda/CUDAFunctions.cpp:119.)
+  return torch._C._cuda_getDeviceCount() > 0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12709.64it/s]
+[gemma3|M1_weak|behavior_nolat] AUC=0.44 p=0.543
+[gemma3|M1_weak|behavior] AUC=0.48 p=0.461
+[gemma3|M1_weak|text] AUC=0.82 p=0.004
+[gemma3|M1_weak|behavior+text] AUC=0.78 p=0.006
+[gemma3|M2_strong|behavior_nolat] AUC=0.47 p=0.489
+[gemma3|M2_strong|behavior] AUC=0.46 p=0.547
+[gemma3|M2_strong|text] AUC=0.45 p=0.563
+[gemma3|M2_strong|behavior+text] AUC=0.48 p=0.485
+[qwen2.5|M1_weak|behavior_nolat] AUC=0.57 p=0.190
+[qwen2.5|M1_weak|behavior] AUC=0.58 p=0.182
+[qwen2.5|M1_weak|text] AUC=0.61 p=0.126
+[qwen2.5|M1_weak|behavior+text] AUC=0.61 p=0.112
+[qwen2.5|M2_strong|behavior_nolat] AUC=0.43 p=0.547
+[qwen2.5|M2_strong|behavior] AUC=0.45 p=0.591
+[qwen2.5|M2_strong|text] AUC=0.42 p=0.693
+[qwen2.5|M2_strong|behavior+text] AUC=0.37 p=0.848
+      model   acl_mode           group    auc  auc_ci_lo  auc_ci_hi  tpr_at_fpr  messages_needed  leaked_bits_model  p_topic_perm  advantage_topic_perm  row_shuffle_auc_mean  placebo_auc_control_rows  channel_open
+0    gemma3    M1_weak  behavior_nolat  0.444      0.300      0.573        0.00              NaN              0.000         0.543                -0.006                 0.467                     0.430         False
+1    gemma3    M1_weak        behavior  0.481      0.333      0.629        0.00              NaN              0.000         0.461                 0.017                 0.472                     0.421         False
+2    gemma3    M1_weak            text  0.825      0.747      0.905        0.12              2.0              0.116         0.004                 0.356                 0.472                     0.354          True
+3    gemma3    M1_weak   behavior+text  0.776      0.697      0.857        0.00              3.0              0.000         0.006                 0.306                 0.487                     0.397          True
+4    gemma3  M2_strong  behavior_nolat  0.468      0.320      0.620        0.00              NaN              0.000         0.489                 0.008                 0.476                     0.406         False
+5    gemma3  M2_strong        behavior  0.458      0.311      0.619        0.00              NaN              0.000         0.547                -0.008                 0.486                     0.423         False
+6    gemma3  M2_strong            text  0.450      0.341      0.557        0.00              NaN              0.000         0.563                -0.019                 0.498                     0.428         False
+7    gemma3  M2_strong   behavior+text  0.478      0.353      0.600        0.00              NaN              0.000         0.485                 0.006                 0.501                     0.419         False
+8   qwen2.5    M1_weak  behavior_nolat  0.570      0.384      0.757        0.20              NaN              0.054         0.190                 0.124                 0.478                     0.547         False
+9   qwen2.5    M1_weak        behavior  0.576      0.406      0.761        0.20              NaN              0.034         0.182                 0.120                 0.486                     0.530         False
+10  qwen2.5    M1_weak            text  0.613      0.476      0.723        0.00              NaN              0.000         0.126                 0.139                 0.506                     0.333         False
+11  qwen2.5    M1_weak   behavior+text  0.612      0.448      0.718        0.12              NaN              0.000         0.112                 0.135                 0.508                     0.406         False
+12  qwen2.5  M2_strong  behavior_nolat  0.430      0.286      0.597        0.00              NaN              0.000         0.547                -0.008                 0.460                     0.416         False
+13  qwen2.5  M2_strong        behavior  0.447      0.328      0.626        0.02              NaN              0.000         0.591                -0.017                 0.476                     0.429         False
+14  qwen2.5  M2_strong            text  0.424      0.316      0.533        0.00              NaN              0.000         0.693                -0.050                 0.497                     0.548         False
+15  qwen2.5  M2_strong   behavior+text  0.374      0.283      0.473        0.00              NaN              0.000         0.848                -0.104                 0.500                     0.450         False

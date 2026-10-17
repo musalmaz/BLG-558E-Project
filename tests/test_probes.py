@@ -53,7 +53,10 @@ class FakeAgent:
     def __init__(self):
         self.calls = []
 
-    def handle(self, text, mode, model, message_id=None):
+    def handle(self, text, mode, model, message_id=None, log=True):
+        if not log:  # unlogged warm-up call
+            self.warmups = getattr(self, "warmups", 0) + 1
+            return None, {"prompt_tokens": 0, "completion_tokens": 0, "parse_error": False, "latency_ms": 0.0}
         self.calls.append(message_id)
         return None, {"prompt_tokens": 1, "completion_tokens": 1, "parse_error": False, "latency_ms": 5.0}
 
@@ -66,7 +69,7 @@ def test_resume_skips_logged(tmp_path):
     agent = FakeAgent()
     s = R.run(jobs, agent, log, resume=True)
     assert s["skipped_resume"] == 1 and jobs[0]["message_id"] not in agent.calls
-    assert len(agent.calls) == len(jobs) - 1
+    assert len(agent.calls) == len(jobs) - 1 and agent.warmups == 1
 
 
 def _dec(rt, text):

@@ -53,6 +53,8 @@ def run(jobs: list[dict], agent, log_path: Path, resume: bool = True) -> dict:
     """Execute jobs sequentially; return a summary with tokens, latency, parse errors."""
     done = logged_ids(log_path) if resume else set()
     todo = [j for j in jobs if j["message_id"] not in done]
+    if todo:  # unlogged warm-up call: the first call after an Ollama (re)load is a latency outlier
+        agent.handle("Hello, I have a question about my account.", todo[0]["mode"], todo[0]["model"], log=False)
     s = {"total": len(jobs), "skipped_resume": len(jobs) - len(todo), "run": 0,
          "prompt_tokens": 0, "completion_tokens": 0, "parse_errors": 0, "latency_ms_sum": 0.0}
     t0 = time.time()
