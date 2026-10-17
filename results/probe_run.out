@@ -1,4 +1,0 @@
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7278.47it/s]
-[1/800] c18|probe|v3|r0|M1_weak|gemma3 41605ms eta 558.7min
-[2/800] c09|probe|v3|r0|M2_strong|gemma3 28400ms eta 468.4min

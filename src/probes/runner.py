@@ -23,7 +23,7 @@ def parse_id(message_id: str) -> dict:
 
 def build_matrix(cfg: dict, data: dict, models: list[str], topics: list[str] | None,
                  variants: int, repeats: int) -> list[dict]:
-    """All (topic, mode, model, kind, variant, rep) jobs, shuffled with the config seed."""
+    """All (topic, mode, model, kind, variant, rep) jobs, shuffled with the config seed, then grouped by model."""
     jobs = []
     for it in data["items"]:
         if it["variant"] >= variants or (topics and it["topic_id"] not in topics):
@@ -35,6 +35,10 @@ def build_matrix(cfg: dict, data: dict, models: list[str], topics: list[str] | N
                                                        rep, mode, model),
                                  "text": it["text"], "mode": mode, "model": model})
     random.Random(cfg["random_seed"]).shuffle(jobs)
+    # Group by model (stable sort): avoids Ollama reloading models on every call, which would add
+    # large random latency noise. Order inside each model block stays shuffled.
+    order = {m: i for i, m in enumerate(models)}
+    jobs.sort(key=lambda j: order[j["model"]])
     return jobs
 
 
