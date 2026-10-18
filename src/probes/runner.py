@@ -101,11 +101,14 @@ def main() -> None:
     ap.add_argument("--smoke", action="store_true", help="use probes.smoke config")
     ap.add_argument("--log", default=cfg["paths"]["agent_log"])
     ap.add_argument("--no-resume", action="store_true")
+    ap.add_argument("--modes", nargs="+", help="restrict ACL modes (default: all in config)")
     ap.add_argument("--docs-per-topic", type=int, help="keep only the first k confidential docs per topic")
     a = ap.parse_args()
     if a.smoke:
         sm = cfg["probes"]["smoke"]
         a.topics, a.variants, a.repeats = sm["topics"], sm["variants"], sm["repeats"]
+    if a.modes:
+        cfg["acl_modes"] = a.modes
     log_path = resolve(a.log)
     jobs = build_matrix(cfg, load_probes(), a.models, a.topics, a.variants, a.repeats)
     if a.limit:

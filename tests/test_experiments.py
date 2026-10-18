@@ -33,3 +33,13 @@ def test_figures_written(tmp_path):
     auc_figure(_res(), tmp_path / "a.png")
     bits_figure(_res(), tmp_path / "b.png")
     assert (tmp_path / "a.png").stat().st_size > 0 and (tmp_path / "b.png").stat().st_size > 0
+
+
+def test_ratio_table_and_figure(tmp_path):
+    from src.experiments.ratio import ratio_figure, ratio_table, to_markdown as ratio_md
+    res = _res()
+    tab = ratio_table({1: res, 3: res})
+    assert set(tab.docs_per_topic) == {1, 3} and set(res.acl_mode) == {"M1_weak", "M2_strong"}
+    assert len(tab) == 2 * (len(res) // 2)  # M2 rows dropped
+    ratio_figure(tab, tmp_path / "r.png")
+    assert (tmp_path / "r.png").stat().st_size > 0 and "Belge/konu" in ratio_md(tab)

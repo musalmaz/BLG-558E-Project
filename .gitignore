@@ -12,3 +12,4 @@ data/labeled/*.jsonl
 results/agent_log_*smoke*.jsonl
 results/cache/
 results/probe_run.out
+results/ratio_run.out
