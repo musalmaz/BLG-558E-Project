@@ -1,6 +1,6 @@
 # İlerleme Raporu — Dış AI ajanlarında davranışsal yan kanal sızıntısı
 
-Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0, 1, 2, 3, 4 (20 konuya ölçeklendi) · Sıradaki: Faz 5
+Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0, 1, 2, 3, 4 (20 konuya ölçeklendi), 5 · Sıradaki: Faz 6
 
 ## 1. Faz özeti
 
@@ -10,7 +10,8 @@ Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0, 1, 2, 3, 4 (20 konuya ölç
 | 1 | Veri katmanı: Enron yükleme, ACL etiketleme, kanarya, Chroma indeksi | Tamam | `c56c8a0` |
 | 2 | Ajan boru hattı: retrieval (M1/M2) + LLM + yapılandırılmış karar + log | Tamam | `05a3747` |
 | 3 | Probe/control seti, runner, baseline check, tam matris (repeats=1) | Tamam | `1473694` + sonuçlar |
-| 4 | Özellikler, decoder, randomized control, istatistik testleri; 20 konuya ölçekleme | Tamam | bu güncelleme |
+| 4 | Özellikler, decoder, randomized control, istatistik testleri; 20 konuya ölçekleme | Tamam | `b84f958` |
+| 5 | Ana tablo, M1 vs M2, gizli belge sayısı taraması (k=1,2,3), figürler | Tamam | `6dad717`, `f6a256c` |
 
 ## 2. Veri (Faz 1, 20 konuya genişletildi)
 - 2030 doküman (2000 Enron + 30 elle yazılmış kanarya), 7520 chunk. ACL: internal 1596, confidential 271, public 163.
@@ -97,14 +98,55 @@ Soru: gemma3+M1 metin sinyali (AUC 0,83) yalnızca cevaba sızan gizli terimlerd
 
 **Sonuç:** Maskeleme sinyali ortadan kaldırmıyor; önceki "sinyal doğrudan içerik sızıntısıyla açıklanır" yorumu desteklenmedi. Sinyal sözcük içeriğinden değil üslup kaymasından geliyor (konu düzeyinde, M1 present vs absent): present konularda "we/our" 0,050 vs 0,017 (p=0,0006), "I" 0,009 vs 0,032 (p=0,0006), "unfortunately" 0 vs 0,14, telefon/e-posta içerme 0,06 vs 0,24, rakam oranı 0,005 vs 0,015. Yani gizli bağlam varken model kurumsal "biz" diliyle, jenerik özür + iletişim bilgisi yönlendirmesi olmadan cevaplıyor. Bu, davranış (karar alanı) değil metin üslubu kanalıdır; M2'de yok. Uyarılar: keşifsel (özellik başına p düzeltilmedi), 10+10 konu, tek model; kalan sözcüksel/semantik sızıntı (parafraz) tamamen dışlanamaz. Çıktı: `results/decoder_results_masked.csv`.
 
-## 7. Sınırlılıklar ve açık noktalar
+
+## 7. Faz 5 — Ana tablo, M1 vs M2 ve gizli belge sayısı taraması
+Çıktılar: `results/main_table.md`, `main_results.csv`, `m1_vs_m2.csv`, `ratio_table.md`, `ratio_results.csv`, `ratio_retrieval.csv`, `figures/` (`auc_m1_vs_m2.png`, `leaked_bits_m1_vs_m2.png`, `auc_vs_docs_per_topic.png`). Komutlar: `python -m src.experiments.analyze`, `python -m src.experiments.ratio`, `python -m src.experiments.retrieval_stats`.
+
+### 7.1 M1 vs M2 (LOTO AUC, k=3)
+| Model | Grup | AUC M1 | AUC M2 | p M1 | p M2 |
+|---|---|---|---|---|---|
+| gemma3 | behavior | 0,48 | 0,46 | 0,46 | 0,55 |
+| gemma3 | text | 0,82 | 0,45 | 0,004 | 0,56 |
+| gemma3 | behavior+text | 0,78 | 0,48 | 0,006 | 0,49 |
+| qwen2.5 | behavior | 0,58 | 0,45 | 0,18 | 0,59 |
+| qwen2.5 | text | 0,61 | 0,42 | 0,13 | 0,69 |
+
+Randomized control satırları (satır karıştırma, konu permütasyonu, plasebo) ana tabloda her hücre için yer alıyor ve şansa yakın (≈ 0,35–0,50). M2'de hiçbir hücrede sinyal yok; M1'de tek anlamlı kanal gemma3 metin/üslup kanalı. Davranış (karar alanı) grupları hiçbir hücrede güvenilir sinyal vermiyor.
+
+### 7.2 Gizli belge sayısı taraması
+**k nedir:** kanarya konusu başına M1_weak'te retrieval'a açık gizli kanarya belgesi sayısı (üretilen 3 belgeden ilk k'sı; kalanı `doc_id` filtresiyle dışlanır). Normal Enron belgeleri sabit; yani k gizli/normal belge oranını ayarlar. Yalnızca M1 koşuldu (M2 gizli belgeyi zaten getirmiyor); k=1,2 için 2 model × 20 konu × 5 varyant × probe/control = 400 çağrı/k, k=3 mevcut tam matris.
+
+**Müdahale kontrolü (top-5 bağlamında gizli belge, M1, `ratio_retrieval.csv`):**
+| k | present konu, probe: ort. gizli belge | konunun kendi kanaryası geldi | absent konu, probe | present, control |
+|---|---|---|---|---|
+| 1 | 1,88–1,90 | %94–96 | 1,06 | 1,10 |
+| 2 | 2,48 | %96 | 1,10 | 1,16 |
+| 3 | 3,30 | %100 | 1,14 | 1,16 |
+
+Retrieval k ile tek yönlü artıyor, yani doz-yanıt değişkeni beklendiği gibi çalışıyor. Modellerin retrieval'ı aynı (aynı retriever). Dikkat: absent konularda ve control mesajlarında bile top-5'te ortalama ~1 "gizli" belge var (%58–64 mesajda ≥1); bunlar kanarya olmayan, ACL etiketleyicinin gizli dediği Enron belgeleridir. Fark yokluk/varlıkta değil gizli belge sayısındadır (≈1 vs 1,9–3,3).
+
+**AUC (M1_weak):**
+| Model | Grup | k=1 | k=2 | k=3 |
+|---|---|---|---|---|
+| gemma3 | text | 0,71 (p 0,012) | 0,64 (p 0,048) | 0,82 (p 0,004) |
+| gemma3 | behavior+text | 0,71 (p 0,004) | 0,57 (p 0,14) | 0,78 (p 0,006) |
+| gemma3 | behavior | 0,45 | 0,38 | 0,48 |
+| qwen2.5 | behavior | 0,55 (p 0,21) | 0,66 (p 0,042) | 0,58 (p 0,18) |
+| qwen2.5 | behavior+text | 0,59 | 0,73 (p 0,010) | 0,61 |
+
+**Yorum:** Girdi dozu monoton arttığı halde AUC monoton değil; bu, retrieval başarısızlığıyla açıklanamaz (kendi kanaryası %94–100 geliyor). Güven aralıkları geniş ve örtüşüyor (ör. gemma3 text: k=1 [0,60–0,80], k=2 [0,51–0,75], k=3 [0,75–0,91]); k=1→2 farkı gürültü düzeyinde. Sağlam olan tek şey: gemma3'te metin/üslup sinyali tek gizli belgeyle (k=1) bile anlamlı, k=3'te en güçlü; davranış grupları gemma3'te her k'de şans düzeyinde. qwen2.5 davranış sinyali yalnızca k=2'de anlamlı (p 0,036–0,042) ve k=1,3'te yok; ~24 hücre içinde düzeltmesiz tek böyle sonuç olduğundan bulgu olarak sunulmuyor. Sızan bit çoğunlukla 0 (en fazla 0,12 bit/mesaj).
+
+**Uyarılar:** 20 konu, repeats=1, çoklu test düzeltmesi yok; k=3 ayrı bir koşudan (aynı yapılandırma, sıcaklık 0) geldiği için k=1,2 ile fark kısmen koşu gürültüsü olabilir. "Oran arttıkça sızıntı artıyor/azalıyor" iddiası bu veriyle desteklenmiyor. Daha güçlü test için daha çok konu veya tekrar gerekir.
+
+## 8. Sınırlılıklar ve açık noktalar
 - İki model de yerel/açık ağırlıklı; plandaki "biri ticari API" şartı API anahtarı olmadığı için karşılanmadı. Anahtar alınırsa config'e model eklemek yeterli.
 - Kanarya ve probe metinleri tek yazar tarafından (Claude oturumunda) yazıldı; üslup çeşitliliği sınırlı.
+- Gizli belge taraması (k) yalnızca M1'de, repeats=1; k etkisi istatistiksel olarak ayrışmıyor (bkz. 7.2).
 - Ölçek: 10+10 konu, 5 varyant, tek tekrar. TPR@1%FPR çözünürlüğü kaba (50 negatif probe satırı/hücre).
 - Ajan davranışı düşük değişkenlikli (eskalasyon hiç yok, ret nadir): davranışsal kanal için taşıyıcı sinyal az. Ajan promptunun daha çok ret/eskalasyon üretecek şekilde gözden geçirilmesi ayrı bir deney olabilir.
 - Konu kimliği ile predicate karışık olabilir (konu-leksikal etki); LOTO + plasebo azaltır, elemez.
 - LOTO'nun gürültüde AUC'yi ≈ 0,41'e çekme yan etkisi var; mutlak AUC yerine permütasyon p ve avantaj esas alınmalı.
 - Latency kanalı güvenilir değil (tek GPU, ısınma/sıra etkileri); runner sırayı karıştırarak etkiyi dağıtıyor.
 
-## 8. Sıradaki adım
-Faz 5: ana deney tablosu (plan modunda). Açık noktalar: qwen2.5-M1 ret-türü ipucunun daha fazla konuyla (ör. 40 konu) sınanması; gemma3-M1 metin sinyalinin içerik sızıntısından ayrıştırılması için konu/kanarya terimlerini maskeleyen analiz; ticari API modeli (anahtar yok).
+## 9. Sıradaki adım
+Faz 6: savunmalar ve güvenlik-fayda eğrisi (önce plan). Açık noktalar: qwen2.5-M1 ret-türü ipucunun daha fazla konuyla (ör. 40 konu) sınanması; gemma3-M1 metin sinyalinin içerik sızıntısından ayrıştırılması için konu/kanarya terimlerini maskeleyen analiz; ticari API modeli (anahtar yok).
