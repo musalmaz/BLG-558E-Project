@@ -86,6 +86,17 @@ Randomized control: satır karıştırma AUC ortalaması 0,46–0,51 (≈ şans)
 3. **M2_strong:** hiçbir model ve grupta sinyal yok (p ≥ 0,48). 20 konuyla pilota göre güç daha yüksek (AUC GA yarı genişliği ≈ 0,15) ama yine de küçük etkileri (AUC < ~0,65) dışlayamıyoruz. Güçlü ACL bu ölçekte gözlemlenebilir davranışsal sızıntıyı sıfırlıyor görünüyor.
 4. 16 karşılaştırma için çoklu test düzeltmesi yapılmadı; tek sağlam sonuç (1) zaten Bonferroni (0,05/16 = 0,003) sınırının hemen yanında (p = 0,004).
 
+### 6.x Maskeleme analizi (gemma3 M1 metin sinyali)
+Soru: gemma3+M1 metin sinyali (AUC 0,83) yalnızca cevaba sızan gizli terimlerden mi geliyor? Yeni koşu yok; `src/features/masking.py` + `python -m src.decoders.run_masked`. İki seviye: `topic` (konu anahtar kelimeleri ve konu adı sözcükleri → XXX), `strict` (ek olarak rakamlar, sayı sözcükleri, cümle ortası büyük harfli sözcükler ve yalnızca gizli dokümanlarda geçen 210 sözcük).
+
+| Seviye | gemma3 M1 text AUC [GA] | p (konu perm.) | gemma3 M2 text | qwen2.5 M1 text |
+|---|---|---|---|---|
+| maskesiz | 0,83 [0,75–0,91] | 0,004 | p ≥ 0,48 | 0,61 (p 0,126) |
+| topic | 0,83 [0,77–0,90] | 0,002 | 0,40 (p 0,77) | 0,55 (p 0,24) |
+| strict | 0,82 [0,75–0,90] | 0,002 | 0,43 (p 0,67) | 0,53 (p 0,28) |
+
+**Sonuç:** Maskeleme sinyali ortadan kaldırmıyor; önceki "sinyal doğrudan içerik sızıntısıyla açıklanır" yorumu desteklenmedi. Sinyal sözcük içeriğinden değil üslup kaymasından geliyor (konu düzeyinde, M1 present vs absent): present konularda "we/our" 0,050 vs 0,017 (p=0,0006), "I" 0,009 vs 0,032 (p=0,0006), "unfortunately" 0 vs 0,14, telefon/e-posta içerme 0,06 vs 0,24, rakam oranı 0,005 vs 0,015. Yani gizli bağlam varken model kurumsal "biz" diliyle, jenerik özür + iletişim bilgisi yönlendirmesi olmadan cevaplıyor. Bu, davranış (karar alanı) değil metin üslubu kanalıdır; M2'de yok. Uyarılar: keşifsel (özellik başına p düzeltilmedi), 10+10 konu, tek model; kalan sözcüksel/semantik sızıntı (parafraz) tamamen dışlanamaz. Çıktı: `results/decoder_results_masked.csv`.
+
 ## 7. Sınırlılıklar ve açık noktalar
 - İki model de yerel/açık ağırlıklı; plandaki "biri ticari API" şartı API anahtarı olmadığı için karşılanmadı. Anahtar alınırsa config'e model eklemek yeterli.
 - Kanarya ve probe metinleri tek yazar tarafından (Claude oturumunda) yazıldı; üslup çeşitliliği sınırlı.
