@@ -18,6 +18,7 @@ dependencies = [
     "pyyaml",
     "pytest",
     "python-dotenv",
+    "matplotlib",
 ]
 
 [tool.setuptools.packages.find]

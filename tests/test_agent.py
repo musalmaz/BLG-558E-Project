@@ -95,3 +95,26 @@ def test_log_row_fields(retriever, tmp_path, monkeypatch):
 def test_logger_missing_field(tmp_path):
     with pytest.raises(ValueError):
         log_call({"acl_mode": "M1_weak"}, tmp_path / "x.jsonl")
+
+
+def test_docs_per_topic_filter():
+    """Ratio sweep: only the first k canary docs per topic stay retrievable; M2 still hides them."""
+    from src.agent.retrieval import excluded_canary_ids
+    cfg = load_config()
+    assert excluded_canary_ids(cfg, None) == []
+    ex1, ex2 = excluded_canary_ids(cfg, 1), excluded_canary_ids(cfg, 2)
+    assert set(ex2) < set(ex1) and not any(d.endswith("_0") for d in ex1)
+    assert excluded_canary_ids(cfg, 3) == []
+    emb = FakeEmbedder()
+    import chromadb
+    col = chromadb.EphemeralClient().create_collection("t_ratio", metadata={"hnsw:space": "cosine"})
+    ids = ["canary_x_0", "canary_x_1", "n0"]
+    col.add(ids=ids, documents=["a", "b", "c"], embeddings=emb.encode(["a", "b", "c"]).tolist(),
+            metadatas=[{"doc_id": i, "acl_label": "confidential" if i.startswith("canary") else "public",
+                        "is_canary": i.startswith("canary")} for i in ids])
+    cfg["index"]["top_k"] = 3
+    r = Retriever(cfg, collection=col, embedder=emb)
+    r.exclude_ids = ["canary_x_1"]
+    got = {c.doc_id for c in r.retrieve("q", "M1_weak")}
+    assert "canary_x_1" not in got and "canary_x_0" in got
+    assert not {c.doc_id for c in r.retrieve("q", "M2_strong")} & {"canary_x_0", "canary_x_1"}

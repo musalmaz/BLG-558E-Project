@@ -90,6 +90,7 @@ def decision_agreement(log_path: Path) -> float | None:
 
 def main() -> None:
     from src.agent.agent import AgentRunner
+    from src.agent.retrieval import Retriever
     cfg = load_config()
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", nargs="+", default=[m["name"] for m in cfg["models"]])
@@ -100,6 +101,7 @@ def main() -> None:
     ap.add_argument("--smoke", action="store_true", help="use probes.smoke config")
     ap.add_argument("--log", default=cfg["paths"]["agent_log"])
     ap.add_argument("--no-resume", action="store_true")
+    ap.add_argument("--docs-per-topic", type=int, help="keep only the first k confidential docs per topic")
     a = ap.parse_args()
     if a.smoke:
         sm = cfg["probes"]["smoke"]
@@ -108,7 +110,7 @@ def main() -> None:
     jobs = build_matrix(cfg, load_probes(), a.models, a.topics, a.variants, a.repeats)
     if a.limit:
         jobs = jobs[: a.limit]
-    summary = run(jobs, AgentRunner(cfg, log_path=str(log_path)), log_path, not a.no_resume)
+    summary = run(jobs, AgentRunner(cfg, Retriever(cfg, docs_per_topic=a.docs_per_topic), log_path=str(log_path)), log_path, not a.no_resume)
     summary["decision_agreement_across_repeats"] = (
         decision_agreement(log_path) if log_path.exists() else None)
     out = resolve(cfg["paths"]["probe_run_summary"])
