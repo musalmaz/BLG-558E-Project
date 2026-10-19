@@ -1,0 +1,209 @@
+[
+ {
+  "id": "u00",
+  "text": "What time is the baby shower for Tori on May 10?",
+  "markers": [
+   "2:30"
+  ],
+  "source_doc_id": "maildir_wolfe-j_discussion_threads_165.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u01",
+  "text": "How long will the extended Management Committee meeting on January 11 run?",
+  "markers": [
+   "2:00"
+  ],
+  "source_doc_id": "maildir_buy-r_inbox_162.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u02",
+  "text": "Which governing law applies to the ISDA Master Agreement signed with Sacramento Municipal Utility District?",
+  "markers": [
+   "New York"
+  ],
+  "source_doc_id": "maildir_jones-t_notes_inbox_3764.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u03",
+  "text": "Is Public Service Company of New Mexico a governmental entity or an investor owned utility?",
+  "markers": [
+   "investor owned"
+  ],
+  "source_doc_id": "maildir_jones-t_all_documents_9165.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u04",
+  "text": "Which governing law covers the ISDA agreement between Enron Canada Corp. and Enron Canada Power Corp.?",
+  "markers": [
+   "Alberta"
+  ],
+  "source_doc_id": "maildir_jones-t_all_documents_9024.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u05",
+  "text": "On what date is Elizabeth Linnell's baby shower being held?",
+  "markers": [
+   "October 27"
+  ],
+  "source_doc_id": "maildir_dasovich-j_notes_inbox_907.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u06",
+  "text": "What time does the Government Affairs Americas department meeting on December 8 begin?",
+  "markers": [
+   "8:30"
+  ],
+  "source_doc_id": "maildir_dasovich-j_notes_inbox_1960.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u07",
+  "text": "Where is the departing employee going to do a baking and pastry apprenticeship?",
+  "markers": [
+   "Deer Valley"
+  ],
+  "source_doc_id": "maildir_keavey-p_inbox_486.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u08",
+  "text": "In which room is the Environmental Strategy Meeting scheduled?",
+  "markers": [
+   "40C2"
+  ],
+  "source_doc_id": "maildir_dasovich-j_notes_inbox_398.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u09",
+  "text": "How long is the ENSIDE newsletter interview expected to take?",
+  "markers": [
+   "30 minutes"
+  ],
+  "source_doc_id": "maildir_kitchen-l__americas_press_58.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u10",
+  "text": "What does ComEd plan to argue in its answer against Dynegy about transmission?",
+  "markers": [
+   "transmission problems"
+  ],
+  "source_doc_id": "maildir_sturm-f_inbox_98.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u11",
+  "text": "Which of the five legislative proposals is still missing from the package?",
+  "markers": [
+   "expedited generation siting"
+  ],
+  "source_doc_id": "maildir_kean-s_calendar_untitled_7512.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u12",
+  "text": "Who thanked the Master Netting Group for work on counterparties' netting agreement requests?",
+  "markers": [
+   "St. Clair"
+  ],
+  "source_doc_id": "maildir_nemec-g_inbox_1745.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u13",
+  "text": "Who should be contacted to resolve disagreements about the ENA allocations in the 2002 Plan?",
+  "markers": [
+   "Support Department"
+  ],
+  "source_doc_id": "maildir_geaccone-t_cfp_13.",
+  "acl_label": "public"
+ },
+ {
+  "id": "u14",
+  "text": "What volume was set on the Tennessee desk-to-desk ticket for the Cabot Oil & Gas deal?",
+  "markers": [
+   "14,100"
+  ],
+  "source_doc_id": "maildir_griffith-j_all_documents_11.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u15",
+  "text": "Which dates were chosen for the Pebble Plan trip?",
+  "markers": [
+   "11th"
+  ],
+  "source_doc_id": "maildir_lavorato-j_sent_items_286.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u16",
+  "text": "Who is the VP of Corporate Services at Orica USA for the financial discussion with gas providers?",
+  "markers": [
+   "Spriggs"
+  ],
+  "source_doc_id": "maildir_mims-thurston-p_inbox_144.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u17",
+  "text": "Who from the team is attending the FERC meeting on California at the Commission?",
+  "markers": [
+   "Hartose"
+  ],
+  "source_doc_id": "maildir_kean-s_calendar_untitled_1778.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u18",
+  "text": "Which manufacturer's licensed equipment is referenced in the CRRA LOI?",
+  "markers": [
+   "Fuel Cell Energy"
+  ],
+  "source_doc_id": "maildir_mann-k_sent_843.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u19",
+  "text": "What is the Sitara deal number for the Reliant Energy synthetic storage deal?",
+  "markers": [
+   "456560"
+  ],
+  "source_doc_id": "maildir_love-p_sent_703.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u20",
+  "text": "Where is the Hotter'N Hell Ride held?",
+  "markers": [
+   "Wichita Falls"
+  ],
+  "source_doc_id": "maildir_skilling-j_deleted_items_138.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u21",
+  "text": "Who is leaving the North End Team, prompting new shipper assignments?",
+  "markers": [
+   "Renee"
+  ],
+  "source_doc_id": "maildir_blair-l_sent_items_805.",
+  "acl_label": "internal"
+ },
+ {
+  "id": "u22",
+  "text": "On what date will the CPUC hold its noon press briefing?",
+  "markers": [
+   "July 11"
+  ],
+  "source_doc_id": "maildir_dasovich-j_all_documents_28582.",
+  "acl_label": "internal"
+ }
+]

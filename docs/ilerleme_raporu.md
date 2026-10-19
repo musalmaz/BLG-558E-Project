@@ -1,6 +1,6 @@
 # İlerleme Raporu — Dış AI ajanlarında davranışsal yan kanal sızıntısı
 
-Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0, 1, 2, 3, 4 (20 konuya ölçeklendi), 5 · Sıradaki: Faz 6
+Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0–6 (Faz 4 20 konuya ölçeklendi) · Sıradaki: makale taslağı / yorum
 
 ## 1. Faz özeti
 
@@ -12,6 +12,7 @@ Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0, 1, 2, 3, 4 (20 konuya ölç
 | 3 | Probe/control seti, runner, baseline check, tam matris (repeats=1) | Tamam | `1473694` + sonuçlar |
 | 4 | Özellikler, decoder, randomized control, istatistik testleri; 20 konuya ölçekleme | Tamam | `b84f958` |
 | 5 | Ana tablo, M1 vs M2, gizli belge sayısı taraması (k=1,2,3), figürler | Tamam | `6dad717`, `f6a256c` |
+| 6 | Savunmalar (behavior_norm, scoped_context, decision_hiding), güvenlik-fayda eğrisi | Tamam | bu güncelleme |
 
 ## 2. Veri (Faz 1, 20 konuya genişletildi)
 - 2030 doküman (2000 Enron + 30 elle yazılmış kanarya), 7520 chunk. ACL: internal 1596, confidential 271, public 163.
@@ -138,7 +139,41 @@ Retrieval k ile tek yönlü artıyor, yani doz-yanıt değişkeni beklendiği gi
 
 **Uyarılar:** 20 konu, repeats=1, çoklu test düzeltmesi yok; k=3 ayrı bir koşudan (aynı yapılandırma, sıcaklık 0) geldiği için k=1,2 ile fark kısmen koşu gürültüsü olabilir. "Oran arttıkça sızıntı artıyor/azalıyor" iddiası bu veriyle desteklenmiyor. Daha güçlü test için daha çok konu veya tekrar gerekir.
 
-## 8. Sınırlılıklar ve açık noktalar
+## 8. Faz 6 — Savunmalar ve güvenlik-fayda
+Plan: `plans/faz6_plan.md`. Kod: `src/defenses/` (`behavior_norm`, `scoped_context`, `decision_hiding`, `quality`, `evaluate_defenses`, `figures`); komut: `python -m src.defenses.evaluate_defenses {collect,build,evaluate}`. Çıktılar: `results/defense_results.csv`, `results/defense_table.md`, `results/figures/security_utility.png`, `results/defenses/`.
+
+**Savunmalar (korunan yapılandırma M1_weak):**
+- `behavior_norm`: ret/eskalasyon cevapları tek şablon + tek ret türü (çevrimdışı, loglara uygulanır).
+- `scoped_context`: dış mesaj için retrieval yalnızca `public` (M2'den sıkı: internal de dışarıda).
+- `decision_hiding`: `routing_target`/`escalated`/`refusal_type` bağlamsız ikinci çağrıdan (yalnızca müşteri mesajı); gecikme sabit 60 s (ham gecikmeler < 60 s, aşım yok).
+- `all`: üçü birden. `M2_reference`: Faz 5'teki güçlü ACL.
+
+**Fayda ölçüleri:** (a) çözüm oranı (control mesajlarında ham karar `none` ve eskalasyon yok), (b) yönlendirme uyumu (savunmasız ajanla aynı `routing_target`), (c) 23 soruluk fayda setinde (`data/probes/utility_queries.json`; 14 public + 9 internal kaynaklı, hepsi M1'de top-5'te doğrulanmış, işaretçi içeren) cevaptaki işaretçi recall'ı. Fayda seti Claude tarafından oturumda yazıldı.
+
+**Sonuçlar (LOTO AUC [%95 GA], M1_weak; `none` Faz 5'i aynen yeniden üretti):**
+| Savunma | gemma3 text | gemma3 beh+text | qwen2.5 beh+text | Recall kaybı (gemma3 / qwen2.5) | Yönlendirme uyumu |
+|---|---|---|---|---|---|
+| none | 0,82 [0,75–0,91] | 0,78 [0,70–0,86] | 0,61 [0,45–0,72] | 0 / 0 | 1,00 |
+| behavior_norm | 0,82 [0,73–0,90] | 0,82 [0,72–0,91] | 0,63 [0,48–0,75] | 0,04 / 0,00 | 1,00 |
+| scoped_context | 0,44 [0,27–0,58] | 0,49 [0,34–0,62] | 0,42 [0,26–0,57] | 0,30 / 0,35 | 0,60 / 0,66 |
+| decision_hiding | 0,82 [0,75–0,91] | 0,84 [0,79–0,91] | 0,54 [0,41–0,65] | 0 / 0 | 0,61 / 0,64 |
+| all | 0,51 [0,37–0,62] | 0,54 [0,42–0,66] | 0,45 [0,30–0,59] | 0,30 / 0,35 | 0,61 / 0,64 |
+| M2 referansı | 0,45 [0,34–0,56] | 0,48 [0,35–0,60] | 0,37 [0,28–0,47] | 0,04 / −0,04 | – |
+
+Konu perm. p: gemma3 text `none` 0,004, `behavior_norm` ≈ 0, `decision_hiding` ≈ 0 (kanal açık); `scoped_context` 0,63, `all` 0,36 (kapalı). Sızan bit: gemma3 `none` 0,12 → `scoped_context`/`all` 0.
+
+**Fayda ayrıntısı (recall, public / internal kaynaklı sorular):** `none` gemma3 0,86 / 1,00, qwen2.5 0,93 / 0,78; `scoped_context` gemma3 1,00 / **0,00**, qwen2.5 0,86 / **0,00**. Çözüm oranı `scoped_context`'te değişmiyor (0,93 / 0,99): ajan internal kaynak yokken de ret etmeden cevap veriyor, ama işaretçiyi içermiyor. Cevapların doğru/uydurma olup olmadığı ölçülmedi. M2 referansında çözüm oranı gemma3'te 0,92 → 0,67'ye düşüyor.
+
+**Yorum (temkinli):**
+1. **Sinyali kapatan tek savunma `scoped_context`** (gemma3 text 0,82 → 0,44, p 0,63; `all`'da 0,51). `all`, `scoped_context`'e ek güvenlik katmıyor.
+2. **Bedeli belirgin ve öngörülen yönde:** internal kaynaklı soruların hiçbirinde işaretçi gelmiyor (recall 0), yönlendirme uyumu ~0,6. Çözüm oranı bu kaybı yakalamıyor; yalnızca çözüm oranına bakılsaydı savunma bedelsiz görünürdü.
+3. **`behavior_norm` metin kanalına etki etmedi** (gemma3 text 0,82 → 0,82; beh+text 0,78 → 0,82). Planın hipotezi doğrulandı: sızıntı ret metinlerinde değil normal cevapların üslubunda.
+4. **`decision_hiding` gemma3'te sızıntıyı azaltmadı** (beh+text 0,78 → 0,84, aralıklar örtüşüyor); qwen2.5'te 0,61 → 0,54 farkı da GA içinde. Bedeli yönlendirme kalitesi (uyum ~0,61). Uyarı: bağlamsız kararlar yalnızca mesaja bağlı olduğundan mesaj/konu kimliğini taşır; bu LOTO'da bile AUC'yi bozabilir.
+5. **M2 referansı `scoped_context` kadar güvenli ama çok daha az pahalı** (recall kaybı ≤ 0,04; internal sorularda recall 0,89–1,00). Yani yalnızca confidential'ı retrieval'da kesmek (M2) yeterli; public-only kapsam gereğinden sıkı. M2'nin bedeli recall'da değil çözüm oranında (gemma3 0,92 → 0,67).
+
+**Uyarılar:** 20 konu, repeats=1; aralıklar geniş, ±0,07'lik farklar anlamlı değil, çoklu test düzeltmesi yok. Fayda seti küçük (23 soru) ve tek yazarlı; recall kaba bir işaretçi ölçüsü. LOTO AUC şans altına (≈ 0,4) inebiliyor. Scoped koşusunda bellek baskısı nedeniyle bozulan 36 + 6 satırın gecikmesi temizlemek için satırlar yeniden koşuldu (sıcaklık 0, metin aynı beklenir; karşılaştırılmadı). Bağlamsız karar önbelleği `results/cache/ctxfree_decisions.jsonl` (repoda zorla eklendi).
+
+## 9. Sınırlılıklar ve açık noktalar
 - İki model de yerel/açık ağırlıklı; plandaki "biri ticari API" şartı API anahtarı olmadığı için karşılanmadı. Anahtar alınırsa config'e model eklemek yeterli.
 - Kanarya ve probe metinleri tek yazar tarafından (Claude oturumunda) yazıldı; üslup çeşitliliği sınırlı.
 - Gizli belge taraması (k) yalnızca M1'de, repeats=1; k etkisi istatistiksel olarak ayrışmıyor (bkz. 7.2).
@@ -148,5 +183,5 @@ Retrieval k ile tek yönlü artıyor, yani doz-yanıt değişkeni beklendiği gi
 - LOTO'nun gürültüde AUC'yi ≈ 0,41'e çekme yan etkisi var; mutlak AUC yerine permütasyon p ve avantaj esas alınmalı.
 - Latency kanalı güvenilir değil (tek GPU, ısınma/sıra etkileri); runner sırayı karıştırarak etkiyi dağıtıyor.
 
-## 9. Sıradaki adım
-Faz 6: savunmalar ve güvenlik-fayda eğrisi (önce plan). Açık noktalar: qwen2.5-M1 ret-türü ipucunun daha fazla konuyla (ör. 40 konu) sınanması; gemma3-M1 metin sinyalinin içerik sızıntısından ayrıştırılması için konu/kanarya terimlerini maskeleyen analiz; ticari API modeli (anahtar yok).
+## 10. Sıradaki adım
+Makale taslağı ve sonuçların birlikte yorumu; ardından açık noktalar: qwen2.5-M1 ret-türü ipucunun daha fazla konuyla (ör. 40 konu) sınanması; gemma3-M1 metin sinyalinin içerik sızıntısından ayrıştırılması için konu/kanarya terimlerini maskeleyen analiz; ticari API modeli (anahtar yok).

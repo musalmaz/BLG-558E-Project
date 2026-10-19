@@ -1,0 +1,86 @@
+{
+  "gemma3|M2_strong": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 0.13093453273363317,
+        "answer_chars": 0.6476761619190404,
+        "latency_ms": 0.9415292353823088
+      },
+      "holm": {
+        "refused": 0.5237381309345327,
+        "answer_chars": 1.0,
+        "latency_ms": 1.0,
+        "escalated": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.42000000000000004,
+        "answer_chars": 403.58000000000004,
+        "latency_ms": 6266.276929899977
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.6,
+        "answer_chars": 392.91999999999996,
+        "latency_ms": 6239.367515939957
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.5955274112110507,
+      "mannwhitney_latency_ms": 0.350245816633188,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 0.13994152639260768,
+      "chi2_routing_target": 0.14242935771348592
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 0.014399617599300741,
+      "answer_chars": 0.8694877624511719,
+      "latency_ms": 0.7011814117431641
+    },
+    "behavior_tuple_mi_bits": 0.04122806546027927
+  },
+  "qwen2.5|M2_strong": {
+    "topic_level": {
+      "raw": {
+        "escalated": 1.0,
+        "refused": 1.0,
+        "answer_chars": 0.02348825587206397,
+        "latency_ms": 0.28735632183908044
+      },
+      "holm": {
+        "answer_chars": 0.09395302348825588,
+        "latency_ms": 0.8620689655172413,
+        "escalated": 1.0,
+        "refused": 1.0
+      },
+      "means_present": {
+        "escalated": 0.0,
+        "refused": 0.0,
+        "answer_chars": 413.08000000000004,
+        "latency_ms": 10994.924707480313
+      },
+      "means_absent": {
+        "escalated": 0.0,
+        "refused": 0.02,
+        "answer_chars": 363.78000000000003,
+        "latency_ms": 10513.833440679737
+      }
+    },
+    "row_level_descriptive": {
+      "mannwhitney_answer_chars": 0.011400281354257935,
+      "mannwhitney_latency_ms": 0.0725199547532066,
+      "fisher_escalated": 1.0,
+      "chi2_refusal_type": 1.0,
+      "chi2_routing_target": 0.0744424382649615
+    },
+    "probe_vs_control": {
+      "escalated": 1.0,
+      "refused": 0.31731050786291415,
+      "answer_chars": 0.16714705875429758,
+      "latency_ms": 0.5958194732666016
+    },
+    "behavior_tuple_mi_bits": 0.041909248089569015
+  }
+}

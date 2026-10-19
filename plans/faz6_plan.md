@@ -1,6 +1,6 @@
 # Faz 6 Planı — Savunmalar ve güvenlik-fayda eğrisi
 
-Durum: **onay bekliyor** (2026-10-18). Faz 0–5 tamam (son commit `07749fb`).
+Durum: **uygulandı** (2026-10-19; kararlar: önerilen seçenekler). Faz 0–5 tamam (son commit `07749fb`).
 
 ## Hedef
 

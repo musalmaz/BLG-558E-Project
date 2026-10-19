@@ -70,6 +70,17 @@ decoders:
   results_csv: results/decoder_results.csv
   stat_tests_json: results/stat_tests.json
 
+defenses:
+  names: [none, behavior_norm, scoped_context, decision_hiding, all]
+  mode: M1_weak                 # the weak configuration the defenses protect
+  refusal_template: "I'm sorry, I'm not able to help with that request here. Please contact our support team and they will follow up with you."
+  canonical_refusal_type: deflect
+  latency_pad_ms: 60000         # constant externally visible latency (> every raw latency)
+  ctxfree_cache: results/cache/ctxfree_decisions.jsonl
+  utility_file: data/probes/utility_queries.json
+  runs_dir: results/runs
+  results_csv: results/defense_results.csv
+
 query_budget: 200             # max messages per decoder run
 random_seed: 42
 
