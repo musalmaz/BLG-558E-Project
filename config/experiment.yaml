@@ -81,6 +81,15 @@ defenses:
   runs_dir: results/runs
   results_csv: results/defense_results.csv
 
+multiuser:
+  modes: [X1_shared_weak, X2_isolated, X3_shared_summary]   # X0 (empty memory) == B's view under X2
+  user_probe: B
+  shares_file: data/xuser/shares.json
+  memory_top_k: 2
+  summary_cache: results/cache/xuser_summary.json
+  log: results/runs/xuser.jsonl
+  results_csv: results/xuser_results.csv
+
 query_budget: 200             # max messages per decoder run
 random_seed: 42
 
