@@ -1,6 +1,7 @@
 """Faz 6 driver: collect (LLM stages), build defended logs, evaluate security (decoders) vs utility."""
 import argparse
 import json
+import os
 import random
 import urllib.request
 
@@ -18,7 +19,7 @@ NONE_LOG = "results/runs/probe_matrix_20topics_repeats1.jsonl"
 SCOPED = {"scoped_context", "all"}
 NORM = {"behavior_norm", "all"}
 HIDE = {"decision_hiding", "all"}
-CHUNK = 40
+CHUNK = int(os.environ.get("CHUNK", 40))
 
 
 def runs(cfg: dict, name: str):

@@ -20,6 +20,7 @@
 - `src/decoders/` Faz 4: istatistik testi, sınıflandırıcı, randomized control
 - `src/experiments/` Faz 5: matris koşturucu + analiz
 - `src/defenses/` Faz 6: savunmalar + güvenlik-fayda
+- `src/multiuser/` Ek pilot: çok kullanıcılı hafıza (A -> B sızıntısı)
 - `data/{raw,labeled,canaries}`, `results/`, `tests/`
 
 ## Kod stili

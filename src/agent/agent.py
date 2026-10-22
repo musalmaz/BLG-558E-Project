@@ -92,7 +92,7 @@ class AgentRunner:
         messages = build_messages(message, chunks, mode)
         schema = decision_schema(acfg["routing_targets"])
         kwargs = {"model": mcfg["litellm_id"], "messages": messages,
-                  "temperature": acfg["temperature"],
+                  "temperature": acfg["temperature"], "max_tokens": acfg.get("max_tokens", 700),
                   "response_format": {"type": "json_schema",
                                       "json_schema": {"name": "decision", "schema": schema}}}
         if mcfg.get("api_base"):
@@ -100,7 +100,10 @@ class AgentRunner:
         decision, ptok, ctok = None, 0, 0
         t0 = time.perf_counter()
         for _ in range(acfg["max_retries"] + 1):
-            resp = litellm.completion(**kwargs)
+            try:
+                resp = litellm.completion(**kwargs)
+            except litellm.InternalServerError:  # e.g. Ollama "token repeat limit": counts as a failed attempt
+                continue
             usage = getattr(resp, "usage", None)
             ptok += getattr(usage, "prompt_tokens", 0) or 0
             ctok += getattr(usage, "completion_tokens", 0) or 0

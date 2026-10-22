@@ -92,7 +92,7 @@ Fayda ölçüleri: çözüm oranı, savunmasız ajanla yönlendirme uyumu ve 23 
 
 ## 8. Sonuç ve gelecek iş
 
-Yalnızca-davranış yan kanalı bu ölçekte bulunamadı; M1'de ölçülen kanal esas olarak metin üslubu ve içerik sızıntısıdır ve M2 (retrieval'da süzme) onu kapatıyor. Gelecek iş: daha çok konu/tekrarla davranış ipuçlarını (özellikle qwen2.5-M1 ret türü) yeniden sınamak; daha güçlü ve ticari bir modelle tekrar; ajan promptunu daha çok ret/eskalasyon üretecek şekilde değiştirmek; savunmaların davranış kanalındaki etkisini sinyal varken sınamak; metin üslubu kanalı için çıkış tarafı normalleştirme.
+Yalnızca-davranış yan kanalı bu ölçekte bulunamadı; M1'de ölçülen kanal esas olarak metin üslubu ve içerik sızıntısıdır ve M2 (retrieval'da süzme) onu kapatıyor. Ek bir çok kullanıcılı pilotta (A'nın paylaştığı veri B'ye sızıyor mu) ortak hafıza prompt kuralına rağmen A'nın verisini B'nin cevabına %52–72 oranında yazdı, kullanıcı başına izolasyon bunu kapattı; davranışsal yan kanal yine bulunamadı (tek aday: qwen2.5-X3 metin, p=0,032, çoklu karşılaştırma altında zayıf). Ayrıntı: `docs/ilerleme_raporu.md` bölüm 9. Gelecek iş: daha çok konu/tekrarla davranış ipuçlarını (özellikle qwen2.5-M1 ret türü) yeniden sınamak; daha güçlü ve ticari bir modelle tekrar; ajan promptunu daha çok ret/eskalasyon üretecek şekilde değiştirmek; savunmaların davranış kanalındaki etkisini sinyal varken sınamak; metin üslubu kanalı için çıkış tarafı normalleştirme.
 
 ## Ek: yeniden üretim
 

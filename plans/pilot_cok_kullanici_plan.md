@@ -1,6 +1,6 @@
 # Pilot Planı — Çok kullanıcılı sızıntı (A'nın paylaştığı veri B'ye sızıyor mu?)
 
-Durum: **uygulanıyor** (2026-10-20; kararlar: iki model, X3 dahil, A mesajları oturumda yazıldı, B yazmıyor, A+B).
+Durum: **uygulandı** (2026-10-20; kararlar: iki model, X3 dahil, A mesajları oturumda yazıldı, B yazmıyor, A+B).
 
 **Uygulama notları (plandan sapmalar):** (1) X0_empty ayrı koşulmadı: X2'de B'nin hafızası boş olduğundan B'nin bağlamı X0 ile aynıdır (negatif kontrol rolünü X2 oynar; izolasyon birim testiyle doğrulanır). (2) A fazında LLM çağrısı yok: hafıza yazımı verbatim; yalnızca X3 özetinde model başına 10 LLM çağrısı. (3) X3'te ortak not her B mesajının bağlamına girer (benzerliğe göre seçilmez). Faz 0–6 tamam (son commit `4bfce6e`). Bu, ana çalışmaya **ek** bir pilottur; ana raporun iddialarını değiştirmez.
 

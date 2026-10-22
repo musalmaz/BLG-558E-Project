@@ -1,0 +1,1346 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4149.23it/s]
+[1/40] c17|control|v3|r0|X3_shared_summary|gemma3 5028ms eta 3.4min
+[2/40] c19|control|v4|r0|X3_shared_summary|gemma3 6107ms eta 3.6min
+[3/40] c14|probe|v2|r0|X3_shared_summary|gemma3 7195ms eta 3.8min
+[4/40] c14|probe|v1|r0|X2_isolated|gemma3 6976ms eta 3.8min
+[5/40] c10|probe|v1|r0|X1_shared_weak|gemma3 7135ms eta 3.8min
+[6/40] c15|control|v0|r0|X1_shared_weak|gemma3 7836ms eta 3.8min
+[7/40] c04|probe|v3|r0|X2_isolated|gemma3 5334ms eta 3.6min
+[8/40] c07|probe|v0|r0|X3_shared_summary|gemma3 10108ms eta 3.7min
+[9/40] c15|control|v3|r0|X3_shared_summary|gemma3 8583ms eta 3.7min
+[10/40] c10|probe|v4|r0|X3_shared_summary|gemma3 6609ms eta 3.6min
+[11/40] c03|probe|v0|r0|X3_shared_summary|gemma3 6465ms eta 3.4min
+[12/40] c08|control|v3|r0|X2_isolated|gemma3 6206ms eta 3.3min
+[13/40] c18|probe|v1|r0|X3_shared_summary|gemma3 6450ms eta 3.1min
+[14/40] c16|probe|v0|r0|X1_shared_weak|gemma3 6962ms eta 3.0min
+[15/40] c07|control|v3|r0|X2_isolated|gemma3 5088ms eta 2.9min
+[16/40] c06|probe|v2|r0|X3_shared_summary|gemma3 5074ms eta 2.7min
+[17/40] c14|control|v1|r0|X2_isolated|gemma3 5897ms eta 2.6min
+[18/40] c13|probe|v2|r0|X1_shared_weak|gemma3 4577ms eta 2.4min
+[19/40] c18|probe|v0|r0|X1_shared_weak|gemma3 6974ms eta 2.3min
+[20/40] c11|control|v0|r0|X2_isolated|gemma3 5886ms eta 2.2min
+[21/40] c19|control|v3|r0|X2_isolated|gemma3 8092ms eta 2.1min
+[22/40] c14|probe|v1|r0|X3_shared_summary|gemma3 7967ms eta 2.0min
+[23/40] c10|control|v3|r0|X2_isolated|gemma3 9764ms eta 1.9min
+[24/40] c16|probe|v0|r0|X2_isolated|gemma3 6043ms eta 1.8min
+[25/40] c09|probe|v2|r0|X3_shared_summary|gemma3 6273ms eta 1.7min
+[26/40] c13|control|v4|r0|X3_shared_summary|gemma3 67385ms eta 2.1min
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2424.93it/s]
+[1/40] c19|probe|v3|r0|X3_shared_summary|gemma3 6713ms eta 4.4min
+[2/40] c11|probe|v3|r0|X1_shared_weak|gemma3 4567ms eta 3.6min
+[3/40] c07|control|v1|r0|X3_shared_summary|gemma3 7063ms eta 3.8min
+[4/40] c01|control|v4|r0|X3_shared_summary|gemma3 6790ms eta 3.8min
+[5/40] c10|control|v0|r0|X2_isolated|gemma3 6361ms eta 3.7min
+[6/40] c08|probe|v0|r0|X2_isolated|gemma3 5790ms eta 3.5min
+[7/40] c10|probe|v1|r0|X2_isolated|gemma3 6103ms eta 3.4min
+[8/40] c08|probe|v4|r0|X2_isolated|gemma3 4563ms eta 3.2min
+[9/40] c00|probe|v4|r0|X1_shared_weak|gemma3 5585ms eta 3.1min
+[10/40] c12|probe|v3|r0|X3_shared_summary|gemma3 9126ms eta 3.2min
+[11/40] c11|control|v0|r0|X1_shared_weak|gemma3 6868ms eta 3.1min
+[12/40] c16|probe|v2|r0|X2_isolated|gemma3 5574ms eta 2.9min
+[13/40] c14|control|v3|r0|X1_shared_weak|gemma3 9616ms eta 3.0min
+[14/40] c00|control|v2|r0|X1_shared_weak|gemma3 7726ms eta 2.9min
+[15/40] c04|control|v1|r0|X1_shared_weak|gemma3 6990ms eta 2.8min
+[16/40] c14|control|v0|r0|X1_shared_weak|gemma3 7374ms eta 2.7min
+[17/40] c02|control|v4|r0|X2_isolated|gemma3 3983ms eta 2.5min
+[18/40] c14|probe|v1|r0|X1_shared_weak|gemma3 6449ms eta 2.4min
+[19/40] c08|probe|v3|r0|X3_shared_summary|gemma3 9498ms eta 2.4min
+[20/40] c04|control|v3|r0|X2_isolated|gemma3 10019ms eta 2.3min
+[21/40] c04|probe|v4|r0|X1_shared_weak|gemma3 8511ms eta 2.2min
+[22/40] c10|control|v4|r0|X3_shared_summary|gemma3 7442ms eta 2.1min
+[23/40] c10|control|v0|r0|X1_shared_weak|gemma3 7518ms eta 2.0min
+[24/40] c10|probe|v2|r0|X2_isolated|gemma3 9136ms eta 1.9min
+[25/40] c14|control|v0|r0|X2_isolated|gemma3 6557ms eta 1.8min
+[26/40] c08|probe|v0|r0|X1_shared_weak|gemma3 72348ms eta 2.2min
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2363.71it/s]
+[1/20] c13|control|v4|r0|X3_shared_summary|gemma3 5415ms eta 1.7min
+[2/20] c08|probe|v0|r0|X1_shared_weak|gemma3 5962ms eta 1.7min
+[3/20] c13|control|v4|r0|X1_shared_weak|gemma3 5124ms eta 1.6min
+[4/20] c09|control|v4|r0|X1_shared_weak|gemma3 6394ms eta 1.5min
+[5/20] c06|probe|v0|r0|X3_shared_summary|gemma3 5189ms eta 1.4min
+[6/20] c07|probe|v2|r0|X3_shared_summary|gemma3 8264ms eta 1.4min
+[7/20] c13|control|v2|r0|X2_isolated|gemma3 6054ms eta 1.3min
+[8/20] c09|control|v2|r0|X3_shared_summary|gemma3 7914ms eta 1.3min
+[9/20] c02|control|v2|r0|X3_shared_summary|gemma3 6027ms eta 1.2min
+[10/20] c12|control|v2|r0|X3_shared_summary|gemma3 6118ms eta 1.0min
+[11/20] c10|control|v1|r0|X2_isolated|gemma3 6908ms eta 1.0min
+[12/20] c18|probe|v4|r0|X3_shared_summary|gemma3 6775ms eta 0.9min
+[13/20] c03|control|v4|r0|X2_isolated|gemma3 4927ms eta 0.7min
+[14/20] c13|probe|v1|r0|X2_isolated|gemma3 7227ms eta 0.6min
+[15/20] c16|control|v3|r0|X1_shared_weak|gemma3 6316ms eta 0.5min
+[16/20] c06|probe|v2|r0|X1_shared_weak|gemma3 6392ms eta 0.4min
+[17/20] c02|control|v0|r0|X1_shared_weak|gemma3 6171ms eta 0.3min
+[18/20] c12|control|v1|r0|X1_shared_weak|gemma3 5325ms eta 0.2min
+[19/20] c03|control|v3|r0|X3_shared_summary|gemma3 5723ms eta 0.1min
+[20/20] c17|probe|v1|r0|X2_isolated|gemma3 7624ms eta 0.0min
+[1/20] c19|probe|v3|r0|X1_shared_weak|gemma3 4870ms eta 1.6min
+[2/20] c18|control|v3|r0|X1_shared_weak|gemma3 5047ms eta 1.5min
+[3/20] c18|control|v2|r0|X3_shared_summary|gemma3 6303ms eta 1.5min
+[4/20] c18|probe|v4|r0|X1_shared_weak|gemma3 4540ms eta 1.4min
+[5/20] c11|probe|v1|r0|X3_shared_summary|gemma3 5232ms eta 1.3min
+[6/20] c15|probe|v4|r0|X1_shared_weak|gemma3 3957ms eta 1.2min
+[7/20] c14|probe|v4|r0|X2_isolated|gemma3 5141ms eta 1.1min
+[8/20] c06|control|v4|r0|X1_shared_weak|gemma3 5030ms eta 1.0min
+[9/20] c08|probe|v4|r0|X3_shared_summary|gemma3 4687ms eta 0.9min
+[10/20] c06|control|v2|r0|X1_shared_weak|gemma3 6220ms eta 0.9min
+[11/20] c05|control|v4|r0|X3_shared_summary|gemma3 7929ms eta 0.8min
+[12/20] c00|control|v0|r0|X1_shared_weak|gemma3 6273ms eta 0.7min
+[13/20] c03|control|v0|r0|X2_isolated|gemma3 5064ms eta 0.6min
+[14/20] c18|probe|v2|r0|X3_shared_summary|gemma3 8538ms eta 0.6min
+[15/20] c18|control|v0|r0|X2_isolated|gemma3 5970ms eta 0.5min
+[16/20] c03|probe|v2|r0|X1_shared_weak|gemma3 5881ms eta 0.4min
+[17/20] c00|probe|v2|r0|X3_shared_summary|gemma3 8240ms eta 0.3min
+[18/20] c09|probe|v3|r0|X1_shared_weak|gemma3 8067ms eta 0.2min
+[19/20] c16|probe|v4|r0|X3_shared_summary|gemma3 5895ms eta 0.1min
+[20/20] c16|control|v0|r0|X1_shared_weak|gemma3 6175ms eta 0.0min
+[1/20] c09|control|v3|r0|X1_shared_weak|gemma3 8201ms eta 2.6min
+[2/20] c10|probe|v4|r0|X1_shared_weak|gemma3 5119ms eta 2.0min
+[3/20] c14|probe|v0|r0|X1_shared_weak|gemma3 6674ms eta 1.9min
+[4/20] c02|probe|v2|r0|X1_shared_weak|gemma3 6348ms eta 1.8min
+[5/20] c15|control|v4|r0|X3_shared_summary|gemma3 4961ms eta 1.6min
+[6/20] c15|probe|v3|r0|X2_isolated|gemma3 12261ms eta 1.7min
+[7/20] c06|control|v1|r0|X1_shared_weak|gemma3 8006ms eta 1.6min
+[8/20] c17|control|v2|r0|X1_shared_weak|gemma3 5451ms eta 1.4min
+[9/20] c05|control|v2|r0|X1_shared_weak|gemma3 8924ms eta 1.4min
+[10/20] c16|probe|v4|r0|X1_shared_weak|gemma3 5498ms eta 1.2min
+[11/20] c17|control|v3|r0|X2_isolated|gemma3 4673ms eta 1.0min
+[12/20] c15|probe|v0|r0|X3_shared_summary|gemma3 6167ms eta 0.9min
+[13/20] c03|control|v4|r0|X3_shared_summary|gemma3 5391ms eta 0.8min
+[14/20] c13|control|v1|r0|X2_isolated|gemma3 6241ms eta 0.7min
+[15/20] c12|control|v0|r0|X2_isolated|gemma3 4931ms eta 0.6min
+[16/20] c05|control|v2|r0|X2_isolated|gemma3 11178ms eta 0.5min
+[17/20] c04|control|v4|r0|X1_shared_weak|gemma3 5087ms eta 0.3min
+[18/20] c03|probe|v3|r0|X2_isolated|gemma3 5480ms eta 0.2min
+[19/20] c05|control|v1|r0|X1_shared_weak|gemma3 5324ms eta 0.1min
+[20/20] c18|control|v1|r0|X3_shared_summary|gemma3 6087ms eta 0.0min
+[1/20] c11|probe|v3|r0|X2_isolated|gemma3 5029ms eta 1.6min
+[2/20] c19|control|v0|r0|X2_isolated|gemma3 7304ms eta 1.9min
+[3/20] c06|control|v1|r0|X3_shared_summary|gemma3 7640ms eta 1.9min
+[4/20] c15|probe|v0|r0|X2_isolated|gemma3 5808ms eta 1.7min
+[5/20] c04|control|v1|r0|X3_shared_summary|gemma3 6947ms eta 1.6min
+[6/20] c02|probe|v4|r0|X3_shared_summary|gemma3 3865ms eta 1.4min
+[7/20] c00|control|v2|r0|X2_isolated|gemma3 7304ms eta 1.4min
+[8/20] c06|probe|v4|r0|X1_shared_weak|gemma3 6245ms eta 1.3min
+[9/20] c10|control|v3|r0|X1_shared_weak|gemma3 8424ms eta 1.2min
+[10/20] c00|probe|v4|r0|X3_shared_summary|gemma3 7570ms eta 1.1min
+[11/20] c13|control|v3|r0|X3_shared_summary|gemma3 7598ms eta 1.0min
+[12/20] c08|control|v1|r0|X1_shared_weak|gemma3 4384ms eta 0.9min
+[13/20] c01|probe|v4|r0|X1_shared_weak|gemma3 6762ms eta 0.8min
+[14/20] c04|control|v4|r0|X2_isolated|gemma3 3750ms eta 0.6min
+[15/20] c03|control|v0|r0|X3_shared_summary|gemma3 5365ms eta 0.5min
+[16/20] c08|control|v2|r0|X2_isolated|gemma3 7239ms eta 0.4min
+[17/20] c02|control|v3|r0|X3_shared_summary|gemma3 5803ms eta 0.3min
+[18/20] c08|control|v4|r0|X3_shared_summary|gemma3 4573ms eta 0.2min
+[19/20] c05|control|v4|r0|X2_isolated|gemma3 4929ms eta 0.1min
+[20/20] c04|probe|v3|r0|X3_shared_summary|gemma3 7837ms eta 0.0min
+[1/20] c18|control|v2|r0|X2_isolated|gemma3 7077ms eta 2.3min
+[2/20] c15|probe|v4|r0|X2_isolated|gemma3 4832ms eta 1.8min
+[3/20] c14|control|v2|r0|X3_shared_summary|gemma3 5921ms eta 1.7min
+[4/20] c13|probe|v1|r0|X3_shared_summary|gemma3 7316ms eta 1.7min
+[5/20] c15|control|v2|r0|X2_isolated|gemma3 4402ms eta 1.5min
+[6/20] c14|control|v3|r0|X3_shared_summary|gemma3 8130ms eta 1.5min
+[7/20] c14|probe|v2|r0|X1_shared_weak|gemma3 8705ms eta 1.4min
+[8/20] c18|control|v1|r0|X2_isolated|gemma3 5880ms eta 1.3min
+[9/20] c16|control|v2|r0|X2_isolated|gemma3 6415ms eta 1.2min
+[10/20] c09|control|v0|r0|X2_isolated|gemma3 6531ms eta 1.1min
+[11/20] c15|probe|v1|r0|X3_shared_summary|gemma3 5706ms eta 1.0min
+[12/20] c01|control|v2|r0|X1_shared_weak|gemma3 5492ms eta 0.9min
+[13/20] c16|probe|v3|r0|X2_isolated|gemma3 5275ms eta 0.7min
+[14/20] c10|control|v0|r0|X3_shared_summary|gemma3 5800ms eta 0.6min
+[15/20] c05|control|v4|r0|X1_shared_weak|gemma3 6384ms eta 0.5min
+[16/20] c11|control|v3|r0|X2_isolated|gemma3 5544ms eta 0.4min
+[17/20] c19|probe|v4|r0|X3_shared_summary|gemma3 5244ms eta 0.3min
+[18/20] c07|control|v4|r0|X1_shared_weak|gemma3 4774ms eta 0.2min
+[19/20] c02|probe|v2|r0|X3_shared_summary|gemma3 6492ms eta 0.1min
+[20/20] c05|probe|v4|r0|X3_shared_summary|gemma3 10657ms eta 0.0min
+[1/20] c07|probe|v0|r0|X2_isolated|gemma3 9789ms eta 3.1min
+[2/20] c06|probe|v4|r0|X2_isolated|gemma3 5333ms eta 2.3min
+[3/20] c05|probe|v1|r0|X3_shared_summary|gemma3 6938ms eta 2.1min
+[4/20] c19|probe|v1|r0|X3_shared_summary|gemma3 6651ms eta 1.9min
+[5/20] c03|control|v0|r0|X1_shared_weak|gemma3 5420ms eta 1.7min
+[6/20] c01|control|v0|r0|X1_shared_weak|gemma3 7593ms eta 1.6min
+[7/20] c06|probe|v3|r0|X1_shared_weak|gemma3 4560ms eta 1.4min
+[8/20] c02|probe|v0|r0|X1_shared_weak|gemma3 5645ms eta 1.3min
+[9/20] c13|probe|v4|r0|X2_isolated|gemma3 6320ms eta 1.2min
+[10/20] c05|probe|v2|r0|X3_shared_summary|gemma3 8597ms eta 1.1min
+[11/20] c08|control|v3|r0|X3_shared_summary|gemma3 8275ms eta 1.0min
+[12/20] c06|probe|v1|r0|X2_isolated|gemma3 5222ms eta 0.9min
+[13/20] c03|probe|v0|r0|X1_shared_weak|gemma3 5945ms eta 0.8min
+[14/20] c07|probe|v3|r0|X3_shared_summary|gemma3 3668ms eta 0.6min
+[15/20] c02|probe|v1|r0|X1_shared_weak|gemma3 5357ms eta 0.5min
+[16/20] c13|probe|v0|r0|X2_isolated|gemma3 5844ms eta 0.4min
+[17/20] c14|control|v4|r0|X3_shared_summary|gemma3 4894ms eta 0.3min
+[18/20] c16|probe|v2|r0|X3_shared_summary|gemma3 5407ms eta 0.2min
+[19/20] c10|control|v3|r0|X3_shared_summary|gemma3 7784ms eta 0.1min
+[20/20] c14|control|v1|r0|X1_shared_weak|gemma3 7766ms eta 0.0min
+[1/20] c12|control|v1|r0|X3_shared_summary|gemma3 4993ms eta 1.6min
+[2/20] c16|control|v3|r0|X2_isolated|gemma3 5687ms eta 1.6min
+[3/20] c03|control|v1|r0|X3_shared_summary|gemma3 32558ms eta 4.1min
+[4/20] c09|control|v0|r0|X1_shared_weak|gemma3 5282ms eta 3.2min
+[5/20] c06|probe|v2|r0|X2_isolated|gemma3 4720ms eta 2.7min
+[6/20] c04|control|v4|r0|X3_shared_summary|gemma3 4039ms eta 2.2min
+[7/20] c12|probe|v0|r0|X2_isolated|gemma3 7015ms eta 2.0min
+[8/20] c14|probe|v2|r0|X2_isolated|gemma3 5866ms eta 1.8min
+[9/20] c08|control|v0|r0|X1_shared_weak|gemma3 6247ms eta 1.6min
+[10/20] c17|probe|v2|r0|X3_shared_summary|gemma3 3693ms eta 1.3min
+[11/20] c05|control|v3|r0|X3_shared_summary|gemma3 6637ms eta 1.2min
+[12/20] c00|control|v1|r0|X2_isolated|gemma3 4998ms eta 1.0min
+[13/20] c00|control|v4|r0|X2_isolated|gemma3 7616ms eta 0.9min
+[14/20] c07|control|v0|r0|X3_shared_summary|gemma3 5967ms eta 0.8min
+[15/20] c04|control|v2|r0|X3_shared_summary|gemma3 5810ms eta 0.6min
+[16/20] c10|probe|v3|r0|X1_shared_weak|gemma3 8027ms eta 0.5min
+[17/20] c19|probe|v3|r0|X2_isolated|gemma3 5912ms eta 0.4min
+[18/20] c07|probe|v1|r0|X3_shared_summary|gemma3 7482ms eta 0.2min
+[19/20] c03|control|v2|r0|X3_shared_summary|gemma3 8048ms eta 0.1min
+[20/20] c16|control|v2|r0|X1_shared_weak|gemma3 10048ms eta 0.0min
+[1/20] c13|control|v2|r0|X1_shared_weak|gemma3 6894ms eta 2.2min
+[2/20] c19|probe|v4|r0|X1_shared_weak|gemma3 4257ms eta 1.7min
+[3/20] c13|probe|v4|r0|X1_shared_weak|gemma3 4030ms eta 1.4min
+[4/20] c10|probe|v4|r0|X2_isolated|gemma3 5265ms eta 1.4min
+[5/20] c14|probe|v3|r0|X3_shared_summary|gemma3 6855ms eta 1.4min
+[6/20] c00|probe|v3|r0|X3_shared_summary|gemma3 7676ms eta 1.4min
+[7/20] c16|control|v0|r0|X3_shared_summary|gemma3 6335ms eta 1.3min
+[8/20] c13|probe|v3|r0|X2_isolated|gemma3 10195ms eta 1.3min
+[9/20] c10|probe|v2|r0|X3_shared_summary|gemma3 8384ms eta 1.2min
+[10/20] c00|control|v2|r0|X3_shared_summary|gemma3 6300ms eta 1.1min
+[11/20] c00|probe|v4|r0|X2_isolated|gemma3 6660ms eta 1.0min
+[12/20] c17|probe|v4|r0|X1_shared_weak|gemma3 5424ms eta 0.9min
+[13/20] c04|probe|v1|r0|X3_shared_summary|gemma3 6284ms eta 0.8min
+[14/20] c15|control|v3|r0|X1_shared_weak|gemma3 11213ms eta 0.7min
+[15/20] c16|control|v2|r0|X3_shared_summary|gemma3 16104ms eta 0.6min
+[16/20] c05|probe|v4|r0|X1_shared_weak|gemma3 9231ms eta 0.5min
+[17/20] c17|control|v3|r0|X1_shared_weak|gemma3 5994ms eta 0.4min
+[18/20] c01|control|v2|r0|X2_isolated|gemma3 5111ms eta 0.2min
+[19/20] c02|control|v4|r0|X1_shared_weak|gemma3 4060ms eta 0.1min
+[20/20] c06|probe|v1|r0|X1_shared_weak|gemma3 7692ms eta 0.0min
+[1/20] c01|control|v2|r0|X3_shared_summary|gemma3 5424ms eta 1.7min
+[2/20] c05|probe|v1|r0|X2_isolated|gemma3 5199ms eta 1.6min
+[3/20] c08|probe|v1|r0|X3_shared_summary|gemma3 8116ms eta 1.8min
+[4/20] c02|probe|v3|r0|X1_shared_weak|gemma3 5867ms eta 1.6min
+[5/20] c01|probe|v3|r0|X1_shared_weak|gemma3 5617ms eta 1.5min
+[6/20] c17|control|v1|r0|X3_shared_summary|gemma3 6226ms eta 1.4min
+[7/20] c06|probe|v3|r0|X2_isolated|gemma3 5036ms eta 1.3min
+[8/20] c11|probe|v3|r0|X3_shared_summary|gemma3 5102ms eta 1.2min
+[9/20] c09|probe|v4|r0|X1_shared_weak|gemma3 9373ms eta 1.1min
+[10/20] c08|probe|v2|r0|X2_isolated|gemma3 6682ms eta 1.0min
+[11/20] c09|control|v2|r0|X1_shared_weak|gemma3 6189ms eta 0.9min
+[12/20] c00|control|v3|r0|X3_shared_summary|gemma3 8231ms eta 0.9min
+[13/20] c12|probe|v2|r0|X1_shared_weak|gemma3 6951ms eta 0.8min
+[14/20] c02|control|v0|r0|X2_isolated|gemma3 5746ms eta 0.6min
+[15/20] c04|control|v2|r0|X1_shared_weak|gemma3 6874ms eta 0.5min
+[16/20] c06|control|v4|r0|X3_shared_summary|gemma3 5550ms eta 0.4min
+[17/20] c05|control|v1|r0|X3_shared_summary|gemma3 7241ms eta 0.3min
+[18/20] c00|probe|v0|r0|X3_shared_summary|gemma3 7567ms eta 0.2min
+[19/20] c12|probe|v1|r0|X2_isolated|gemma3 6304ms eta 0.1min
+[20/20] c17|control|v2|r0|X2_isolated|gemma3 6801ms eta 0.0min
+[1/20] c16|control|v4|r0|X1_shared_weak|gemma3 4030ms eta 1.3min
+[2/20] c05|probe|v2|r0|X1_shared_weak|gemma3 6181ms eta 1.5min
+[3/20] c02|control|v0|r0|X3_shared_summary|gemma3 6835ms eta 1.6min
+[4/20] c06|probe|v0|r0|X1_shared_weak|gemma3 5669ms eta 1.5min
+[5/20] c04|control|v1|r0|X2_isolated|gemma3 6284ms eta 1.5min
+[6/20] c07|probe|v1|r0|X1_shared_weak|gemma3 6933ms eta 1.4min
+[7/20] c12|control|v0|r0|X1_shared_weak|gemma3 4958ms eta 1.3min
+[8/20] c13|control|v4|r0|X2_isolated|gemma3 7690ms eta 1.2min
+[9/20] c02|probe|v4|r0|X1_shared_weak|gemma3 3495ms eta 1.1min
+[10/20] c18|control|v3|r0|X3_shared_summary|gemma3 7108ms eta 1.0min
+[11/20] c02|probe|v0|r0|X3_shared_summary|gemma3 6679ms eta 0.9min
+[12/20] c13|control|v0|r0|X3_shared_summary|gemma3 6229ms eta 0.8min
+[13/20] c00|control|v0|r0|X3_shared_summary|gemma3 7179ms eta 0.7min
+[14/20] c19|probe|v2|r0|X3_shared_summary|gemma3 6176ms eta 0.6min
+[15/20] c19|control|v2|r0|X1_shared_weak|gemma3 6817ms eta 0.5min
+[16/20] c18|probe|v2|r0|X1_shared_weak|gemma3 8305ms eta 0.4min
+[17/20] c01|probe|v1|r0|X1_shared_weak|gemma3 5283ms eta 0.3min
+[18/20] c08|control|v2|r0|X1_shared_weak|gemma3 5924ms eta 0.2min
+[19/20] c04|probe|v3|r0|X1_shared_weak|gemma3 6334ms eta 0.1min
+[20/20] c14|control|v4|r0|X1_shared_weak|gemma3 5225ms eta 0.0min
+[1/20] c04|control|v0|r0|X3_shared_summary|gemma3 7307ms eta 2.3min
+[2/20] c00|control|v1|r0|X1_shared_weak|gemma3 5894ms eta 2.0min
+[3/20] c16|control|v4|r0|X2_isolated|gemma3 3685ms eta 1.6min
+[4/20] c04|control|v3|r0|X1_shared_weak|gemma3 9346ms eta 1.8min
+[5/20] c18|probe|v0|r0|X3_shared_summary|gemma3 5805ms eta 1.6min
+[6/20] c14|control|v2|r0|X1_shared_weak|gemma3 5724ms eta 1.5min
+[7/20] c00|probe|v1|r0|X2_isolated|gemma3 6036ms eta 1.4min
+[8/20] c01|probe|v2|r0|X2_isolated|gemma3 7403ms eta 1.3min
+[9/20] c08|control|v4|r0|X2_isolated|gemma3 3633ms eta 1.1min
+[10/20] c17|control|v0|r0|X1_shared_weak|gemma3 5512ms eta 1.0min
+[11/20] c05|probe|v1|r0|X1_shared_weak|gemma3 6211ms eta 0.9min
+[12/20] c11|control|v4|r0|X1_shared_weak|gemma3 6758ms eta 0.8min
+[13/20] c06|control|v2|r0|X2_isolated|gemma3 7449ms eta 0.7min
+[14/20] c10|probe|v0|r0|X3_shared_summary|gemma3 7352ms eta 0.6min
+[15/20] c14|probe|v0|r0|X3_shared_summary|gemma3 6012ms eta 0.5min
+[16/20] c09|control|v1|r0|X2_isolated|gemma3 7267ms eta 0.4min
+[17/20] c18|control|v4|r0|X1_shared_weak|gemma3 4389ms eta 0.3min
+[18/20] c04|probe|v4|r0|X2_isolated|gemma3 4875ms eta 0.2min
+[19/20] c05|probe|v3|r0|X3_shared_summary|gemma3 7948ms eta 0.1min
+[20/20] c08|control|v4|r0|X1_shared_weak|gemma3 4725ms eta 0.0min
+[1/20] c17|control|v4|r0|X1_shared_weak|gemma3 3625ms eta 1.2min
+[2/20] c09|probe|v3|r0|X2_isolated|gemma3 4491ms eta 1.2min
+[3/20] c00|control|v1|r0|X3_shared_summary|gemma3 5466ms eta 1.3min
+[4/20] c15|control|v0|r0|X2_isolated|gemma3 6389ms eta 1.3min
+[5/20] c12|control|v3|r0|X2_isolated|gemma3 5012ms eta 1.3min
+[6/20] c11|probe|v2|r0|X1_shared_weak|gemma3 5978ms eta 1.2min
+[7/20] c04|probe|v0|r0|X1_shared_weak|gemma3 6216ms eta 1.2min
+[8/20] c15|control|v1|r0|X1_shared_weak|gemma3 5735ms eta 1.1min
+[9/20] c13|control|v3|r0|X1_shared_weak|gemma3 6287ms eta 1.0min
+[10/20] c19|control|v0|r0|X3_shared_summary|gemma3 8072ms eta 1.0min
+[11/20] c01|probe|v3|r0|X3_shared_summary|gemma3 6205ms eta 0.9min
+[12/20] c16|control|v0|r0|X2_isolated|gemma3 5112ms eta 0.8min
+[13/20] c09|control|v1|r0|X1_shared_weak|gemma3 8474ms eta 0.7min
+[14/20] c15|probe|v2|r0|X3_shared_summary|gemma3 6155ms eta 0.6min
+[15/20] c19|probe|v1|r0|X1_shared_weak|gemma3 8748ms eta 0.5min
+[16/20] c08|control|v0|r0|X3_shared_summary|gemma3 6055ms eta 0.4min
+[17/20] c08|probe|v1|r0|X2_isolated|gemma3 7225ms eta 0.3min
+[18/20] c10|control|v1|r0|X1_shared_weak|gemma3 5995ms eta 0.2min
+[19/20] c11|control|v3|r0|X3_shared_summary|gemma3 7418ms eta 0.1min
+[20/20] c05|probe|v3|r0|X2_isolated|gemma3 4364ms eta 0.0min
+[1/20] c11|control|v0|r0|X3_shared_summary|gemma3 11296ms eta 3.6min
+[2/20] c09|probe|v2|r0|X2_isolated|gemma3 5257ms eta 2.5min
+[3/20] c14|probe|v0|r0|X2_isolated|gemma3 6444ms eta 2.2min
+[4/20] c03|control|v2|r0|X1_shared_weak|gemma3 6431ms eta 2.0min
+[5/20] c05|probe|v0|r0|X2_isolated|gemma3 14066ms eta 2.2min
+[6/20] c11|probe|v0|r0|X2_isolated|gemma3 7065ms eta 2.0min
+[7/20] c02|control|v1|r0|X2_isolated|gemma3 5397ms eta 1.7min
+[8/20] c08|probe|v3|r0|X1_shared_weak|gemma3 6730ms eta 1.6min
+[9/20] c18|probe|v1|r0|X1_shared_weak|gemma3 7189ms eta 1.4min
+[10/20] c14|control|v2|r0|X2_isolated|gemma3 4893ms eta 1.3min
+[11/20] c17|probe|v1|r0|X1_shared_weak|gemma3 4239ms eta 1.1min
+[12/20] c15|probe|v2|r0|X2_isolated|gemma3 4908ms eta 0.9min
+[13/20] c13|probe|v4|r0|X3_shared_summary|gemma3 6495ms eta 0.8min
+[14/20] c06|control|v1|r0|X2_isolated|gemma3 6217ms eta 0.7min
+[15/20] c15|probe|v2|r0|X1_shared_weak|gemma3 5882ms eta 0.6min
+[16/20] c06|probe|v4|r0|X3_shared_summary|gemma3 6562ms eta 0.5min
+[17/20] c16|probe|v2|r0|X1_shared_weak|gemma3 5318ms eta 0.3min
+[18/20] c18|probe|v4|r0|X2_isolated|gemma3 5388ms eta 0.2min
+[19/20] c06|control|v3|r0|X2_isolated|gemma3 3923ms eta 0.1min
+[20/20] c11|control|v4|r0|X3_shared_summary|gemma3 6493ms eta 0.0min
+[1/20] c08|probe|v2|r0|X1_shared_weak|gemma3 7888ms eta 2.5min
+[2/20] c12|probe|v0|r0|X1_shared_weak|gemma3 5875ms eta 2.1min
+[3/20] c11|control|v2|r0|X1_shared_weak|gemma3 5385ms eta 1.8min
+[4/20] c02|control|v3|r0|X2_isolated|gemma3 5663ms eta 1.7min
+[5/20] c17|control|v4|r0|X2_isolated|gemma3 3530ms eta 1.4min
+[6/20] c01|control|v0|r0|X3_shared_summary|gemma3 5850ms eta 1.3min
+[7/20] c00|probe|v2|r0|X2_isolated|gemma3 7348ms eta 1.3min
+[8/20] c11|control|v4|r0|X2_isolated|gemma3 5593ms eta 1.2min
+[9/20] c19|control|v4|r0|X2_isolated|gemma3 5010ms eta 1.1min
+[10/20] c11|probe|v2|r0|X3_shared_summary|gemma3 5329ms eta 1.0min
+[11/20] c13|control|v0|r0|X2_isolated|gemma3 5661ms eta 0.9min
+[12/20] c07|control|v0|r0|X2_isolated|gemma3 5070ms eta 0.8min
+[13/20] c01|probe|v2|r0|X3_shared_summary|gemma3 9055ms eta 0.7min
+[14/20] c11|probe|v1|r0|X1_shared_weak|gemma3 4163ms eta 0.6min
+[15/20] c07|control|v3|r0|X3_shared_summary|gemma3 5164ms eta 0.5min
+[16/20] c12|probe|v4|r0|X1_shared_weak|gemma3 4967ms eta 0.4min
+[17/20] c03|probe|v1|r0|X1_shared_weak|gemma3 6028ms eta 0.3min
+[18/20] c18|control|v4|r0|X2_isolated|gemma3 4365ms eta 0.2min
+[19/20] c18|probe|v3|r0|X3_shared_summary|gemma3 5091ms eta 0.1min
+[20/20] c07|control|v1|r0|X2_isolated|gemma3 7046ms eta 0.0min
+[1/20] c15|control|v0|r0|X3_shared_summary|gemma3 9360ms eta 3.0min
+[2/20] c11|control|v1|r0|X3_shared_summary|gemma3 10574ms eta 3.0min
+[3/20] c03|probe|v2|r0|X3_shared_summary|gemma3 8644ms eta 2.7min
+[4/20] c18|control|v0|r0|X3_shared_summary|gemma3 5267ms eta 2.3min
+[5/20] c01|control|v3|r0|X2_isolated|gemma3 6901ms eta 2.0min
+[6/20] c16|control|v4|r0|X3_shared_summary|gemma3 3941ms eta 1.7min
+[7/20] c06|control|v3|r0|X3_shared_summary|gemma3 4421ms eta 1.5min
+[8/20] c01|probe|v0|r0|X2_isolated|gemma3 6081ms eta 1.4min
+[9/20] c01|control|v1|r0|X3_shared_summary|gemma3 5850ms eta 1.2min
+[10/20] c11|probe|v0|r0|X1_shared_weak|gemma3 4472ms eta 1.1min
+[11/20] c11|probe|v1|r0|X2_isolated|gemma3 6554ms eta 1.0min
+[12/20] c19|probe|v4|r0|X2_isolated|gemma3 4566ms eta 0.9min
+[13/20] c15|control|v4|r0|X2_isolated|gemma3 3848ms eta 0.7min
+[14/20] c07|probe|v0|r0|X1_shared_weak|gemma3 7975ms eta 0.6min
+[15/20] c13|probe|v3|r0|X3_shared_summary|gemma3 5861ms eta 0.5min
+[16/20] c06|probe|v0|r0|X2_isolated|gemma3 6459ms eta 0.4min
+[17/20] c18|control|v4|r0|X3_shared_summary|gemma3 5240ms eta 0.3min
+[18/20] c13|control|v1|r0|X1_shared_weak|gemma3 5660ms eta 0.2min
+[19/20] c01|control|v1|r0|X2_isolated|gemma3 5993ms eta 0.1min
+[20/20] c01|control|v1|r0|X1_shared_weak|gemma3 4485ms eta 0.0min
+[1/20] c03|probe|v2|r0|X2_isolated|gemma3 5894ms eta 1.9min
+[2/20] c06|control|v4|r0|X2_isolated|gemma3 5989ms eta 1.8min
+[3/20] c11|control|v3|r0|X1_shared_weak|gemma3 6778ms eta 1.8min
+[4/20] c04|probe|v1|r0|X2_isolated|gemma3 5909ms eta 1.6min
+[5/20] c08|probe|v0|r0|X3_shared_summary|gemma3 5885ms eta 1.5min
+[6/20] c09|control|v3|r0|X2_isolated|gemma3 7342ms eta 1.5min
+[7/20] c09|control|v2|r0|X2_isolated|gemma3 6506ms eta 1.4min
+[8/20] c17|probe|v3|r0|X2_isolated|gemma3 5663ms eta 1.3min
+[9/20] c13|probe|v3|r0|X1_shared_weak|gemma3 4794ms eta 1.1min
+[10/20] c03|control|v1|r0|X2_isolated|gemma3 12587ms eta 1.1min
+[11/20] c13|control|v3|r0|X2_isolated|gemma3 5965ms eta 1.0min
+[12/20] c11|probe|v4|r0|X1_shared_weak|gemma3 4056ms eta 0.9min
+[13/20] c17|probe|v2|r0|X1_shared_weak|gemma3 6120ms eta 0.8min
+[14/20] c04|probe|v0|r0|X2_isolated|gemma3 6848ms eta 0.6min
+[15/20] c08|control|v2|r0|X3_shared_summary|gemma3 7253ms eta 0.5min
+[16/20] c13|probe|v2|r0|X2_isolated|gemma3 6227ms eta 0.4min
+[17/20] c05|control|v1|r0|X2_isolated|gemma3 5929ms eta 0.3min
+[18/20] c00|control|v0|r0|X2_isolated|gemma3 5972ms eta 0.2min
+[19/20] c01|probe|v1|r0|X2_isolated|gemma3 7243ms eta 0.1min
+[20/20] c12|control|v0|r0|X3_shared_summary|gemma3 6380ms eta 0.0min
+[1/20] c19|control|v1|r0|X1_shared_weak|gemma3 5896ms eta 1.9min
+[2/20] c17|probe|v4|r0|X2_isolated|gemma3 4416ms eta 1.6min
+[3/20] c12|probe|v0|r0|X3_shared_summary|gemma3 6579ms eta 1.6min
+[4/20] c01|probe|v2|r0|X1_shared_weak|gemma3 7064ms eta 1.6min
+[5/20] c00|probe|v1|r0|X1_shared_weak|gemma3 5426ms eta 1.5min
+[6/20] c16|control|v1|r0|X1_shared_weak|gemma3 6765ms eta 1.4min
+[7/20] c17|control|v4|r0|X3_shared_summary|gemma3 3808ms eta 1.2min
+[8/20] c03|control|v4|r0|X1_shared_weak|gemma3 5204ms eta 1.1min
+[9/20] c15|control|v3|r0|X2_isolated|gemma3 6871ms eta 1.1min
+[10/20] c10|probe|v0|r0|X2_isolated|gemma3 4891ms eta 1.0min
+[11/20] c00|probe|v3|r0|X2_isolated|gemma3 5052ms eta 0.9min
+[12/20] c05|control|v2|r0|X3_shared_summary|gemma3 8771ms eta 0.8min
+[13/20] c16|probe|v0|r0|X3_shared_summary|gemma3 7066ms eta 0.7min
+[14/20] c03|control|v3|r0|X2_isolated|gemma3 6485ms eta 0.6min
+[15/20] c17|probe|v0|r0|X1_shared_weak|gemma3 6746ms eta 0.5min
+[16/20] c02|probe|v0|r0|X2_isolated|gemma3 5451ms eta 0.4min
+[17/20] c07|control|v2|r0|X1_shared_weak|gemma3 5320ms eta 0.3min
+[18/20] c08|control|v3|r0|X1_shared_weak|gemma3 10083ms eta 0.2min
+[19/20] c17|control|v1|r0|X1_shared_weak|gemma3 5850ms eta 0.1min
+[20/20] c14|control|v0|r0|X3_shared_summary|gemma3 6050ms eta 0.0min
+[1/20] c17|control|v0|r0|X3_shared_summary|gemma3 5757ms eta 1.8min
+[2/20] c11|probe|v4|r0|X2_isolated|gemma3 6348ms eta 1.8min
+[3/20] c16|control|v1|r0|X3_shared_summary|gemma3 7255ms eta 1.8min
+[4/20] c19|probe|v0|r0|X1_shared_weak|gemma3 7200ms eta 1.8min
+[5/20] c12|probe|v1|r0|X3_shared_summary|gemma3 7321ms eta 1.7min
+[6/20] c03|probe|v4|r0|X1_shared_weak|gemma3 7140ms eta 1.6min
+[7/20] c11|control|v2|r0|X3_shared_summary|gemma3 6632ms eta 1.5min
+[8/20] c18|probe|v0|r0|X2_isolated|gemma3 4845ms eta 1.3min
+[9/20] c16|probe|v4|r0|X2_isolated|gemma3 4637ms eta 1.2min
+[10/20] c14|probe|v4|r0|X3_shared_summary|gemma3 4424ms eta 1.0min
+[11/20] c03|control|v1|r0|X1_shared_weak|gemma3 6217ms eta 0.9min
+[12/20] c16|probe|v1|r0|X2_isolated|gemma3 9834ms eta 0.9min
+[13/20] c10|probe|v3|r0|X2_isolated|gemma3 9540ms eta 0.8min
+[14/20] c15|control|v4|r0|X1_shared_weak|gemma3 8628ms eta 0.7min
+[15/20] c04|control|v0|r0|X1_shared_weak|gemma3 5560ms eta 0.6min
+[16/20] c02|control|v3|r0|X1_shared_weak|gemma3 5417ms eta 0.4min
+[17/20] c19|control|v4|r0|X1_shared_weak|gemma3 5180ms eta 0.3min
+[18/20] c08|probe|v1|r0|X1_shared_weak|gemma3 7202ms eta 0.2min
+[19/20] c11|probe|v2|r0|X2_isolated|gemma3 6491ms eta 0.1min
+[20/20] c02|probe|v1|r0|X3_shared_summary|gemma3 4414ms eta 0.0min
+[1/20] c02|probe|v1|r0|X2_isolated|gemma3 5136ms eta 1.6min
+[2/20] c13|probe|v0|r0|X3_shared_summary|gemma3 5479ms eta 1.6min
+[3/20] c09|probe|v0|r0|X3_shared_summary|gemma3 8119ms eta 1.8min
+[4/20] c18|probe|v1|r0|X2_isolated|gemma3 7151ms eta 1.7min
+[5/20] c01|probe|v1|r0|X3_shared_summary|gemma3 4162ms eta 1.5min
+[6/20] c08|probe|v2|r0|X3_shared_summary|gemma3 6093ms eta 1.4min
+[7/20] c12|probe|v4|r0|X3_shared_summary|gemma3 5574ms eta 1.3min
+[8/20] c01|probe|v4|r0|X2_isolated|gemma3 5570ms eta 1.2min
+[9/20] c01|probe|v3|r0|X2_isolated|gemma3 5171ms eta 1.1min
+[10/20] c09|control|v1|r0|X3_shared_summary|gemma3 7824ms eta 1.0min
+[11/20] c04|probe|v1|r0|X1_shared_weak|gemma3 6084ms eta 0.9min
+[12/20] c00|control|v4|r0|X3_shared_summary|gemma3 6446ms eta 0.8min
+[13/20] c04|probe|v0|r0|X3_shared_summary|gemma3 9507ms eta 0.7min
+[14/20] c05|probe|v2|r0|X2_isolated|gemma3 6654ms eta 0.6min
+[15/20] c13|control|v2|r0|X3_shared_summary|gemma3 6192ms eta 0.5min
+[16/20] c16|control|v1|r0|X2_isolated|gemma3 7522ms eta 0.4min
+[17/20] c15|probe|v3|r0|X3_shared_summary|gemma3 9620ms eta 0.3min
+[18/20] c00|probe|v3|r0|X1_shared_weak|gemma3 7545ms eta 0.2min
+[19/20] c17|control|v2|r0|X3_shared_summary|gemma3 5246ms eta 0.1min
+[20/20] c05|control|v0|r0|X1_shared_weak|gemma3 4669ms eta 0.0min
+[1/20] c10|probe|v2|r0|X1_shared_weak|gemma3 6127ms eta 2.0min
+[2/20] c00|probe|v0|r0|X1_shared_weak|gemma3 5558ms eta 1.8min
+[3/20] c17|probe|v0|r0|X3_shared_summary|gemma3 6197ms eta 1.7min
+[4/20] c13|probe|v2|r0|X3_shared_summary|gemma3 5919ms eta 1.6min
+[5/20] c17|control|v1|r0|X2_isolated|gemma3 5539ms eta 1.5min
+[6/20] c02|control|v2|r0|X2_isolated|gemma3 5973ms eta 1.4min
+[7/20] c15|probe|v0|r0|X1_shared_weak|gemma3 5386ms eta 1.3min
+[8/20] c06|probe|v3|r0|X3_shared_summary|gemma3 5311ms eta 1.2min
+[9/20] c16|probe|v3|r0|X1_shared_weak|gemma3 5359ms eta 1.1min
+[10/20] c03|probe|v3|r0|X3_shared_summary|gemma3 5726ms eta 1.0min
+[11/20] c10|probe|v3|r0|X3_shared_summary|gemma3 7158ms eta 0.9min
+[12/20] c15|probe|v1|r0|X2_isolated|gemma3 5363ms eta 0.8min
+[13/20] c10|control|v4|r0|X1_shared_weak|gemma3 5408ms eta 0.7min
+[14/20] c14|probe|v3|r0|X2_isolated|gemma3 6739ms eta 0.6min
+[15/20] c05|probe|v0|r0|X3_shared_summary|gemma3 9186ms eta 0.5min
+[16/20] c10|control|v1|r0|X3_shared_summary|gemma3 7310ms eta 0.4min
+[17/20] c14|control|v3|r0|X2_isolated|gemma3 7755ms eta 0.3min
+[18/20] c01|control|v3|r0|X1_shared_weak|gemma3 5596ms eta 0.2min
+[19/20] c08|control|v1|r0|X2_isolated|gemma3 5846ms eta 0.1min
+[20/20] c03|probe|v0|r0|X2_isolated|gemma3 5907ms eta 0.0min
+[1/20] c13|probe|v0|r0|X1_shared_weak|gemma3 5787ms eta 1.8min
+[2/20] c08|control|v0|r0|X2_isolated|gemma3 4870ms eta 1.6min
+[3/20] c16|control|v3|r0|X3_shared_summary|gemma3 5478ms eta 1.5min
+[4/20] c12|probe|v2|r0|X3_shared_summary|gemma3 6832ms eta 1.5min
+[5/20] c14|control|v4|r0|X2_isolated|gemma3 4939ms eta 1.4min
+[6/20] c15|control|v2|r0|X1_shared_weak|gemma3 4569ms eta 1.3min
+[7/20] c00|probe|v0|r0|X2_isolated|gemma3 6708ms eta 1.2min
+[8/20] c07|control|v2|r0|X2_isolated|gemma3 5069ms eta 1.1min
+[9/20] c18|control|v0|r0|X1_shared_weak|gemma3 4641ms eta 1.0min
+[10/20] c07|probe|v4|r0|X1_shared_weak|gemma3 4601ms eta 0.9min
+[11/20] c05|probe|v0|r0|X1_shared_weak|gemma3 9772ms eta 0.9min
+[12/20] c17|control|v0|r0|X2_isolated|gemma3 7025ms eta 0.8min
+[13/20] c05|control|v3|r0|X1_shared_weak|gemma3 6660ms eta 0.7min
+[14/20] c10|control|v4|r0|X2_isolated|gemma3 4981ms eta 0.6min
+[15/20] c13|probe|v1|r0|X1_shared_weak|gemma3 7488ms eta 0.5min
+[16/20] c04|control|v0|r0|X2_isolated|gemma3 5745ms eta 0.4min
+[17/20] c12|control|v3|r0|X1_shared_weak|gemma3 7375ms eta 0.3min
+[18/20] c17|probe|v3|r0|X3_shared_summary|gemma3 6159ms eta 0.2min
+[19/20] c15|probe|v1|r0|X1_shared_weak|gemma3 4603ms eta 0.1min
+[20/20] c11|control|v1|r0|X2_isolated|gemma3 8311ms eta 0.0min
+[1/20] c01|control|v4|r0|X2_isolated|gemma3 7338ms eta 2.3min
+[2/20] c12|probe|v3|r0|X1_shared_weak|gemma3 7195ms eta 2.2min
+[3/20] c16|probe|v1|r0|X3_shared_summary|gemma3 9236ms eta 2.3min
+[4/20] c00|probe|v1|r0|X3_shared_summary|gemma3 6320ms eta 2.0min
+[5/20] c16|probe|v3|r0|X3_shared_summary|gemma3 5866ms eta 1.8min
+[6/20] c09|probe|v4|r0|X2_isolated|gemma3 5284ms eta 1.6min
+[7/20] c04|probe|v2|r0|X3_shared_summary|gemma3 3646ms eta 1.4min
+[8/20] c18|control|v2|r0|X1_shared_weak|gemma3 6263ms eta 1.3min
+[9/20] c07|control|v4|r0|X3_shared_summary|gemma3 4141ms eta 1.1min
+[10/20] c16|probe|v1|r0|X1_shared_weak|gemma3 8491ms eta 1.1min
+[11/20] c06|control|v0|r0|X1_shared_weak|gemma3 8854ms eta 1.0min
+[12/20] c06|control|v0|r0|X3_shared_summary|gemma3 6605ms eta 0.9min
+Traceback (most recent call last):
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 511, in _make_common_sync_call
+    response = sync_httpx_client.post(
+        url=api_base,
+    ...<4 lines>...
+        logging_obj=logging_obj,
+    )
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/http_handler.py", line 1523, in post
+    _raise_masked_sync_error(e, stream)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/http_handler.py", line 529, in _raise_masked_sync_error
+    raise MaskedHTTPStatusError(e, message=_text, text=_text) from None
+litellm.llms.custom_httpx.http_handler.MaskedHTTPStatusError: Server error '500 Internal Server Error' for url 'http://localhost:11434/api/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/main.py", line 6034, in completion
+    response = _complete_ollama_chat(_dispatch_ctx)
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/main.py", line 4520, in _complete_ollama_chat
+    return base_llm_http_handler.completion(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        client=client,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 852, in completion
+    response: Final = self._make_common_sync_call(
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sync_httpx_client=sync_httpx_client,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        logging_obj=logging_obj,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 528, in _make_common_sync_call
+    raise self._handle_error(e=e, provider_config=provider_config)
+          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/llms/custom_httpx/llm_http_handler.py", line 6111, in _handle_error
+    raise provider_error
+litellm.llms.ollama.common_utils.OllamaError: {"error":"prediction aborted, token repeat limit reached"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/multiuser/run_pilot.py", line 99, in <module>
+    main()
+    ~~~~^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/multiuser/run_pilot.py", line 89, in main
+    run(cfg, a.models)
+    ~~~^^^^^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/multiuser/run_pilot.py", line 38, in run
+    chunked_run(jobs, AgentRunner(cfg, r, log_path=str(log)), log, cfg)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/defenses/evaluate_defenses.py", line 45, in chunked_run
+    run_jobs(todo[i:i + CHUNK], agent, log, True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/probes/runner.py", line 62, in run
+    _, meta = agent.handle(j["text"], j["mode"], j["model"], message_id=j["message_id"])
+              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/src/agent/agent.py", line 103, in handle
+    resp = litellm.completion(**kwargs)
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/chat_completions/dispatch.py", line 103, in completion
+    return _DISPATCH.run(
+           ~~~~~~~~~~~~~^
+        args,
+        ^^^^^
+    ...<3 lines>...
+        native=call_hook,
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/rust_bridge/dispatch.py", line 81, in run
+    return python(*args, **kwargs)
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/utils.py", line 1970, in wrapper
+    raise e
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/utils.py", line 1817, in wrapper
+    result = original_function(*args, **kwargs)
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/main.py", line 6078, in completion
+    raise exception_type(
+          ~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        extra_kwargs=kwargs,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2725, in exception_type
+    raise e
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2675, in exception_type
+    _map_exception_by_status(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        model=model,
+        ^^^^^^^^^^^^
+    ...<4 lines>...
+        extra_information=extra_information,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/musa/ITU-YL/Security&Privacy/BLG-558E Project/.venv/lib/python3.13/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2302, in _map_exception_by_status
+    raise InternalServerError(
+    ...<5 lines>...
+    )
+litellm.exceptions.InternalServerError: litellm.InternalServerError: Ollama_chatException - {"error":"prediction aborted, token repeat limit reached"}
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9210.39it/s]
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+
+[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+LiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.
+
+[1/20] c17|probe|v4|r0|X3_shared_summary|gemma3 29213ms eta 9.3min
+[2/20] c10|probe|v1|r0|X3_shared_summary|gemma3 7330ms eta 5.5min
+[3/20] c17|probe|v3|r0|X1_shared_weak|gemma3 5389ms eta 4.0min
+[4/20] c19|probe|v0|r0|X3_shared_summary|gemma3 7855ms eta 3.3min
+[5/20] c17|probe|v1|r0|X3_shared_summary|gemma3 6848ms eta 2.8min
+[6/20] c18|probe|v2|r0|X2_isolated|gemma3 6024ms eta 2.4min
+[7/20] c10|control|v2|r0|X1_shared_weak|gemma3 8478ms eta 2.2min
+[8/20] c02|control|v1|r0|X1_shared_weak|gemma3 5318ms eta 1.9min
+[9/20] c01|control|v3|r0|X3_shared_summary|gemma3 5482ms eta 1.7min
+[10/20] c14|control|v1|r0|X3_shared_summary|gemma3 5231ms eta 1.5min
+[11/20] c00|control|v3|r0|X1_shared_weak|gemma3 7821ms eta 1.3min
+[12/20] c12|control|v3|r0|X3_shared_summary|gemma3 7954ms eta 1.2min
+[13/20] c18|probe|v3|r0|X2_isolated|gemma3 5179ms eta 1.0min
+[14/20] c08|probe|v4|r0|X1_shared_weak|gemma3 4846ms eta 0.8min
+[15/20] c08|control|v1|r0|X3_shared_summary|gemma3 33902ms eta 0.8min
+[16/20] c02|probe|v3|r0|X2_isolated|gemma3 92909ms eta 1.0min
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 2704.22it/s]
+[1/10] c03|control|v1|r0|X3_shared_summary|gemma3 8358ms eta 1.3min
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6021.01it/s]
+[1/10] c17|probe|v4|r0|X3_shared_summary|gemma3 108612ms eta 16.3min
+[2/10] c08|control|v1|r0|X3_shared_summary|gemma3 3920ms eta 7.5min
+[3/10] c02|probe|v3|r0|X2_isolated|gemma3 5467ms eta 4.6min
+[4/10] c03|control|v2|r0|X2_isolated|gemma3 5070ms eta 3.1min
+[5/10] c06|probe|v1|r0|X3_shared_summary|gemma3 4712ms eta 2.1min
+[6/10] c06|control|v3|r0|X1_shared_weak|gemma3 4375ms eta 1.5min
+[7/10] c09|control|v4|r0|X2_isolated|gemma3 4774ms eta 1.0min
+[8/10] c19|probe|v2|r0|X2_isolated|gemma3 8717ms eta 0.6min
+[9/10] c07|probe|v3|r0|X1_shared_weak|gemma3 4250ms eta 0.3min
+[10/10] c09|control|v4|r0|X3_shared_summary|gemma3 5791ms eta 0.0min
+[1/10] c12|control|v2|r0|X2_isolated|gemma3 6471ms eta 1.0min
+[2/10] c04|probe|v4|r0|X3_shared_summary|gemma3 8864ms eta 1.0min
+[3/10] c09|probe|v1|r0|X3_shared_summary|gemma3 8560ms eta 0.9min
+[4/10] c09|control|v0|r0|X3_shared_summary|gemma3 6535ms eta 0.8min
+[5/10] c12|control|v2|r0|X1_shared_weak|gemma3 6150ms eta 0.6min
+[6/10] c04|probe|v2|r0|X1_shared_weak|gemma3 5179ms eta 0.5min
+[7/10] c19|control|v3|r0|X1_shared_weak|gemma3 7293ms eta 0.4min
+[8/10] c09|probe|v0|r0|X2_isolated|gemma3 7620ms eta 0.2min
+[9/10] c04|control|v3|r0|X3_shared_summary|gemma3 8275ms eta 0.1min
+[10/10] c15|control|v1|r0|X2_isolated|gemma3 5672ms eta 0.0min
+[1/10] c13|control|v0|r0|X1_shared_weak|gemma3 4993ms eta 0.8min
+[2/10] c17|probe|v0|r0|X2_isolated|gemma3 5361ms eta 0.7min
+[3/10] c07|probe|v2|r0|X2_isolated|gemma3 11349ms eta 0.8min
+[4/10] c10|control|v2|r0|X2_isolated|gemma3 4629ms eta 0.7min
+[5/10] c07|probe|v2|r0|X1_shared_weak|gemma3 9504ms eta 0.6min
+[6/10] c02|probe|v2|r0|X2_isolated|gemma3 6843ms eta 0.5min
+[7/10] c09|probe|v1|r0|X2_isolated|gemma3 6400ms eta 0.4min
+[8/10] c13|control|v1|r0|X3_shared_summary|gemma3 4614ms eta 0.2min
+[9/10] c10|control|v2|r0|X3_shared_summary|gemma3 5802ms eta 0.1min
+[10/10] c19|control|v1|r0|X2_isolated|gemma3 6104ms eta 0.0min
+[1/10] c07|control|v3|r0|X1_shared_weak|gemma3 4370ms eta 0.7min
+[2/10] c01|control|v4|r0|X1_shared_weak|gemma3 6354ms eta 0.7min
+[3/10] c11|probe|v0|r0|X3_shared_summary|gemma3 5942ms eta 0.7min
+[4/10] c07|probe|v4|r0|X3_shared_summary|gemma3 4413ms eta 0.5min
+[5/10] c09|probe|v2|r0|X1_shared_weak|gemma3 6125ms eta 0.5min
+[6/10] c12|control|v4|r0|X2_isolated|gemma3 4192ms eta 0.4min
+[7/10] c15|control|v2|r0|X3_shared_summary|gemma3 5284ms eta 0.3min
+[8/10] c05|control|v0|r0|X3_shared_summary|gemma3 6259ms eta 0.2min
+[9/10] c19|control|v3|r0|X3_shared_summary|gemma3 9758ms eta 0.1min
+[10/10] c05|control|v3|r0|X2_isolated|gemma3 5947ms eta 0.0min
+[1/10] c02|probe|v4|r0|X2_isolated|gemma3 4297ms eta 0.7min
+[2/10] c09|probe|v1|r0|X1_shared_weak|gemma3 5881ms eta 0.7min
+[3/10] c07|probe|v1|r0|X2_isolated|gemma3 6899ms eta 0.7min
+[4/10] c12|probe|v1|r0|X1_shared_weak|gemma3 5767ms eta 0.6min
+[5/10] c12|control|v1|r0|X2_isolated|gemma3 7103ms eta 0.5min
+[6/10] c05|control|v0|r0|X2_isolated|gemma3 4939ms eta 0.4min
+[7/10] c12|probe|v4|r0|X2_isolated|gemma3 4174ms eta 0.3min
+[8/10] c15|probe|v4|r0|X3_shared_summary|gemma3 3937ms eta 0.2min
+[9/10] c19|probe|v0|r0|X2_isolated|gemma3 6357ms eta 0.1min
+[10/10] c18|control|v3|r0|X2_isolated|gemma3 6426ms eta 0.0min
+[1/10] c03|probe|v4|r0|X2_isolated|gemma3 5527ms eta 0.8min
+[2/10] c19|control|v0|r0|X1_shared_weak|gemma3 7048ms eta 0.8min
+[3/10] c02|control|v2|r0|X1_shared_weak|gemma3 5929ms eta 0.7min
+[4/10] c09|control|v3|r0|X3_shared_summary|gemma3 5959ms eta 0.6min
+[5/10] c07|control|v2|r0|X3_shared_summary|gemma3 5825ms eta 0.5min
+[6/10] c01|control|v0|r0|X2_isolated|gemma3 5918ms eta 0.4min
+[7/10] c02|probe|v3|r0|X3_shared_summary|gemma3 5837ms eta 0.3min
+[8/10] c06|control|v0|r0|X2_isolated|gemma3 7230ms eta 0.2min
+[9/10] c12|probe|v3|r0|X2_isolated|gemma3 7639ms eta 0.1min
+[10/10] c10|probe|v0|r0|X1_shared_weak|gemma3 7136ms eta 0.0min
+[1/10] c02|control|v1|r0|X3_shared_summary|gemma3 6137ms eta 0.9min
+[2/10] c12|control|v4|r0|X1_shared_weak|gemma3 3907ms eta 0.7min
+[3/10] c04|probe|v2|r0|X2_isolated|gemma3 7373ms eta 0.7min
+[4/10] c18|probe|v3|r0|X1_shared_weak|gemma3 4825ms eta 0.6min
+[5/10] c15|control|v1|r0|X3_shared_summary|gemma3 5719ms eta 0.5min
+[6/10] c01|probe|v4|r0|X3_shared_summary|gemma3 6265ms eta 0.4min
+[7/10] c09|probe|v0|r0|X1_shared_weak|gemma3 7550ms eta 0.3min
+[8/10] c11|control|v2|r0|X2_isolated|gemma3 6682ms eta 0.2min
+[9/10] c12|probe|v2|r0|X2_isolated|gemma3 5490ms eta 0.1min
+[10/10] c03|probe|v3|r0|X1_shared_weak|gemma3 4950ms eta 0.0min
+[1/10] c12|control|v4|r0|X3_shared_summary|gemma3 4098ms eta 0.6min
+[2/10] c03|probe|v1|r0|X2_isolated|gemma3 5397ms eta 0.6min
+[3/10] c19|control|v2|r0|X3_shared_summary|gemma3 8544ms eta 0.7min
+[4/10] c11|probe|v4|r0|X3_shared_summary|gemma3 6860ms eta 0.6min
+[5/10] c07|probe|v3|r0|X2_isolated|gemma3 4928ms eta 0.5min
+[6/10] c05|probe|v3|r0|X1_shared_weak|gemma3 5994ms eta 0.4min
+[7/10] c19|probe|v2|r0|X1_shared_weak|gemma3 7583ms eta 0.3min
+[8/10] c11|control|v1|r0|X1_shared_weak|gemma3 6492ms eta 0.2min
+[9/10] c19|control|v1|r0|X3_shared_summary|gemma3 7732ms eta 0.1min
+[10/10] c05|probe|v4|r0|X2_isolated|gemma3 9431ms eta 0.0min
+[1/10] c00|probe|v2|r0|X1_shared_weak|gemma3 5846ms eta 0.9min
+[2/10] c09|probe|v4|r0|X3_shared_summary|gemma3 9044ms eta 1.0min
+[3/10] c15|probe|v3|r0|X1_shared_weak|gemma3 9919ms eta 1.0min
+[4/10] c07|control|v0|r0|X1_shared_weak|gemma3 3918ms eta 0.7min
+[5/10] c14|probe|v3|r0|X1_shared_weak|gemma3 5896ms eta 0.6min
+[6/10] c19|control|v2|r0|X2_isolated|gemma3 6861ms eta 0.5min
+[7/10] c06|control|v2|r0|X3_shared_summary|gemma3 5584ms eta 0.3min
+[8/10] c19|probe|v1|r0|X2_isolated|gemma3 7625ms eta 0.2min
+[9/10] c00|control|v4|r0|X1_shared_weak|gemma3 5840ms eta 0.1min
+[10/10] c17|probe|v2|r0|X2_isolated|gemma3 5988ms eta 0.0min
+[1/10] c07|control|v4|r0|X2_isolated|gemma3 3786ms eta 0.6min
+[2/10] c07|probe|v4|r0|X2_isolated|gemma3 5748ms eta 0.6min
+[3/10] c03|probe|v1|r0|X3_shared_summary|gemma3 7338ms eta 0.7min
+[4/10] c01|probe|v0|r0|X1_shared_weak|gemma3 6595ms eta 0.6min
+[5/10] c01|probe|v0|r0|X3_shared_summary|gemma3 7546ms eta 0.5min
+[6/10] c14|probe|v4|r0|X1_shared_weak|gemma3 4345ms eta 0.4min
+[7/10] c02|control|v4|r0|X3_shared_summary|gemma3 4122ms eta 0.3min
+[8/10] c18|control|v1|r0|X1_shared_weak|gemma3 5215ms eta 0.2min
+[9/10] c03|probe|v4|r0|X3_shared_summary|gemma3 6104ms eta 0.1min
+[10/10] c04|control|v2|r0|X2_isolated|gemma3 5541ms eta 0.0min
+[1/5] c07|control|v1|r0|X1_shared_weak|gemma3 5777ms eta 0.4min
+[2/5] c08|probe|v3|r0|X2_isolated|gemma3 8741ms eta 0.4min
+[3/5] c09|probe|v3|r0|X3_shared_summary|gemma3 4827ms eta 0.2min
+[4/5] c00|control|v3|r0|X2_isolated|gemma3 8623ms eta 0.1min
+[5/5] c03|control|v3|r0|X1_shared_weak|gemma3 6152ms eta 0.0min
+[1/10] c17|control|v3|r0|X3_shared_summary|qwen2.5 12658ms eta 1.9min
+[2/10] c19|control|v4|r0|X3_shared_summary|qwen2.5 8543ms eta 1.4min
+[3/10] c14|probe|v2|r0|X3_shared_summary|qwen2.5 9486ms eta 1.2min
+[4/10] c14|probe|v1|r0|X2_isolated|qwen2.5 8007ms eta 1.0min
+[5/10] c10|probe|v1|r0|X1_shared_weak|qwen2.5 11419ms eta 0.8min
+[6/10] c15|control|v0|r0|X1_shared_weak|qwen2.5 8339ms eta 0.7min
+[7/10] c04|probe|v3|r0|X2_isolated|qwen2.5 13321ms eta 0.5min
+[8/10] c07|probe|v0|r0|X3_shared_summary|qwen2.5 10094ms eta 0.3min
+[9/10] c15|control|v3|r0|X3_shared_summary|qwen2.5 8822ms eta 0.2min
+[10/10] c10|probe|v4|r0|X3_shared_summary|qwen2.5 11310ms eta 0.0min
+[1/10] c03|probe|v0|r0|X3_shared_summary|qwen2.5 9843ms eta 1.5min
+[2/10] c08|control|v3|r0|X2_isolated|qwen2.5 14157ms eta 1.6min
+[3/10] c18|probe|v1|r0|X3_shared_summary|qwen2.5 9631ms eta 1.3min
+[4/10] c16|probe|v0|r0|X1_shared_weak|qwen2.5 9760ms eta 1.1min
+[5/10] c07|control|v3|r0|X2_isolated|qwen2.5 6887ms eta 0.8min
+[6/10] c06|probe|v2|r0|X3_shared_summary|qwen2.5 9209ms eta 0.7min
+[7/10] c14|control|v1|r0|X2_isolated|qwen2.5 8410ms eta 0.5min
+[8/10] c13|probe|v2|r0|X1_shared_weak|qwen2.5 9679ms eta 0.3min
+[9/10] c18|probe|v0|r0|X1_shared_weak|qwen2.5 9139ms eta 0.2min
+[10/10] c11|control|v0|r0|X2_isolated|qwen2.5 8990ms eta 0.0min
+[1/10] c19|control|v3|r0|X2_isolated|qwen2.5 10776ms eta 1.6min
+[2/10] c14|probe|v1|r0|X3_shared_summary|qwen2.5 8589ms eta 1.3min
+[3/10] c10|control|v3|r0|X2_isolated|qwen2.5 9719ms eta 1.1min
+[4/10] c16|probe|v0|r0|X2_isolated|qwen2.5 8384ms eta 0.9min
+[5/10] c09|probe|v2|r0|X3_shared_summary|qwen2.5 9585ms eta 0.8min
+[6/10] c13|control|v4|r0|X3_shared_summary|qwen2.5 9194ms eta 0.6min
+[7/10] c19|probe|v3|r0|X3_shared_summary|qwen2.5 10978ms eta 0.5min
+[8/10] c11|probe|v3|r0|X1_shared_weak|qwen2.5 9326ms eta 0.3min
+[9/10] c07|control|v1|r0|X3_shared_summary|qwen2.5 6711ms eta 0.2min
+[10/10] c01|control|v4|r0|X3_shared_summary|qwen2.5 10323ms eta 0.0min
+[1/10] c10|control|v0|r0|X2_isolated|qwen2.5 9391ms eta 1.4min
+[2/10] c08|probe|v0|r0|X2_isolated|qwen2.5 9856ms eta 1.3min
+[3/10] c10|probe|v1|r0|X2_isolated|qwen2.5 11141ms eta 1.2min
+[4/10] c08|probe|v4|r0|X2_isolated|qwen2.5 7241ms eta 0.9min
+[5/10] c00|probe|v4|r0|X1_shared_weak|qwen2.5 8785ms eta 0.8min
+[6/10] c12|probe|v3|r0|X3_shared_summary|qwen2.5 12619ms eta 0.7min
+[7/10] c11|control|v0|r0|X1_shared_weak|qwen2.5 9289ms eta 0.5min
+[8/10] c16|probe|v2|r0|X2_isolated|qwen2.5 8154ms eta 0.3min
+[9/10] c14|control|v3|r0|X1_shared_weak|qwen2.5 9764ms eta 0.2min
+[10/10] c00|control|v2|r0|X1_shared_weak|qwen2.5 9449ms eta 0.0min
+[1/10] c04|control|v1|r0|X1_shared_weak|qwen2.5 9148ms eta 1.4min
+[2/10] c14|control|v0|r0|X1_shared_weak|qwen2.5 9750ms eta 1.3min
+[3/10] c02|control|v4|r0|X2_isolated|qwen2.5 5828ms eta 1.0min
+[4/10] c14|probe|v1|r0|X1_shared_weak|qwen2.5 7924ms eta 0.8min
+[5/10] c08|probe|v3|r0|X3_shared_summary|qwen2.5 11905ms eta 0.7min
+[6/10] c04|control|v3|r0|X2_isolated|qwen2.5 13171ms eta 0.6min
+[7/10] c04|probe|v4|r0|X1_shared_weak|qwen2.5 7628ms eta 0.5min
+[8/10] c10|control|v4|r0|X3_shared_summary|qwen2.5 9099ms eta 0.3min
+[9/10] c10|control|v0|r0|X1_shared_weak|qwen2.5 7392ms eta 0.2min
+[10/10] c10|probe|v2|r0|X2_isolated|qwen2.5 8919ms eta 0.0min
+[1/10] c14|control|v0|r0|X2_isolated|qwen2.5 8798ms eta 1.3min
+[2/10] c08|probe|v0|r0|X1_shared_weak|qwen2.5 10834ms eta 1.3min
+[3/10] c13|control|v4|r0|X1_shared_weak|qwen2.5 9416ms eta 1.1min
+[4/10] c09|control|v4|r0|X1_shared_weak|qwen2.5 12519ms eta 1.0min
+[5/10] c06|probe|v0|r0|X3_shared_summary|qwen2.5 12772ms eta 0.9min
+[6/10] c07|probe|v2|r0|X3_shared_summary|qwen2.5 9271ms eta 0.7min
+[7/10] c13|control|v2|r0|X2_isolated|qwen2.5 6883ms eta 0.5min
+[8/10] c09|control|v2|r0|X3_shared_summary|qwen2.5 8793ms eta 0.3min
+[9/10] c02|control|v2|r0|X3_shared_summary|qwen2.5 11708ms eta 0.2min
+[10/10] c12|control|v2|r0|X3_shared_summary|qwen2.5 9828ms eta 0.0min
+[1/10] c10|control|v1|r0|X2_isolated|qwen2.5 9076ms eta 1.4min
+[2/10] c18|probe|v4|r0|X3_shared_summary|qwen2.5 9230ms eta 1.2min
+[3/10] c03|control|v4|r0|X2_isolated|qwen2.5 7741ms eta 1.0min
+[4/10] c13|probe|v1|r0|X2_isolated|qwen2.5 10985ms eta 0.9min
+[5/10] c16|control|v3|r0|X1_shared_weak|qwen2.5 10286ms eta 0.8min
+[6/10] c06|probe|v2|r0|X1_shared_weak|qwen2.5 8881ms eta 0.6min
+[7/10] c02|control|v0|r0|X1_shared_weak|qwen2.5 12971ms eta 0.5min
+[8/10] c12|control|v1|r0|X1_shared_weak|qwen2.5 10325ms eta 0.3min
+[9/10] c03|control|v3|r0|X3_shared_summary|qwen2.5 12284ms eta 0.2min
+[10/10] c17|probe|v1|r0|X2_isolated|qwen2.5 7939ms eta 0.0min
+[1/10] c19|probe|v3|r0|X1_shared_weak|qwen2.5 8461ms eta 1.3min
+[2/10] c18|control|v3|r0|X1_shared_weak|qwen2.5 7648ms eta 1.1min
+[3/10] c18|control|v2|r0|X3_shared_summary|qwen2.5 14040ms eta 1.2min
+[4/10] c18|probe|v4|r0|X1_shared_weak|qwen2.5 8085ms eta 1.0min
+[5/10] c11|probe|v1|r0|X3_shared_summary|qwen2.5 8401ms eta 0.8min
+[6/10] c15|probe|v4|r0|X1_shared_weak|qwen2.5 8242ms eta 0.6min
+[7/10] c14|probe|v4|r0|X2_isolated|qwen2.5 7888ms eta 0.5min
+[8/10] c06|control|v4|r0|X1_shared_weak|qwen2.5 11153ms eta 0.3min
+[9/10] c08|probe|v4|r0|X3_shared_summary|qwen2.5 8580ms eta 0.2min
+[10/10] c06|control|v2|r0|X1_shared_weak|qwen2.5 9732ms eta 0.0min
+[1/10] c05|control|v4|r0|X3_shared_summary|qwen2.5 8841ms eta 1.3min
+[2/10] c00|control|v0|r0|X1_shared_weak|qwen2.5 13070ms eta 1.5min
+[3/10] c03|control|v0|r0|X2_isolated|qwen2.5 12169ms eta 1.3min
+[4/10] c18|probe|v2|r0|X3_shared_summary|qwen2.5 10369ms eta 1.1min
+[5/10] c18|control|v0|r0|X2_isolated|qwen2.5 9451ms eta 0.9min
+[6/10] c03|probe|v2|r0|X1_shared_weak|qwen2.5 9713ms eta 0.7min
+[7/10] c00|probe|v2|r0|X3_shared_summary|qwen2.5 8055ms eta 0.5min
+[8/10] c09|probe|v3|r0|X1_shared_weak|qwen2.5 9390ms eta 0.3min
+[9/10] c16|probe|v4|r0|X3_shared_summary|qwen2.5 11371ms eta 0.2min
+[10/10] c16|control|v0|r0|X1_shared_weak|qwen2.5 9480ms eta 0.0min
+[1/10] c09|control|v3|r0|X1_shared_weak|qwen2.5 10919ms eta 1.6min
+[2/10] c10|probe|v4|r0|X1_shared_weak|qwen2.5 14232ms eta 1.7min
+[3/10] c14|probe|v0|r0|X1_shared_weak|qwen2.5 10009ms eta 1.4min
+[4/10] c02|probe|v2|r0|X1_shared_weak|qwen2.5 8145ms eta 1.1min
+[5/10] c15|control|v4|r0|X3_shared_summary|qwen2.5 10915ms eta 0.9min
+[6/10] c15|probe|v3|r0|X2_isolated|qwen2.5 12508ms eta 0.7min
+[7/10] c06|control|v1|r0|X1_shared_weak|qwen2.5 8617ms eta 0.5min
+[8/10] c17|control|v2|r0|X1_shared_weak|qwen2.5 7711ms eta 0.3min
+[9/10] c05|control|v2|r0|X1_shared_weak|qwen2.5 8621ms eta 0.2min
+[10/10] c16|probe|v4|r0|X1_shared_weak|qwen2.5 10153ms eta 0.0min
+[1/10] c17|control|v3|r0|X2_isolated|qwen2.5 13983ms eta 2.1min
+[2/10] c15|probe|v0|r0|X3_shared_summary|qwen2.5 10069ms eta 1.6min
+[3/10] c03|control|v4|r0|X3_shared_summary|qwen2.5 9173ms eta 1.3min
+[4/10] c13|control|v1|r0|X2_isolated|qwen2.5 11772ms eta 1.1min
+[5/10] c12|control|v0|r0|X2_isolated|qwen2.5 7976ms eta 0.9min
+[6/10] c05|control|v2|r0|X2_isolated|qwen2.5 9537ms eta 0.7min
+[7/10] c04|control|v4|r0|X1_shared_weak|qwen2.5 8256ms eta 0.5min
+[8/10] c03|probe|v3|r0|X2_isolated|qwen2.5 10792ms eta 0.3min
+[9/10] c05|control|v1|r0|X1_shared_weak|qwen2.5 7501ms eta 0.2min
+[10/10] c18|control|v1|r0|X3_shared_summary|qwen2.5 10637ms eta 0.0min
+[1/10] c11|probe|v3|r0|X2_isolated|qwen2.5 7945ms eta 1.2min
+[2/10] c19|control|v0|r0|X2_isolated|qwen2.5 9944ms eta 1.2min
+[3/10] c06|control|v1|r0|X3_shared_summary|qwen2.5 9419ms eta 1.1min
+[4/10] c15|probe|v0|r0|X2_isolated|qwen2.5 9360ms eta 0.9min
+[5/10] c04|control|v1|r0|X3_shared_summary|qwen2.5 9736ms eta 0.8min
+[6/10] c02|probe|v4|r0|X3_shared_summary|qwen2.5 7027ms eta 0.6min
+[7/10] c00|control|v2|r0|X2_isolated|qwen2.5 10590ms eta 0.5min
+[8/10] c06|probe|v4|r0|X1_shared_weak|qwen2.5 8209ms eta 0.3min
+[9/10] c10|control|v3|r0|X1_shared_weak|qwen2.5 7699ms eta 0.1min
+[10/10] c00|probe|v4|r0|X3_shared_summary|qwen2.5 10655ms eta 0.0min
+[1/10] c13|control|v3|r0|X3_shared_summary|qwen2.5 11354ms eta 1.7min
+[2/10] c08|control|v1|r0|X1_shared_weak|qwen2.5 9750ms eta 1.4min
+[3/10] c01|probe|v4|r0|X1_shared_weak|qwen2.5 11626ms eta 1.3min
+[4/10] c04|control|v4|r0|X2_isolated|qwen2.5 8927ms eta 1.0min
+[5/10] c03|control|v0|r0|X3_shared_summary|qwen2.5 11997ms eta 0.9min
+[6/10] c08|control|v2|r0|X2_isolated|qwen2.5 8705ms eta 0.7min
+[7/10] c02|control|v3|r0|X3_shared_summary|qwen2.5 8489ms eta 0.5min
+[8/10] c08|control|v4|r0|X3_shared_summary|qwen2.5 8541ms eta 0.3min
+[9/10] c05|control|v4|r0|X2_isolated|qwen2.5 9662ms eta 0.2min
+[10/10] c04|probe|v3|r0|X3_shared_summary|qwen2.5 12779ms eta 0.0min
+[1/10] c18|control|v2|r0|X2_isolated|qwen2.5 10052ms eta 1.5min
+[2/10] c15|probe|v4|r0|X2_isolated|qwen2.5 7820ms eta 1.2min
+[3/10] c14|control|v2|r0|X3_shared_summary|qwen2.5 6971ms eta 1.0min
+[4/10] c13|probe|v1|r0|X3_shared_summary|qwen2.5 10735ms eta 0.9min
+[5/10] c15|control|v2|r0|X2_isolated|qwen2.5 8133ms eta 0.7min
+[6/10] c14|control|v3|r0|X3_shared_summary|qwen2.5 11381ms eta 0.6min
+[7/10] c14|probe|v2|r0|X1_shared_weak|qwen2.5 6162ms eta 0.4min
+[8/10] c18|control|v1|r0|X2_isolated|qwen2.5 9197ms eta 0.3min
+[9/10] c16|control|v2|r0|X2_isolated|qwen2.5 15587ms eta 0.2min
+[10/10] c09|control|v0|r0|X2_isolated|qwen2.5 10008ms eta 0.0min
+[1/10] c15|probe|v1|r0|X3_shared_summary|qwen2.5 7114ms eta 1.1min
+[2/10] c01|control|v2|r0|X1_shared_weak|qwen2.5 8631ms eta 1.1min
+[3/10] c16|probe|v3|r0|X2_isolated|qwen2.5 10477ms eta 1.0min
+[4/10] c10|control|v0|r0|X3_shared_summary|qwen2.5 9068ms eta 0.9min
+[5/10] c05|control|v4|r0|X1_shared_weak|qwen2.5 9352ms eta 0.7min
+[6/10] c11|control|v3|r0|X2_isolated|qwen2.5 9211ms eta 0.6min
+[7/10] c19|probe|v4|r0|X3_shared_summary|qwen2.5 8733ms eta 0.4min
+[8/10] c07|control|v4|r0|X1_shared_weak|qwen2.5 8976ms eta 0.3min
+[9/10] c02|probe|v2|r0|X3_shared_summary|qwen2.5 11268ms eta 0.2min
+[10/10] c05|probe|v4|r0|X3_shared_summary|qwen2.5 12052ms eta 0.0min
+[1/10] c07|probe|v0|r0|X2_isolated|qwen2.5 7459ms eta 1.1min
+[2/10] c06|probe|v4|r0|X2_isolated|qwen2.5 9662ms eta 1.1min
+[3/10] c05|probe|v1|r0|X3_shared_summary|qwen2.5 10346ms eta 1.1min
+[4/10] c19|probe|v1|r0|X3_shared_summary|qwen2.5 10585ms eta 1.0min
+[5/10] c03|control|v0|r0|X1_shared_weak|qwen2.5 10568ms eta 0.8min
+[6/10] c01|control|v0|r0|X1_shared_weak|qwen2.5 8752ms eta 0.6min
+[7/10] c06|probe|v3|r0|X1_shared_weak|qwen2.5 8007ms eta 0.5min
+[8/10] c02|probe|v0|r0|X1_shared_weak|qwen2.5 8603ms eta 0.3min
+[9/10] c13|probe|v4|r0|X2_isolated|qwen2.5 8422ms eta 0.2min
+[10/10] c05|probe|v2|r0|X3_shared_summary|qwen2.5 13079ms eta 0.0min
+[1/10] c08|control|v3|r0|X3_shared_summary|qwen2.5 12222ms eta 1.8min
+[2/10] c06|probe|v1|r0|X2_isolated|qwen2.5 7890ms eta 1.3min
+[3/10] c03|probe|v0|r0|X1_shared_weak|qwen2.5 7674ms eta 1.1min
+[4/10] c07|probe|v3|r0|X3_shared_summary|qwen2.5 7850ms eta 0.9min
+[5/10] c02|probe|v1|r0|X1_shared_weak|qwen2.5 9704ms eta 0.8min
+[6/10] c13|probe|v0|r0|X2_isolated|qwen2.5 10052ms eta 0.6min
+[7/10] c14|control|v4|r0|X3_shared_summary|qwen2.5 7670ms eta 0.5min
+[8/10] c16|probe|v2|r0|X3_shared_summary|qwen2.5 10269ms eta 0.3min
+[9/10] c10|control|v3|r0|X3_shared_summary|qwen2.5 9437ms eta 0.2min
+[10/10] c14|control|v1|r0|X1_shared_weak|qwen2.5 10183ms eta 0.0min
+[1/10] c12|control|v1|r0|X3_shared_summary|qwen2.5 8318ms eta 1.3min
+[2/10] c16|control|v3|r0|X2_isolated|qwen2.5 10720ms eta 1.3min
+[3/10] c03|control|v1|r0|X3_shared_summary|qwen2.5 11857ms eta 1.2min
+[4/10] c09|control|v0|r0|X1_shared_weak|qwen2.5 7660ms eta 1.0min
+[5/10] c06|probe|v2|r0|X2_isolated|qwen2.5 8265ms eta 0.8min
+[6/10] c04|control|v4|r0|X3_shared_summary|qwen2.5 8389ms eta 0.6min
+[7/10] c12|probe|v0|r0|X2_isolated|qwen2.5 8637ms eta 0.5min
+[8/10] c14|probe|v2|r0|X2_isolated|qwen2.5 8394ms eta 0.3min
+[9/10] c08|control|v0|r0|X1_shared_weak|qwen2.5 7993ms eta 0.1min
+[10/10] c17|probe|v2|r0|X3_shared_summary|qwen2.5 8766ms eta 0.0min
+[1/10] c05|control|v3|r0|X3_shared_summary|qwen2.5 10610ms eta 1.6min
+[2/10] c00|control|v1|r0|X2_isolated|qwen2.5 9604ms eta 1.4min
+[3/10] c00|control|v4|r0|X2_isolated|qwen2.5 8159ms eta 1.1min
+[4/10] c07|control|v0|r0|X3_shared_summary|qwen2.5 8678ms eta 0.9min
+[5/10] c04|control|v2|r0|X3_shared_summary|qwen2.5 9957ms eta 0.8min
+[6/10] c10|probe|v3|r0|X1_shared_weak|qwen2.5 9765ms eta 0.6min
+[7/10] c19|probe|v3|r0|X2_isolated|qwen2.5 9611ms eta 0.5min
+[8/10] c07|probe|v1|r0|X3_shared_summary|qwen2.5 8435ms eta 0.3min
+[9/10] c03|control|v2|r0|X3_shared_summary|qwen2.5 11536ms eta 0.2min
+[10/10] c16|control|v2|r0|X1_shared_weak|qwen2.5 12611ms eta 0.0min
+[1/10] c13|control|v2|r0|X1_shared_weak|qwen2.5 8503ms eta 1.3min
+[2/10] c19|probe|v4|r0|X1_shared_weak|qwen2.5 9320ms eta 1.2min
+[3/10] c13|probe|v4|r0|X1_shared_weak|qwen2.5 9210ms eta 1.1min
+[4/10] c10|probe|v4|r0|X2_isolated|qwen2.5 9722ms eta 0.9min
+[5/10] c14|probe|v3|r0|X3_shared_summary|qwen2.5 11113ms eta 0.8min
+[6/10] c00|probe|v3|r0|X3_shared_summary|qwen2.5 12377ms eta 0.7min
+[7/10] c16|control|v0|r0|X3_shared_summary|qwen2.5 12379ms eta 0.5min
+[8/10] c13|probe|v3|r0|X2_isolated|qwen2.5 12591ms eta 0.4min
+[9/10] c10|probe|v2|r0|X3_shared_summary|qwen2.5 10856ms eta 0.2min
+[10/10] c00|control|v2|r0|X3_shared_summary|qwen2.5 9332ms eta 0.0min
+[1/10] c00|probe|v4|r0|X2_isolated|qwen2.5 9063ms eta 1.4min
+[2/10] c17|probe|v4|r0|X1_shared_weak|qwen2.5 10232ms eta 1.3min
+[3/10] c04|probe|v1|r0|X3_shared_summary|qwen2.5 8826ms eta 1.1min
+[4/10] c15|control|v3|r0|X1_shared_weak|qwen2.5 7995ms eta 0.9min
+[5/10] c16|control|v2|r0|X3_shared_summary|qwen2.5 15231ms eta 0.9min
+[6/10] c05|probe|v4|r0|X1_shared_weak|qwen2.5 11899ms eta 0.7min
+[7/10] c17|control|v3|r0|X1_shared_weak|qwen2.5 11744ms eta 0.5min
+[8/10] c01|control|v2|r0|X2_isolated|qwen2.5 9253ms eta 0.4min
+[9/10] c02|control|v4|r0|X1_shared_weak|qwen2.5 7749ms eta 0.2min
+[10/10] c06|probe|v1|r0|X1_shared_weak|qwen2.5 7312ms eta 0.0min
+[1/10] c01|control|v2|r0|X3_shared_summary|qwen2.5 9302ms eta 1.4min
+[2/10] c05|probe|v1|r0|X2_isolated|qwen2.5 7916ms eta 1.2min
+[3/10] c08|probe|v1|r0|X3_shared_summary|qwen2.5 9807ms eta 1.1min
+[4/10] c02|probe|v3|r0|X1_shared_weak|qwen2.5 7839ms eta 0.9min
+[5/10] c01|probe|v3|r0|X1_shared_weak|qwen2.5 8765ms eta 0.7min
+[6/10] c17|control|v1|r0|X3_shared_summary|qwen2.5 11803ms eta 0.6min
+[7/10] c06|probe|v3|r0|X2_isolated|qwen2.5 10488ms eta 0.5min
+[8/10] c11|probe|v3|r0|X3_shared_summary|qwen2.5 8484ms eta 0.3min
+[9/10] c09|probe|v4|r0|X1_shared_weak|qwen2.5 10480ms eta 0.2min
+[10/10] c08|probe|v2|r0|X2_isolated|qwen2.5 8426ms eta 0.0min
+[1/10] c09|control|v2|r0|X1_shared_weak|qwen2.5 8434ms eta 1.3min
+[2/10] c00|control|v3|r0|X3_shared_summary|qwen2.5 13430ms eta 1.5min
+[3/10] c12|probe|v2|r0|X1_shared_weak|qwen2.5 9701ms eta 1.2min
+[4/10] c02|control|v0|r0|X2_isolated|qwen2.5 10535ms eta 1.1min
+[5/10] c04|control|v2|r0|X1_shared_weak|qwen2.5 9135ms eta 0.9min
+[6/10] c06|control|v4|r0|X3_shared_summary|qwen2.5 9462ms eta 0.7min
+[7/10] c05|control|v1|r0|X3_shared_summary|qwen2.5 10390ms eta 0.5min
+[8/10] c00|probe|v0|r0|X3_shared_summary|qwen2.5 9686ms eta 0.3min
+[9/10] c12|probe|v1|r0|X2_isolated|qwen2.5 10586ms eta 0.2min
+[10/10] c17|control|v2|r0|X2_isolated|qwen2.5 7156ms eta 0.0min
+[1/10] c16|control|v4|r0|X1_shared_weak|qwen2.5 8120ms eta 1.2min
+[2/10] c05|probe|v2|r0|X1_shared_weak|qwen2.5 14280ms eta 1.5min
+[3/10] c02|control|v0|r0|X3_shared_summary|qwen2.5 9834ms eta 1.3min
+[4/10] c06|probe|v0|r0|X1_shared_weak|qwen2.5 8776ms eta 1.0min
+[5/10] c04|control|v1|r0|X2_isolated|qwen2.5 10391ms eta 0.9min
+[6/10] c07|probe|v1|r0|X1_shared_weak|qwen2.5 9216ms eta 0.7min
+[7/10] c12|control|v0|r0|X1_shared_weak|qwen2.5 9109ms eta 0.5min
+[8/10] c13|control|v4|r0|X2_isolated|qwen2.5 8866ms eta 0.3min
+[9/10] c02|probe|v4|r0|X1_shared_weak|qwen2.5 7165ms eta 0.2min
+[10/10] c18|control|v3|r0|X3_shared_summary|qwen2.5 9169ms eta 0.0min
+[1/10] c02|probe|v0|r0|X3_shared_summary|qwen2.5 12353ms eta 1.9min
+[2/10] c13|control|v0|r0|X3_shared_summary|qwen2.5 11115ms eta 1.6min
+[3/10] c00|control|v0|r0|X3_shared_summary|qwen2.5 11719ms eta 1.4min
+[4/10] c19|probe|v2|r0|X3_shared_summary|qwen2.5 12909ms eta 1.2min
+[5/10] c19|control|v2|r0|X1_shared_weak|qwen2.5 10557ms eta 1.0min
+[6/10] c18|probe|v2|r0|X1_shared_weak|qwen2.5 8337ms eta 0.7min
+[7/10] c01|probe|v1|r0|X1_shared_weak|qwen2.5 10342ms eta 0.6min
+[8/10] c08|control|v2|r0|X1_shared_weak|qwen2.5 11043ms eta 0.4min
+[9/10] c04|probe|v3|r0|X1_shared_weak|qwen2.5 12206ms eta 0.2min
+[10/10] c14|control|v4|r0|X1_shared_weak|qwen2.5 9430ms eta 0.0min
+[1/10] c04|control|v0|r0|X3_shared_summary|qwen2.5 8181ms eta 1.2min
+[2/10] c00|control|v1|r0|X1_shared_weak|qwen2.5 8485ms eta 1.1min
+[3/10] c16|control|v4|r0|X2_isolated|qwen2.5 8469ms eta 1.0min
+[4/10] c04|control|v3|r0|X1_shared_weak|qwen2.5 14086ms eta 1.0min
+[5/10] c18|probe|v0|r0|X3_shared_summary|qwen2.5 8956ms eta 0.8min
+[6/10] c14|control|v2|r0|X1_shared_weak|qwen2.5 12275ms eta 0.7min
+[7/10] c00|probe|v1|r0|X2_isolated|qwen2.5 10318ms eta 0.5min
+[8/10] c01|probe|v2|r0|X2_isolated|qwen2.5 11033ms eta 0.3min
+[9/10] c08|control|v4|r0|X2_isolated|qwen2.5 10682ms eta 0.2min
+[10/10] c17|control|v0|r0|X1_shared_weak|qwen2.5 10808ms eta 0.0min
+[1/10] c05|probe|v1|r0|X1_shared_weak|qwen2.5 8841ms eta 1.3min
+[2/10] c11|control|v4|r0|X1_shared_weak|qwen2.5 7194ms eta 1.1min
+[3/10] c06|control|v2|r0|X2_isolated|qwen2.5 7625ms eta 0.9min
+[4/10] c10|probe|v0|r0|X3_shared_summary|qwen2.5 10529ms eta 0.9min
+[5/10] c14|probe|v0|r0|X3_shared_summary|qwen2.5 9340ms eta 0.7min
+[6/10] c09|control|v1|r0|X2_isolated|qwen2.5 10089ms eta 0.6min
+[7/10] c18|control|v4|r0|X1_shared_weak|qwen2.5 8238ms eta 0.4min
+[8/10] c04|probe|v4|r0|X2_isolated|qwen2.5 8745ms eta 0.3min
+[9/10] c05|probe|v3|r0|X3_shared_summary|qwen2.5 10301ms eta 0.2min
+[10/10] c08|control|v4|r0|X1_shared_weak|qwen2.5 9462ms eta 0.0min
+[1/10] c17|control|v4|r0|X1_shared_weak|qwen2.5 8132ms eta 1.2min
+[2/10] c09|probe|v3|r0|X2_isolated|qwen2.5 10864ms eta 1.3min
+[3/10] c00|control|v1|r0|X3_shared_summary|qwen2.5 10171ms eta 1.1min
+[4/10] c15|control|v0|r0|X2_isolated|qwen2.5 10229ms eta 1.0min
+[5/10] c12|control|v3|r0|X2_isolated|qwen2.5 13563ms eta 0.9min
+[6/10] c11|probe|v2|r0|X1_shared_weak|qwen2.5 11592ms eta 0.7min
+[7/10] c04|probe|v0|r0|X1_shared_weak|qwen2.5 8958ms eta 0.5min
+[8/10] c15|control|v1|r0|X1_shared_weak|qwen2.5 10426ms eta 0.4min
+[9/10] c13|control|v3|r0|X1_shared_weak|qwen2.5 7772ms eta 0.2min
+[10/10] c19|control|v0|r0|X3_shared_summary|qwen2.5 10500ms eta 0.0min
+[1/10] c01|probe|v3|r0|X3_shared_summary|qwen2.5 11467ms eta 1.7min
+[2/10] c16|control|v0|r0|X2_isolated|qwen2.5 10458ms eta 1.5min
+[3/10] c09|control|v1|r0|X1_shared_weak|qwen2.5 10893ms eta 1.3min
+[4/10] c15|probe|v2|r0|X3_shared_summary|qwen2.5 8330ms eta 1.0min
+[5/10] c19|probe|v1|r0|X1_shared_weak|qwen2.5 8655ms eta 0.8min
+[6/10] c08|control|v0|r0|X3_shared_summary|qwen2.5 9496ms eta 0.7min
+[7/10] c08|probe|v1|r0|X2_isolated|qwen2.5 11969ms eta 0.5min
+[8/10] c10|control|v1|r0|X1_shared_weak|qwen2.5 10584ms eta 0.3min
+[9/10] c11|control|v3|r0|X3_shared_summary|qwen2.5 8116ms eta 0.2min
+[10/10] c05|probe|v3|r0|X2_isolated|qwen2.5 8542ms eta 0.0min
+[1/10] c11|control|v0|r0|X3_shared_summary|qwen2.5 9378ms eta 1.4min
+[2/10] c09|probe|v2|r0|X2_isolated|qwen2.5 9296ms eta 1.3min
+[3/10] c14|probe|v0|r0|X2_isolated|qwen2.5 10855ms eta 1.2min
+[4/10] c03|control|v2|r0|X1_shared_weak|qwen2.5 10142ms eta 1.0min
+[5/10] c05|probe|v0|r0|X2_isolated|qwen2.5 8001ms eta 0.8min
+[6/10] c11|probe|v0|r0|X2_isolated|qwen2.5 10907ms eta 0.7min
+[7/10] c02|control|v1|r0|X2_isolated|qwen2.5 7177ms eta 0.5min
+[8/10] c08|probe|v3|r0|X1_shared_weak|qwen2.5 11500ms eta 0.3min
+[9/10] c18|probe|v1|r0|X1_shared_weak|qwen2.5 7449ms eta 0.2min
+[10/10] c14|control|v2|r0|X2_isolated|qwen2.5 9422ms eta 0.0min
+[1/10] c17|probe|v1|r0|X1_shared_weak|qwen2.5 7741ms eta 1.2min
+[2/10] c15|probe|v2|r0|X2_isolated|qwen2.5 9328ms eta 1.1min
+[3/10] c13|probe|v4|r0|X3_shared_summary|qwen2.5 9529ms eta 1.0min
+[4/10] c06|control|v1|r0|X2_isolated|qwen2.5 7996ms eta 0.9min
+[5/10] c15|probe|v2|r0|X1_shared_weak|qwen2.5 7043ms eta 0.7min
+[6/10] c06|probe|v4|r0|X3_shared_summary|qwen2.5 9606ms eta 0.6min
+[7/10] c16|probe|v2|r0|X1_shared_weak|qwen2.5 8927ms eta 0.4min
+[8/10] c18|probe|v4|r0|X2_isolated|qwen2.5 7458ms eta 0.3min
+[9/10] c06|control|v3|r0|X2_isolated|qwen2.5 6838ms eta 0.1min
+[10/10] c11|control|v4|r0|X3_shared_summary|qwen2.5 7660ms eta 0.0min
+[1/10] c08|probe|v2|r0|X1_shared_weak|qwen2.5 9167ms eta 1.4min
+[2/10] c12|probe|v0|r0|X1_shared_weak|qwen2.5 10230ms eta 1.3min
+[3/10] c11|control|v2|r0|X1_shared_weak|qwen2.5 9482ms eta 1.1min
+[4/10] c02|control|v3|r0|X2_isolated|qwen2.5 9245ms eta 1.0min
+[5/10] c17|control|v4|r0|X2_isolated|qwen2.5 8919ms eta 0.8min
+[6/10] c01|control|v0|r0|X3_shared_summary|qwen2.5 10734ms eta 0.6min
+[7/10] c00|probe|v2|r0|X2_isolated|qwen2.5 7665ms eta 0.5min
+[8/10] c11|control|v4|r0|X2_isolated|qwen2.5 6515ms eta 0.3min
+[9/10] c19|control|v4|r0|X2_isolated|qwen2.5 8110ms eta 0.1min
+[10/10] c11|probe|v2|r0|X3_shared_summary|qwen2.5 9419ms eta 0.0min
+[1/10] c13|control|v0|r0|X2_isolated|qwen2.5 9975ms eta 1.5min
+[2/10] c07|control|v0|r0|X2_isolated|qwen2.5 9748ms eta 1.3min
+[3/10] c01|probe|v2|r0|X3_shared_summary|qwen2.5 11954ms eta 1.2min
+[4/10] c11|probe|v1|r0|X1_shared_weak|qwen2.5 7201ms eta 1.0min
+[5/10] c07|control|v3|r0|X3_shared_summary|qwen2.5 8463ms eta 0.8min
+[6/10] c12|probe|v4|r0|X1_shared_weak|qwen2.5 8258ms eta 0.6min
+[7/10] c03|probe|v1|r0|X1_shared_weak|qwen2.5 9350ms eta 0.5min
+[8/10] c18|control|v4|r0|X2_isolated|qwen2.5 8620ms eta 0.3min
+[9/10] c18|probe|v3|r0|X3_shared_summary|qwen2.5 9165ms eta 0.2min
+[10/10] c07|control|v1|r0|X2_isolated|qwen2.5 8981ms eta 0.0min
+[1/10] c15|control|v0|r0|X3_shared_summary|qwen2.5 8796ms eta 1.3min
+[2/10] c11|control|v1|r0|X3_shared_summary|qwen2.5 9644ms eta 1.2min
+[3/10] c03|probe|v2|r0|X3_shared_summary|qwen2.5 9280ms eta 1.1min
+[4/10] c18|control|v0|r0|X3_shared_summary|qwen2.5 9699ms eta 0.9min
+[5/10] c01|control|v3|r0|X2_isolated|qwen2.5 10972ms eta 0.8min
+[6/10] c16|control|v4|r0|X3_shared_summary|qwen2.5 9776ms eta 0.6min
+[7/10] c06|control|v3|r0|X3_shared_summary|qwen2.5 8562ms eta 0.5min
+[8/10] c01|probe|v0|r0|X2_isolated|qwen2.5 15064ms eta 0.3min
+[9/10] c01|control|v1|r0|X3_shared_summary|qwen2.5 8711ms eta 0.2min
+[10/10] c11|probe|v0|r0|X1_shared_weak|qwen2.5 8336ms eta 0.0min
+[1/10] c11|probe|v1|r0|X2_isolated|qwen2.5 10030ms eta 1.5min
+[2/10] c19|probe|v4|r0|X2_isolated|qwen2.5 10232ms eta 1.4min
+[3/10] c15|control|v4|r0|X2_isolated|qwen2.5 9436ms eta 1.2min
+[4/10] c07|probe|v0|r0|X1_shared_weak|qwen2.5 8418ms eta 1.0min
+[5/10] c13|probe|v3|r0|X3_shared_summary|qwen2.5 13182ms eta 0.9min
+[6/10] c06|probe|v0|r0|X2_isolated|qwen2.5 11782ms eta 0.7min
+[7/10] c18|control|v4|r0|X3_shared_summary|qwen2.5 8317ms eta 0.5min
+[8/10] c13|control|v1|r0|X1_shared_weak|qwen2.5 7411ms eta 0.3min
+[9/10] c01|control|v1|r0|X2_isolated|qwen2.5 8519ms eta 0.2min
+[10/10] c01|control|v1|r0|X1_shared_weak|qwen2.5 8510ms eta 0.0min
+[1/10] c03|probe|v2|r0|X2_isolated|qwen2.5 9046ms eta 1.4min
+[2/10] c06|control|v4|r0|X2_isolated|qwen2.5 11165ms eta 1.4min
+[3/10] c11|control|v3|r0|X1_shared_weak|qwen2.5 8123ms eta 1.1min
+[4/10] c04|probe|v1|r0|X2_isolated|qwen2.5 14263ms eta 1.1min
+[5/10] c08|probe|v0|r0|X3_shared_summary|qwen2.5 11470ms eta 0.9min
+[6/10] c09|control|v3|r0|X2_isolated|qwen2.5 11941ms eta 0.7min
+[7/10] c09|control|v2|r0|X2_isolated|qwen2.5 11306ms eta 0.6min
+[8/10] c17|probe|v3|r0|X2_isolated|qwen2.5 9467ms eta 0.4min
+[9/10] c13|probe|v3|r0|X1_shared_weak|qwen2.5 8448ms eta 0.2min
+[10/10] c03|control|v1|r0|X2_isolated|qwen2.5 11049ms eta 0.0min
+[1/10] c13|control|v3|r0|X2_isolated|qwen2.5 8805ms eta 1.3min
+[2/10] c11|probe|v4|r0|X1_shared_weak|qwen2.5 8120ms eta 1.1min
+[3/10] c17|probe|v2|r0|X1_shared_weak|qwen2.5 8086ms eta 1.0min
+[4/10] c04|probe|v0|r0|X2_isolated|qwen2.5 12564ms eta 0.9min
+[5/10] c08|control|v2|r0|X3_shared_summary|qwen2.5 9414ms eta 0.8min
+[6/10] c13|probe|v2|r0|X2_isolated|qwen2.5 9318ms eta 0.6min
+[7/10] c05|control|v1|r0|X2_isolated|qwen2.5 12778ms eta 0.5min
+[8/10] c00|control|v0|r0|X2_isolated|qwen2.5 10035ms eta 0.3min
+[9/10] c01|probe|v1|r0|X2_isolated|qwen2.5 9126ms eta 0.2min
+[10/10] c12|control|v0|r0|X3_shared_summary|qwen2.5 7434ms eta 0.0min
+[1/10] c19|control|v1|r0|X1_shared_weak|qwen2.5 8614ms eta 1.3min
+[2/10] c17|probe|v4|r0|X2_isolated|qwen2.5 9054ms eta 1.2min
+[3/10] c12|probe|v0|r0|X3_shared_summary|qwen2.5 11133ms eta 1.1min
+[4/10] c01|probe|v2|r0|X1_shared_weak|qwen2.5 9632ms eta 1.0min
+[5/10] c00|probe|v1|r0|X1_shared_weak|qwen2.5 10507ms eta 0.8min
+[6/10] c16|control|v1|r0|X1_shared_weak|qwen2.5 12752ms eta 0.7min
+[7/10] c17|control|v4|r0|X3_shared_summary|qwen2.5 8500ms eta 0.5min
+[8/10] c03|control|v4|r0|X1_shared_weak|qwen2.5 9563ms eta 0.3min
+[9/10] c15|control|v3|r0|X2_isolated|qwen2.5 12098ms eta 0.2min
+[10/10] c10|probe|v0|r0|X2_isolated|qwen2.5 10559ms eta 0.0min
+[1/10] c00|probe|v3|r0|X2_isolated|qwen2.5 12858ms eta 1.9min
+[2/10] c05|control|v2|r0|X3_shared_summary|qwen2.5 9833ms eta 1.5min
+[3/10] c16|probe|v0|r0|X3_shared_summary|qwen2.5 8410ms eta 1.2min
+[4/10] c03|control|v3|r0|X2_isolated|qwen2.5 11257ms eta 1.1min
+[5/10] c17|probe|v0|r0|X1_shared_weak|qwen2.5 9969ms eta 0.9min
+[6/10] c02|probe|v0|r0|X2_isolated|qwen2.5 9910ms eta 0.7min
+[7/10] c07|control|v2|r0|X1_shared_weak|qwen2.5 9130ms eta 0.5min
+[8/10] c08|control|v3|r0|X1_shared_weak|qwen2.5 12371ms eta 0.3min
+[9/10] c17|control|v1|r0|X1_shared_weak|qwen2.5 11599ms eta 0.2min
+[10/10] c14|control|v0|r0|X3_shared_summary|qwen2.5 9649ms eta 0.0min
+[1/10] c17|control|v0|r0|X3_shared_summary|qwen2.5 13046ms eta 2.0min
+[2/10] c11|probe|v4|r0|X2_isolated|qwen2.5 7880ms eta 1.4min
+[3/10] c16|control|v1|r0|X3_shared_summary|qwen2.5 12857ms eta 1.3min
+[4/10] c19|probe|v0|r0|X1_shared_weak|qwen2.5 9156ms eta 1.1min
+[5/10] c12|probe|v1|r0|X3_shared_summary|qwen2.5 12013ms eta 0.9min
+[6/10] c03|probe|v4|r0|X1_shared_weak|qwen2.5 9680ms eta 0.7min
+[7/10] c11|control|v2|r0|X3_shared_summary|qwen2.5 9960ms eta 0.5min
+[8/10] c18|probe|v0|r0|X2_isolated|qwen2.5 8491ms eta 0.3min
+[9/10] c16|probe|v4|r0|X2_isolated|qwen2.5 9712ms eta 0.2min
+[10/10] c14|probe|v4|r0|X3_shared_summary|qwen2.5 8642ms eta 0.0min
+[1/10] c03|control|v1|r0|X1_shared_weak|qwen2.5 10884ms eta 1.6min
+[2/10] c16|probe|v1|r0|X2_isolated|qwen2.5 10480ms eta 1.4min
+[3/10] c10|probe|v3|r0|X2_isolated|qwen2.5 10925ms eta 1.3min
+[4/10] c15|control|v4|r0|X1_shared_weak|qwen2.5 15519ms eta 1.2min
+[5/10] c04|control|v0|r0|X1_shared_weak|qwen2.5 8154ms eta 0.9min
+[6/10] c02|control|v3|r0|X1_shared_weak|qwen2.5 9430ms eta 0.7min
+[7/10] c19|control|v4|r0|X1_shared_weak|qwen2.5 7747ms eta 0.5min
+[8/10] c08|probe|v1|r0|X1_shared_weak|qwen2.5 10329ms eta 0.3min
+[9/10] c11|probe|v2|r0|X2_isolated|qwen2.5 10976ms eta 0.2min
+[10/10] c02|probe|v1|r0|X3_shared_summary|qwen2.5 10847ms eta 0.0min
+[1/10] c02|probe|v1|r0|X2_isolated|qwen2.5 10779ms eta 1.6min
+[2/10] c13|probe|v0|r0|X3_shared_summary|qwen2.5 10390ms eta 1.4min
+[3/10] c09|probe|v0|r0|X3_shared_summary|qwen2.5 12490ms eta 1.3min
+[4/10] c18|probe|v1|r0|X2_isolated|qwen2.5 9284ms eta 1.1min
+[5/10] c01|probe|v1|r0|X3_shared_summary|qwen2.5 8183ms eta 0.9min
+[6/10] c08|probe|v2|r0|X3_shared_summary|qwen2.5 9223ms eta 0.7min
+[7/10] c12|probe|v4|r0|X3_shared_summary|qwen2.5 9171ms eta 0.5min
+[8/10] c01|probe|v4|r0|X2_isolated|qwen2.5 10555ms eta 0.3min
+[9/10] c01|probe|v3|r0|X2_isolated|qwen2.5 9915ms eta 0.2min
+[10/10] c09|control|v1|r0|X3_shared_summary|qwen2.5 12597ms eta 0.0min
+[1/10] c04|probe|v1|r0|X1_shared_weak|qwen2.5 10397ms eta 1.6min
+[2/10] c00|control|v4|r0|X3_shared_summary|qwen2.5 10643ms eta 1.4min
+[3/10] c04|probe|v0|r0|X3_shared_summary|qwen2.5 12498ms eta 1.3min
+[4/10] c05|probe|v2|r0|X2_isolated|qwen2.5 15329ms eta 1.2min
+[5/10] c13|control|v2|r0|X3_shared_summary|qwen2.5 8893ms eta 1.0min
+[6/10] c16|control|v1|r0|X2_isolated|qwen2.5 14669ms eta 0.8min
+[7/10] c15|probe|v3|r0|X3_shared_summary|qwen2.5 12226ms eta 0.6min
+[8/10] c00|probe|v3|r0|X1_shared_weak|qwen2.5 15621ms eta 0.4min
+[9/10] c17|control|v2|r0|X3_shared_summary|qwen2.5 7981ms eta 0.2min
+[10/10] c05|control|v0|r0|X1_shared_weak|qwen2.5 9772ms eta 0.0min
+[1/10] c10|probe|v2|r0|X1_shared_weak|qwen2.5 10641ms eta 1.6min
+[2/10] c00|probe|v0|r0|X1_shared_weak|qwen2.5 10484ms eta 1.4min
+[3/10] c17|probe|v0|r0|X3_shared_summary|qwen2.5 7695ms eta 1.1min
+[4/10] c13|probe|v2|r0|X3_shared_summary|qwen2.5 10476ms eta 1.0min
+[5/10] c17|control|v1|r0|X2_isolated|qwen2.5 9795ms eta 0.8min
+[6/10] c02|control|v2|r0|X2_isolated|qwen2.5 10071ms eta 0.7min
+[7/10] c15|probe|v0|r0|X1_shared_weak|qwen2.5 8215ms eta 0.5min
+[8/10] c06|probe|v3|r0|X3_shared_summary|qwen2.5 9321ms eta 0.3min
+[9/10] c16|probe|v3|r0|X1_shared_weak|qwen2.5 8564ms eta 0.2min
+[10/10] c03|probe|v3|r0|X3_shared_summary|qwen2.5 9554ms eta 0.0min
+[1/10] c10|probe|v3|r0|X3_shared_summary|qwen2.5 10754ms eta 1.6min
+[2/10] c15|probe|v1|r0|X2_isolated|qwen2.5 7957ms eta 1.3min
+[3/10] c10|control|v4|r0|X1_shared_weak|qwen2.5 8281ms eta 1.1min
+[4/10] c14|probe|v3|r0|X2_isolated|qwen2.5 9798ms eta 0.9min
+[5/10] c05|probe|v0|r0|X3_shared_summary|qwen2.5 10056ms eta 0.8min
+[6/10] c10|control|v1|r0|X3_shared_summary|qwen2.5 8122ms eta 0.6min
+[7/10] c14|control|v3|r0|X2_isolated|qwen2.5 10912ms eta 0.5min
+[8/10] c01|control|v3|r0|X1_shared_weak|qwen2.5 9774ms eta 0.3min
+[9/10] c08|control|v1|r0|X2_isolated|qwen2.5 10203ms eta 0.2min
+[10/10] c03|probe|v0|r0|X2_isolated|qwen2.5 9666ms eta 0.0min
+[1/10] c13|probe|v0|r0|X1_shared_weak|qwen2.5 9811ms eta 1.5min
+[2/10] c08|control|v0|r0|X2_isolated|qwen2.5 7080ms eta 1.1min
+[3/10] c16|control|v3|r0|X3_shared_summary|qwen2.5 9642ms eta 1.0min
+[4/10] c12|probe|v2|r0|X3_shared_summary|qwen2.5 9968ms eta 0.9min
+[5/10] c14|control|v4|r0|X2_isolated|qwen2.5 7075ms eta 0.7min
+[6/10] c15|control|v2|r0|X1_shared_weak|qwen2.5 8563ms eta 0.6min
+[7/10] c00|probe|v0|r0|X2_isolated|qwen2.5 11416ms eta 0.5min
+[8/10] c07|control|v2|r0|X2_isolated|qwen2.5 8139ms eta 0.3min
+[9/10] c18|control|v0|r0|X1_shared_weak|qwen2.5 8305ms eta 0.1min
+[10/10] c07|probe|v4|r0|X1_shared_weak|qwen2.5 8485ms eta 0.0min
+[1/10] c05|probe|v0|r0|X1_shared_weak|qwen2.5 9039ms eta 1.4min
+[2/10] c17|control|v0|r0|X2_isolated|qwen2.5 7683ms eta 1.1min
+[3/10] c05|control|v3|r0|X1_shared_weak|qwen2.5 11411ms eta 1.1min
+[4/10] c10|control|v4|r0|X2_isolated|qwen2.5 10549ms eta 1.0min
+[5/10] c13|probe|v1|r0|X1_shared_weak|qwen2.5 9843ms eta 0.8min
+[6/10] c04|control|v0|r0|X2_isolated|qwen2.5 8371ms eta 0.6min
+[7/10] c12|control|v3|r0|X1_shared_weak|qwen2.5 13017ms eta 0.5min
+[8/10] c17|probe|v3|r0|X3_shared_summary|qwen2.5 10166ms eta 0.3min
+[9/10] c15|probe|v1|r0|X1_shared_weak|qwen2.5 6456ms eta 0.2min
+[10/10] c11|control|v1|r0|X2_isolated|qwen2.5 8956ms eta 0.0min
+[1/10] c01|control|v4|r0|X2_isolated|qwen2.5 10201ms eta 1.5min
+[2/10] c12|probe|v3|r0|X1_shared_weak|qwen2.5 10313ms eta 1.4min
+[3/10] c16|probe|v1|r0|X3_shared_summary|qwen2.5 9152ms eta 1.2min
+[4/10] c00|probe|v1|r0|X3_shared_summary|qwen2.5 11048ms eta 1.0min
+[5/10] c16|probe|v3|r0|X3_shared_summary|qwen2.5 11769ms eta 0.9min
+[6/10] c09|probe|v4|r0|X2_isolated|qwen2.5 8467ms eta 0.7min
+[7/10] c04|probe|v2|r0|X3_shared_summary|qwen2.5 8249ms eta 0.5min
+[8/10] c18|control|v2|r0|X1_shared_weak|qwen2.5 9523ms eta 0.3min
+[9/10] c07|control|v4|r0|X3_shared_summary|qwen2.5 8032ms eta 0.2min
+[10/10] c16|probe|v1|r0|X1_shared_weak|qwen2.5 9223ms eta 0.0min
+[1/10] c06|control|v0|r0|X1_shared_weak|qwen2.5 9815ms eta 1.5min
+[2/10] c06|control|v0|r0|X3_shared_summary|qwen2.5 10422ms eta 1.4min
+[3/10] c17|probe|v4|r0|X3_shared_summary|qwen2.5 11090ms eta 1.2min
+[4/10] c10|probe|v1|r0|X3_shared_summary|qwen2.5 10135ms eta 1.0min
+[5/10] c17|probe|v3|r0|X1_shared_weak|qwen2.5 10178ms eta 0.9min
+[6/10] c19|probe|v0|r0|X3_shared_summary|qwen2.5 10457ms eta 0.7min
+[7/10] c17|probe|v1|r0|X3_shared_summary|qwen2.5 8739ms eta 0.5min
+[8/10] c18|probe|v2|r0|X2_isolated|qwen2.5 11371ms eta 0.3min
+[9/10] c10|control|v2|r0|X1_shared_weak|qwen2.5 9818ms eta 0.2min
+[10/10] c02|control|v1|r0|X1_shared_weak|qwen2.5 7929ms eta 0.0min
+[1/10] c01|control|v3|r0|X3_shared_summary|qwen2.5 10429ms eta 1.6min
+[2/10] c14|control|v1|r0|X3_shared_summary|qwen2.5 9952ms eta 1.4min
+[3/10] c00|control|v3|r0|X1_shared_weak|qwen2.5 11432ms eta 1.2min
+[4/10] c12|control|v3|r0|X3_shared_summary|qwen2.5 9418ms eta 1.0min
+[5/10] c18|probe|v3|r0|X2_isolated|qwen2.5 8357ms eta 0.8min
+[6/10] c08|probe|v4|r0|X1_shared_weak|qwen2.5 8702ms eta 0.6min
+[7/10] c08|control|v1|r0|X3_shared_summary|qwen2.5 10362ms eta 0.5min
+[8/10] c02|probe|v3|r0|X2_isolated|qwen2.5 7670ms eta 0.3min
+[9/10] c03|control|v2|r0|X2_isolated|qwen2.5 9127ms eta 0.2min
+[10/10] c06|probe|v1|r0|X3_shared_summary|qwen2.5 8084ms eta 0.0min
+[1/10] c06|control|v3|r0|X1_shared_weak|qwen2.5 7554ms eta 1.1min
+[2/10] c09|control|v4|r0|X2_isolated|qwen2.5 10544ms eta 1.2min
+[3/10] c19|probe|v2|r0|X2_isolated|qwen2.5 11994ms eta 1.2min
+[4/10] c07|probe|v3|r0|X1_shared_weak|qwen2.5 7438ms eta 0.9min
+[5/10] c09|control|v4|r0|X3_shared_summary|qwen2.5 12415ms eta 0.8min
+[6/10] c12|control|v2|r0|X2_isolated|qwen2.5 10082ms eta 0.7min
+[7/10] c04|probe|v4|r0|X3_shared_summary|qwen2.5 9219ms eta 0.5min
+[8/10] c09|probe|v1|r0|X3_shared_summary|qwen2.5 11769ms eta 0.3min
+[9/10] c09|control|v0|r0|X3_shared_summary|qwen2.5 9228ms eta 0.2min
+[10/10] c12|control|v2|r0|X1_shared_weak|qwen2.5 9677ms eta 0.0min
+[1/10] c04|probe|v2|r0|X1_shared_weak|qwen2.5 8725ms eta 1.3min
+[2/10] c19|control|v3|r0|X1_shared_weak|qwen2.5 10302ms eta 1.3min
+[3/10] c09|probe|v0|r0|X2_isolated|qwen2.5 10315ms eta 1.1min
+[4/10] c04|control|v3|r0|X3_shared_summary|qwen2.5 12358ms eta 1.0min
+[5/10] c15|control|v1|r0|X2_isolated|qwen2.5 9277ms eta 0.9min
+[6/10] c13|control|v0|r0|X1_shared_weak|qwen2.5 10643ms eta 0.7min
+[7/10] c17|probe|v0|r0|X2_isolated|qwen2.5 8816ms eta 0.5min
+[8/10] c07|probe|v2|r0|X2_isolated|qwen2.5 9969ms eta 0.3min
+[9/10] c10|control|v2|r0|X2_isolated|qwen2.5 10168ms eta 0.2min
+[10/10] c07|probe|v2|r0|X1_shared_weak|qwen2.5 10905ms eta 0.0min
+[1/10] c02|probe|v2|r0|X2_isolated|qwen2.5 10978ms eta 1.7min
+[2/10] c09|probe|v1|r0|X2_isolated|qwen2.5 9121ms eta 1.3min
+[3/10] c13|control|v1|r0|X3_shared_summary|qwen2.5 8358ms eta 1.1min
+[4/10] c10|control|v2|r0|X3_shared_summary|qwen2.5 9898ms eta 1.0min
+[5/10] c19|control|v1|r0|X2_isolated|qwen2.5 10430ms eta 0.8min
+[6/10] c07|control|v3|r0|X1_shared_weak|qwen2.5 7969ms eta 0.6min
+[7/10] c01|control|v4|r0|X1_shared_weak|qwen2.5 10633ms eta 0.5min
+[8/10] c11|probe|v0|r0|X3_shared_summary|qwen2.5 10024ms eta 0.3min
+[9/10] c07|probe|v4|r0|X3_shared_summary|qwen2.5 8667ms eta 0.2min
+[10/10] c09|probe|v2|r0|X1_shared_weak|qwen2.5 10956ms eta 0.0min
+[1/10] c12|control|v4|r0|X2_isolated|qwen2.5 9359ms eta 1.4min
+[2/10] c15|control|v2|r0|X3_shared_summary|qwen2.5 10419ms eta 1.3min
+[3/10] c05|control|v0|r0|X3_shared_summary|qwen2.5 11722ms eta 1.2min
+[4/10] c19|control|v3|r0|X3_shared_summary|qwen2.5 11010ms eta 1.1min
+[5/10] c05|control|v3|r0|X2_isolated|qwen2.5 11704ms eta 0.9min
+[6/10] c02|probe|v4|r0|X2_isolated|qwen2.5 7415ms eta 0.7min
+[7/10] c09|probe|v1|r0|X1_shared_weak|qwen2.5 10528ms eta 0.5min
+[8/10] c07|probe|v1|r0|X2_isolated|qwen2.5 7701ms eta 0.3min
+[9/10] c12|probe|v1|r0|X1_shared_weak|qwen2.5 11042ms eta 0.2min
+[10/10] c12|control|v1|r0|X2_isolated|qwen2.5 9229ms eta 0.0min
+[1/10] c05|control|v0|r0|X2_isolated|qwen2.5 9803ms eta 1.5min
+[2/10] c12|probe|v4|r0|X2_isolated|qwen2.5 6701ms eta 1.1min
+[3/10] c15|probe|v4|r0|X3_shared_summary|qwen2.5 12181ms eta 1.1min
+[4/10] c19|probe|v0|r0|X2_isolated|qwen2.5 9625ms eta 1.0min
+[5/10] c18|control|v3|r0|X2_isolated|qwen2.5 7401ms eta 0.8min
+[6/10] c03|probe|v4|r0|X2_isolated|qwen2.5 10742ms eta 0.6min
+[7/10] c19|control|v0|r0|X1_shared_weak|qwen2.5 9701ms eta 0.5min
+[8/10] c02|control|v2|r0|X1_shared_weak|qwen2.5 10893ms eta 0.3min
+[9/10] c09|control|v3|r0|X3_shared_summary|qwen2.5 10060ms eta 0.2min
+[10/10] c07|control|v2|r0|X3_shared_summary|qwen2.5 9729ms eta 0.0min
+[1/10] c01|control|v0|r0|X2_isolated|qwen2.5 9623ms eta 1.4min
+[2/10] c02|probe|v3|r0|X3_shared_summary|qwen2.5 11257ms eta 1.4min
+[3/10] c06|control|v0|r0|X2_isolated|qwen2.5 9923ms eta 1.2min
+[4/10] c12|probe|v3|r0|X2_isolated|qwen2.5 12343ms eta 1.1min
+[5/10] c10|probe|v0|r0|X1_shared_weak|qwen2.5 9300ms eta 0.9min
+[6/10] c02|control|v1|r0|X3_shared_summary|qwen2.5 9017ms eta 0.7min
+[7/10] c12|control|v4|r0|X1_shared_weak|qwen2.5 7256ms eta 0.5min
+[8/10] c04|probe|v2|r0|X2_isolated|qwen2.5 8530ms eta 0.3min
+[9/10] c18|probe|v3|r0|X1_shared_weak|qwen2.5 9238ms eta 0.2min
+[10/10] c15|control|v1|r0|X3_shared_summary|qwen2.5 11107ms eta 0.0min
+[1/10] c01|probe|v4|r0|X3_shared_summary|qwen2.5 11303ms eta 1.7min
+[2/10] c09|probe|v0|r0|X1_shared_weak|qwen2.5 10661ms eta 1.5min
+[3/10] c11|control|v2|r0|X2_isolated|qwen2.5 12464ms eta 1.3min
+[4/10] c12|probe|v2|r0|X2_isolated|qwen2.5 9140ms eta 1.1min
+[5/10] c03|probe|v3|r0|X1_shared_weak|qwen2.5 8558ms eta 0.9min
+[6/10] c12|control|v4|r0|X3_shared_summary|qwen2.5 9091ms eta 0.7min
+[7/10] c03|probe|v1|r0|X2_isolated|qwen2.5 9222ms eta 0.5min
+[8/10] c19|control|v2|r0|X3_shared_summary|qwen2.5 11577ms eta 0.3min
+[9/10] c11|probe|v4|r0|X3_shared_summary|qwen2.5 8155ms eta 0.2min
+[10/10] c07|probe|v3|r0|X2_isolated|qwen2.5 10094ms eta 0.0min
+[1/10] c05|probe|v3|r0|X1_shared_weak|qwen2.5 8251ms eta 1.2min
+[2/10] c19|probe|v2|r0|X1_shared_weak|qwen2.5 10484ms eta 1.3min
+[3/10] c11|control|v1|r0|X1_shared_weak|qwen2.5 13458ms eta 1.3min
+[4/10] c19|control|v1|r0|X3_shared_summary|qwen2.5 8530ms eta 1.0min
+[5/10] c05|probe|v4|r0|X2_isolated|qwen2.5 10474ms eta 0.9min
+[6/10] c00|probe|v2|r0|X1_shared_weak|qwen2.5 8281ms eta 0.7min
+[7/10] c09|probe|v4|r0|X3_shared_summary|qwen2.5 13034ms eta 0.5min
+[8/10] c15|probe|v3|r0|X1_shared_weak|qwen2.5 10560ms eta 0.3min
+[9/10] c07|control|v0|r0|X1_shared_weak|qwen2.5 7900ms eta 0.2min
+[10/10] c14|probe|v3|r0|X1_shared_weak|qwen2.5 10839ms eta 0.0min
+[1/10] c19|control|v2|r0|X2_isolated|qwen2.5 11043ms eta 1.7min
+[2/10] c06|control|v2|r0|X3_shared_summary|qwen2.5 9708ms eta 1.4min
+[3/10] c19|probe|v1|r0|X2_isolated|qwen2.5 8485ms eta 1.1min
+[4/10] c00|control|v4|r0|X1_shared_weak|qwen2.5 9026ms eta 1.0min
+[5/10] c17|probe|v2|r0|X2_isolated|qwen2.5 8602ms eta 0.8min
+[6/10] c07|control|v4|r0|X2_isolated|qwen2.5 6110ms eta 0.6min
+[7/10] c07|probe|v4|r0|X2_isolated|qwen2.5 7436ms eta 0.4min
+[8/10] c03|probe|v1|r0|X3_shared_summary|qwen2.5 10904ms eta 0.3min
+[9/10] c01|probe|v0|r0|X1_shared_weak|qwen2.5 10430ms eta 0.2min
+[10/10] c01|probe|v0|r0|X3_shared_summary|qwen2.5 8487ms eta 0.0min
+[1/10] c14|probe|v4|r0|X1_shared_weak|qwen2.5 8061ms eta 1.2min
+[2/10] c02|control|v4|r0|X3_shared_summary|qwen2.5 7719ms eta 1.1min
+[3/10] c18|control|v1|r0|X1_shared_weak|qwen2.5 8545ms eta 0.9min
+[4/10] c03|probe|v4|r0|X3_shared_summary|qwen2.5 11544ms eta 0.9min
+[5/10] c04|control|v2|r0|X2_isolated|qwen2.5 10026ms eta 0.8min
+[6/10] c07|control|v1|r0|X1_shared_weak|qwen2.5 8170ms eta 0.6min
+[7/10] c08|probe|v3|r0|X2_isolated|qwen2.5 14306ms eta 0.5min
+[8/10] c09|probe|v3|r0|X3_shared_summary|qwen2.5 14146ms eta 0.3min
+[9/10] c00|control|v3|r0|X2_isolated|qwen2.5 13258ms eta 0.2min
+[10/10] c03|control|v3|r0|X1_shared_weak|qwen2.5 12712ms eta 0.0min
