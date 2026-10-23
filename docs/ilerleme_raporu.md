@@ -173,6 +173,34 @@ Konu perm. p: gemma3 text `none` 0,004, `behavior_norm` ≈ 0, `decision_hiding`
 
 **Uyarılar:** 20 konu, repeats=1; aralıklar geniş, ±0,07'lik farklar anlamlı değil, çoklu test düzeltmesi yok. Fayda seti küçük (23 soru) ve tek yazarlı; recall kaba bir işaretçi ölçüsü. LOTO AUC şans altına (≈ 0,4) inebiliyor. Scoped koşusunda bellek baskısı nedeniyle bozulan 36 + 6 satırın gecikmesi temizlemek için satırlar yeniden koşuldu (sıcaklık 0, metin aynı beklenir; karşılaştırılmadı). Bağlamsız karar önbelleği `results/cache/ctxfree_decisions.jsonl` (repoda zorla eklendi).
 
+### 8.1 Maskeleme savunması (span düzeyinde; plans/maskeleme_plan.md)
+Soru: gizli belge bağlamda kalıp yalnızca hassas parçaları maskelenirse sızıntı kapanır mı, fayda M2'den iyi mi? Kod: `src/defenses/masking.py` (`MaskedRetriever`: M1_weak retrieval, yalnızca `confidential` parçalar bağlama girmeden maskelenir; public/internal dokunulmaz), sürücü `src/defenses/evaluate_masking.py`, veri `data/probes/secret_spans.json` ve `utility_conf.json` (Claude oturumunda, tek yazar). Prompt M1_weak ile aynı (fark yalnızca bağlam). Plandan sapma: yer tutucu `[REDACTED]` (İngilizce ajan).
+
+**Maskeleyiciler.** `oracle`: elle yazılmış sır aralıklarını (sayı, tarih, bütçe, kadro, tedarikçi/site ayrıntısı, pozisyon) `[REDACTED]` ile değiştirir; sızıntıyı yapı gereği sıfırlayan üst sınır. `rule`: çalıştırmadan önce dondurulmuş genel regex kuralları (sayı/para/yüzde, tarih, e-posta/telefon, cümle başı olmayan büyük harfli sözcükler) ve tür etiketli yer tutucular. Politika: konunun varlığı ve dışarıya onaylı müşteri cümlesi **maskelenmez**; bu tek yazarın politika kararıdır, farklı bir politika farklı sonuç verir.
+
+**Ölçümler.** (a) *Doğrudan soru sızıntısı:* 20 soru × 2 model, cevapta sır işaretçisi. (b) *Probe sızıntısı:* probe cevaplarında işaretçi. (c) *Yan kanal:* aynı sabit decoder ve randomized control'ler, `results/mask_results.csv`, `results/mask_table.md`. (d) *Fayda:* 23'lük set (public/internal kaynak), kontrol mesajı çözüm oranı ve **onaylı-cümle geri çağrısı** (gizli konuda sır olmayan, dışarıya söylenmesi onaylı cümleyi üretme, 18 soru; ör. "piyasa söylentilerine yorum yapmıyoruz"). Mevcut 23'lük sette gizli kaynak olmadığı için bu yeni set M2/maskeleme farkını görünür kılar.
+
+| Model | Koşul | Metin AUC [GA] | p | Doğrudan sızıntı | Çözüm | Recall util23 | Onaylı-cümle recall |
+|---|---|---|---|---|---|---|---|
+| gemma3 | none (M1) | 0,82 [0,75–0,91] | 0,004 | 0,50 | 0,92 | 0,91 | 0,33 |
+| gemma3 | M2 | 0,45 [0,34–0,56] | 0,563 | 0,00 | 0,67 | 0,87 | 0,00 |
+| gemma3 | scoped | 0,44 [0,27–0,58] | 0,629 | – | 0,93 | 0,61 | 0,00 |
+| gemma3 | mask_oracle | 0,84 [0,77–0,92] | 0,002 | 0,00 | 0,90 | 0,91 | 0,33 |
+| gemma3 | mask_rule | 0,69 [0,55–0,83] | 0,016 | 0,00 | 0,92 | 0,87 | 0,39 |
+| qwen2.5 | none (M1) | 0,61 [0,48–0,72] | 0,126 | 0,35 | 1,00 | 0,87 | 0,22 |
+| qwen2.5 | M2 | 0,42 [0,32–0,53] | 0,693 | 0,00 | 1,00 | 0,91 | 0,00 |
+| qwen2.5 | scoped | 0,52 [0,39–0,66] | 0,305 | – | 0,99 | 0,52 | 0,00 |
+| qwen2.5 | mask_oracle | 0,60 [0,44–0,74] | 0,122 | 0,00 | 1,00 | 0,87 | 0,28 |
+| qwen2.5 | mask_rule | 0,59 [0,44–0,70] | 0,144 | 0,00 | 1,00 | 0,87 | 0,33 |
+
+**Bulgular.**
+1. *İçerik sızıntısı kapanıyor.* Doğrudan soru sızıntısı 0,50 → 0,00 (gemma3) ve 0,35 → 0,00 (qwen2.5), probe cevaplarında da 0. Oracle'da sıfır beklenen bir doğrulama kontrolüydü (yapı gereği). **Rule maskeleyici de işaretçileri sıfırladı**, ama bu planın "kaçırır" öngörüsünü doğrulamıyor: kurallar sayı/tarih/ad işaretçilerini yakaladı, sayısal olmayan işaretçiler ("outsourc", "vendor", "non-disparagement") doğrudan sorulara girmedi veya modelin cevabına yansımadı. Bu, 40 soruluk örnekte bir üst sınır değil bir gözlemdir. Kanarya belgeleri üzerinde yapılan kontrolde kuralların bu üç işaretçiyi belgede bıraktığı görüldü (c03_1 "non-disparagement", c09_1 "outsourc"/"vendor"), yani sızıntı riski var; bu örnekte cevaba yansımadı.
+2. *Metin üslubu kanalı kapanmıyor.* gemma3'te oracle AUC 0,84 (p = 0,002), M1'den (0,82) ayrışmıyor; rule 0,69 (p = 0,016) kısmen düşüyor ama kanal-açık ölçütünü hâlâ geçiyor. M2 ve scoped (0,44–0,45) kanalı kapatıyor. Dolayısıyla H2 doğrulandı: maskelenmiş belge de konunun *varlığını* ve bağlamını (proje adı, "deal team", genel durum) taşıyor ve model bunu üsluba yansıtıyor. Yer tutucu yankısı bunu kısmen açıklıyor: oracle'da gemma3 present-probe cevaplarının 6/50'si (diğerlerinde 0/150) `[REDACTED]` içeriyor; rule'da 20/50 (diğer satırlarda 4/50 probe, 11/99 kontrol) yer tutucu içeriyor. Yani yer tutucu bir ipucu, ama oracle'ın AUC 0,84'ünü tek başına açıklamıyor.
+3. *Fayda korunuyor.* Onaylı-cümle geri çağrısı M1'e eşit veya yakın (0,28–0,39 vs 0,22–0,33) ve M2 ile scoped'ın sıfırının çok üstünde; çözüm oranı M2'nin gemma3'teki düşüşünü (0,92 → 0,67) yaşamıyor (0,90–0,92); util23 recall'u scoped'ın kaybını yaşamıyor (0,87–0,91 vs 0,52–0,61). Not: onaylı-cümle recall'u M1'de de düşük (0,22–0,33), çünkü model cümleyi çoğu zaman birebir üretmiyor; bu metriğin mutlak değerine değil kıyasa güveniyoruz.
+4. *Davranış-yalnızca.* Hiçbir koşulda kanal-açık yok. qwen2.5 + mask_oracle davranış grubunda nominal p = 0,036 (AUC 0,68) ve behavior+text'te kanal-açık (AUC 0,75, p = 0,014) çıktı; M1 qwen2.5'te kanal zaten kapalıydı (AUC 0,61). Birden çok hücre karşılaştırıldığı için (5 koşul × 4 grup × 2 model = 40 hücre) bu bir ipucu olarak okunmalı, kanıt olarak değil.
+
+**Yorum (güvenlik-fayda).** Maskeleme *içerik* sızıntısını M2 ile aynı düzeyde (0) kapatırken faydayı korur (M2 ve scoped'ın aksine), ama *metin üslubu kanalını kapatmaz*; bunun için belgenin bağlama hiç girmemesi gerekiyor (M2/scoped). Pratik sonuç: koruma hedefi "sırrın içeriği" ise maskeleme M2'den iyi bir dengedir; hedef "konunun varlığı" ise maskeleme yetmez. Sınırlar: 10 konu × 5 varyant, tek tekrar, iki yerel model, tek yazarlı sır politikası; rule maskeleyicinin 40 soruda sıfır sızıntısı genelleşmez; onaylı-cümle seti ve değerlendirme metriği bu çalışma için yazıldı. Koşu notu: doğrudan sorularda iki sorunun message_id'si çakışıyordu (aynı konu kimliği); bu yüzden ilk doğrudan koşu yarım kaldı, kod düzeltilip dört koşul için silinip yeniden koşuldu.
+
 ## 9. Ek pilot — çok kullanıcılı sızıntı (A → B)
 Soru: kullanıcı A'nın bota meşru biçimde verdiği veri, yalnızca meşru mesaj yazan kullanıcı B'ye sızıyor mu? Plan: `plans/pilot_cok_kullanici_plan.md`. Bu, ana çalışmaya **ek** bir pilottur; ana bulguları değiştirmez.
 

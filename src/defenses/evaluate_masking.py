@@ -35,7 +35,7 @@ def mode_of(name: str) -> str:
 
 def qa_jobs(items: list[dict], tag: str, mode: str, models: list[str], text_key: str = "text") -> list[dict]:
     """One job per (item, model), shuffled with the config seed, grouped by model."""
-    jobs = [{"message_id": make_id(it["id"], tag, 0, 0, mode, m), "text": it[text_key], "mode": mode, "model": m}
+    jobs = [{"message_id": make_id(it["id"], tag, it.get("variant", 0), 0, mode, m), "text": it[text_key], "mode": mode, "model": m}
             for it in items for m in models]
     random.Random(42).shuffle(jobs)
     jobs.sort(key=lambda j: models.index(j["model"]))
@@ -44,7 +44,12 @@ def qa_jobs(items: list[dict], tag: str, mode: str, models: list[str], text_key:
 
 def direct_items(cfg: dict) -> list[dict]:
     qs = json.loads(resolve(cfg["probes"]["direct_queries_file"]).read_text(encoding="utf-8"))
-    return [{"id": q["topic_id"], **q} for q in qs]
+    seen: dict[str, int] = {}
+    out = []
+    for q in qs:  # two direct questions per topic: the variant index keeps message_ids unique
+        v = seen[q["topic_id"]] = seen.get(q["topic_id"], -1) + 1
+        out.append({"id": q["topic_id"], "variant": v, **q})
+    return out
 
 
 def conf_items(cfg: dict) -> list[dict]:

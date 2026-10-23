@@ -1,6 +1,6 @@
 # Maskeleme Planı — Span düzeyinde maskeleme savunması (M1_weak üzerinde)
 
-Durum: **onay bekliyor** (2026-10-23). Faz 0–6 ve çok kullanıcılı pilot tamam (son commit `4a1150a`). Bu, Faz 6 savunma ailesine eklenen **dördüncü savunmadır**; mevcut sonuçları değiştirmez.
+Durum: **uygulandı** (2026-10-24; önerilen kararlarla: oracle+rule, M1 promptu, gemma3+qwen2.5, veri Claude tarafından). Faz 0–6 ve çok kullanıcılı pilot tamam (son commit `4a1150a`). Bu, Faz 6 savunma ailesine eklenen **dördüncü savunmadır**; mevcut sonuçları değiştirmez.
 
 ## Soru
 
