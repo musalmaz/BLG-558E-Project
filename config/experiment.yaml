@@ -81,6 +81,12 @@ defenses:
   runs_dir: results/runs
   results_csv: results/defense_results.csv
 
+masking:                        # Defense 4: confidential chunks stay, sensitive spans masked (plans/maskeleme_plan.md)
+  kinds: [oracle, rule]
+  spans_file: data/probes/secret_spans.json
+  utility_conf_file: data/probes/utility_conf.json
+  results_csv: results/mask_results.csv
+
 multiuser:
   modes: [X1_shared_weak, X2_isolated, X3_shared_summary]   # X0 (empty memory) == B's view under X2
   user_probe: B
