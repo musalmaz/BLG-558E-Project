@@ -1,0 +1,12 @@
+<section id="takeaway" data-transition="fade" style="background:#0F1B2D;color:#EEF2F6;font-family:'IBM Plex Sans', Arial, sans-serif;padding:100px 128px 150px;display:flex;flex-direction:column;gap:34px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:68px;font-weight:600;line-height:1.1;color:#EEF2F6">Conclusions</h2>
+<div style="display:flex;flex-direction:column;gap:22px">
+<p style="font-size:33px;line-height:1.35"><span style="color:#F08A63"><b>1.</b></span> With a weak ACL the secret content leaks directly; a strong ACL (filter before the model) closes it.</p>
+<p style="font-size:33px;line-height:1.35"><span style="color:#F08A63"><b>2.</b></span> The agent’s decision fields were not a reliable side channel here; the reply <b>style</b> was (AUC 0.82).</p>
+<p style="font-size:33px;line-height:1.35"><span style="color:#F08A63"><b>3.</b></span> Only keeping confidential text out of the context closed the style channel. Masking removes content but not the topic’s existence.</p>
+<p style="font-size:33px;line-height:1.35"><span style="color:#F08A63"><b>4.</b></span> Shared conversation memory leaks across users; per-user isolation removes it.</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#8FA3B8">Future work: more topics and repetitions, a commercial model, other secret policies, isolation with real authentication.</p>
+<p style="position:absolute;left:128px;bottom:56px;font-size:26px;color:#8FA3B8">Thank you · Questions?</p>
+<aside>Practical advice: enforce access control before the model, not in the prompt; do not rely on post-hoc output fixes or on masking alone when even the existence of a topic is sensitive; keep conversation memory separated per user.</aside>
+</section>

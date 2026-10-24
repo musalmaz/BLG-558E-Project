@@ -1,0 +1,36 @@
+<section id="acl" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 128px 150px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">ACL: who may read which document?</h2>
+<p style="font-size:28px;line-height:1.35;color:#3B4A59">An Access Control List labels every document. The agent serves an external customer, so only some labels should ever reach the language model.</p>
+<div style="display:flex;gap:22px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-top:8px solid #17724F;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600;color:#17724F">public</h3>
+<p style="font-size:25px;line-height:1.3">Anyone may see it.</p>
+<p style="font-size:24px;line-height:1.3;color:#566475">Example: press release, FAQ</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-top:8px solid #2B5C8F;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600;color:#2B5C8F">internal</h3>
+<p style="font-size:25px;line-height:1.3">Employees; useful for answers.</p>
+<p style="font-size:24px;line-height:1.3;color:#566475">Example: billing procedure, vacation policy</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-top:8px solid #C2410C;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600;color:#C2410C">confidential</h3>
+<p style="font-size:25px;line-height:1.3">Only a few people.</p>
+<p style="font-size:24px;line-height:1.3;color:#566475">Example: “Project Falcon merger, board votes on the 24th”</p>
+</div>
+</div>
+<div style="display:flex;gap:22px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FDEEE4;padding:22px 26px;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600;color:#C2410C">M1 · weak ACL</h3>
+<p style="font-size:25px;line-height:1.35">Search returns <b>all</b> labels. The prompt only says “do not reveal confidential content”. The model still reads the secret.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#E3F4EC;padding:22px 26px;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600;color:#17724F">M2 · strong ACL</h3>
+<p style="font-size:25px;line-height:1.35">Confidential documents are <b>filtered at search time</b>. The model never sees the secret, so it cannot write it.</p>
+</div>
+</div>
+<div style="background:#E6EFF8;padding:16px 28px;border-radius:12px">
+<p style="font-size:26px;line-height:1.35"><b>Direct questions (20):</b> M1 leaked in 16/20 (gemma3) and 13/20 (qwen2.5); M2 leaked in 0/20.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>M1 is a realistic, common setup: confidential documents live in the same index and the only protection is an instruction in the prompt. M2 enforces the ACL where it should be enforced, before the model. The direct-question check confirms the ACL assumption: under M2 no secret reaches the answer, so any remaining leakage must be a side channel.</aside>
+</section>

@@ -1,0 +1,17 @@
+<section id="why" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 128px 150px;display:flex;flex-direction:column;gap:28px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">Finding 2: the signal comes from writing style, not from words</h2>
+<p style="font-size:28px;line-height:1.4;color:#3B4A59">We masked topic words, numbers, proper names and 210 words that appear only in confidential documents, then re-ran the decoder. AUC did not drop (0.83 → 0.82).</p>
+<table style="font-size:28px;width:100%">
+<tr><th style="width:50%;text-align:left">Style marker (gemma3, M1)</th><th style="width:25%;text-align:right">Secret exists</th><th style="width:25%;text-align:right">No secret</th></tr>
+<tr><td>“we / our” rate</td><td style="text-align:right">0.050</td><td style="text-align:right">0.017</td></tr>
+<tr><td>“I” rate</td><td style="text-align:right">0.009</td><td style="text-align:right">0.032</td></tr>
+<tr><td>replies with “unfortunately”</td><td style="text-align:right">0.00</td><td style="text-align:right">0.14</td></tr>
+<tr><td>replies giving phone / email</td><td style="text-align:right">0.06</td><td style="text-align:right">0.24</td></tr>
+</table>
+<div style="background:#FDEEE4;padding:22px 32px;border-radius:12px;border-left:8px solid #C2410C">
+<p style="font-size:27px;line-height:1.4">With confidential context the model speaks as the company (“we”), apologizes less and gives fewer contact details. <b>The tone leaks, not the content.</b></p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#566475">Exploratory analysis: per-feature p-values are not corrected for multiple tests.</p>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>We first suspected the text signal was just secret words leaking into replies. Masking disproved that. The difference is stylistic: when confidential material is in context the model writes more like an insider, using we and our, apologizes less, and does not send people to a phone number or email. Topic-level tests give p of about 0.0006 for we/our and for I, but this is an exploratory analysis without correction.</aside>
+</section>

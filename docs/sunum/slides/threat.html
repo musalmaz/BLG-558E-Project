@@ -1,0 +1,23 @@
+<section id="threat" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 128px 150px;display:flex;flex-direction:column;gap:34px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">Threat model: an ordinary customer</h2>
+<div style="display:flex;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border-top:8px solid #2B5C8F;border-radius:12px">
+<h3 style="font-size:34px;font-weight:600">Attacker</h3>
+<p style="font-size:27px;line-height:1.4">Sends only natural, legitimate messages. <b>No prompt injection</b>: no “ignore your instructions” attacks.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border-top:8px solid #2B5C8F;border-radius:12px">
+<h3 style="font-size:34px;font-weight:600">What it observes</h3>
+<p style="font-size:27px;line-height:1.4">Reply text, decision fields (escalated, refusal type, routing team) and response time. It never sees the documents.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:32px;border-top:8px solid #17724F;border-radius:12px">
+<h3 style="font-size:34px;font-weight:600">Ethics</h3>
+<p style="font-size:27px;line-height:1.4">Own replica environment. Data: public Enron emails and fabricated canary documents. No real product or personal data.</p>
+</div>
+</div>
+<div style="background:#E6EFF8;padding:24px 34px;border-radius:12px">
+<p style="font-size:29px;line-height:1.4"><b>Why legitimate messages only?</b> It shows leakage that needs no attack at all: ordinary use is enough.</p>
+</div>
+<p style="font-size:29px;line-height:1.4;color:#3B4A59">Task for the attacker: for a given topic, decide “does the company hold a confidential document about it?”</p>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>Limiting the attacker to legitimate messages is a deliberately weak adversary. If leakage exists even there, it exists for every customer, not only for malicious ones. We reduce everything to one binary question per topic because we plant the canary documents ourselves and therefore know the ground truth.</aside>
+</section>

@@ -1,0 +1,23 @@
+<section id="metrics" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 128px 150px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">Why AUC? Reading the metrics</h2>
+<div style="display:flex;gap:26px">
+<div style="flex:1.25;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:26px 30px;border-top:8px solid #2B5C8F;border-radius:12px">
+<h3 style="font-size:34px;font-weight:600;color:#2B5C8F">AUC (area under the ROC curve)</h3>
+<p style="font-size:26px;line-height:1.4">Pick one topic <b>with</b> a confidential document and one <b>without</b>. AUC is the probability that the decoder scores the first one higher.</p>
+<p style="font-size:25px;line-height:1.4;color:#3B4A59">• Needs no threshold, so it does not depend on how the decoder is tuned.<br>• Not fooled by class imbalance, unlike accuracy.<br>• One number a reader can compare across models and modes.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFFFF;padding:26px 30px;border-radius:12px">
+<h3 style="font-size:34px;font-weight:600">How to read it</h3>
+<div style="display:flex;height:34px;border-radius:6px"><div style="flex:1;background:#E4E9EE"></div><div style="flex:1;background:#F5D3BF"></div></div>
+<div style="display:flex;justify-content:space-between"><p style="font-size:24px;color:#566475">0.5</p><p style="font-size:24px;color:#566475">1.0</p></div>
+<p style="font-size:25px;line-height:1.4"><b>0.5</b> = coin flip, no leakage.<br><b>1.0</b> = perfect detection.<br>Below 0.5 can appear by noise with leave-one-topic-out, so we judge by the permutation p-value too.</p>
+</div>
+</div>
+<div style="display:flex;gap:22px">
+<div style="flex:1;background:#FFFFFF;padding:20px 24px;border-radius:12px"><p style="font-size:26px;font-weight:600">TPR @ 1% FPR</p><p style="font-size:24px;line-height:1.35;color:#566475">Share of secrets caught when only 1% false alarms are allowed: a cautious attacker.</p></div>
+<div style="flex:1;background:#FFFFFF;padding:20px 24px;border-radius:12px"><p style="font-size:26px;font-weight:600">Messages needed</p><p style="font-size:24px;line-height:1.35;color:#566475">How many probes until topic-level AUC reaches 0.9.</p></div>
+<div style="flex:1;background:#FFFFFF;padding:20px 24px;border-radius:12px"><p style="font-size:26px;font-weight:600">Leaked bits</p><p style="font-size:24px;line-height:1.35;color:#566475">Information per message, in bits (1 bit = a fair coin flip resolved).</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>Why AUC rather than accuracy: a decoder outputs a score, and accuracy depends on where we cut it. AUC sums over all cuts and equals the probability that a random positive topic outranks a random negative topic. It is also stable when the classes are unbalanced. We add TPR at 1% false-positive rate because a real attacker usually cannot afford many false alarms, messages-needed because leakage per message matters in practice, and leaked bits as an information-theoretic summary. With leave-one-topic-out, noisy data can push AUC below 0.5; that is why the permutation p-value and the advantage over the shuffled baseline are our decision criteria, not the raw AUC.</aside>
+</section>

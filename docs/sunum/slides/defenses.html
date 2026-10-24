@@ -1,0 +1,17 @@
+<section id="defenses" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 128px 150px;display:flex;flex-direction:column;gap:24px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">Defenses: security and utility measured together</h2>
+<table style="font-size:25px;width:100%">
+<tr><th style="width:23%;text-align:left">Defense</th><th style="width:37%;text-align:left">What it does</th><th style="width:13%;text-align:right">Text AUC</th><th style="width:13%;text-align:right">Utility loss</th><th style="width:14%;text-align:left">Verdict</th></tr>
+<tr><td>none (M1)</td><td>Baseline</td><td style="text-align:right;color:#C2410C"><b>0.82</b></td><td style="text-align:right">0</td><td>Leaks</td></tr>
+<tr><td>behavior_norm</td><td>One template for all refusals</td><td style="text-align:right;color:#C2410C"><b>0.82</b></td><td style="text-align:right">0.04</td><td>No effect</td></tr>
+<tr><td>decision_hiding</td><td>Decision from a context-free call, constant 60 s latency</td><td style="text-align:right;color:#C2410C"><b>0.82</b></td><td style="text-align:right">0</td><td>No effect</td></tr>
+<tr><td>scoped_context</td><td>Only public documents retrieved</td><td style="text-align:right;color:#17724F"><b>0.44</b></td><td style="text-align:right;color:#C2410C"><b>0.30</b></td><td>Closes, costly</td></tr>
+<tr><td>M2 (strong ACL)</td><td>Confidential filtered at search</td><td style="text-align:right;color:#17724F"><b>0.45</b></td><td style="text-align:right">0.04</td><td>Closes, cheap</td></tr>
+</table>
+<div style="background:#E3F4EC;padding:20px 32px;border-radius:12px;border-left:8px solid #17724F">
+<p style="font-size:27px;line-height:1.4">Fixing the output afterwards did not work: what leaks is the style of normal replies. Only keeping confidential text out of the context closed the channel.</p>
+</div>
+<p style="font-size:24px;line-height:1.4;color:#566475">gemma3, weak ACL. Utility loss = drop in recall of correct facts on internal-source questions (23-question set). scoped_context kept the resolution rate but lost internal facts.</p>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>A defense that destroys usefulness is not a defense, so every defense is scored on two axes: the decoder AUC (security) and the answer quality on a utility set (resolution rate, routing agreement, marker recall). Output-side fixes such as normalizing refusals or hiding decisions do nothing for the text channel, because the signal is the style of ordinary answers. Scoped context closes the channel but loses all internal-source facts; M2 gives the same security at a fraction of the cost, its price being a lower resolution rate for gemma3 (0.92 to 0.67).</aside>
+</section>

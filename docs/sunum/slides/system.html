@@ -1,0 +1,26 @@
+<section id="system" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 128px 150px;display:flex;flex-direction:column;gap:22px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">System: the journey of one message</h2>
+<div style="display:flex;align-items:stretch;gap:14px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:18px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;color:#6B7886">1</p><p style="font-size:26px;font-weight:600;line-height:1.2">Customer message</p><p style="font-size:24px;line-height:1.25;color:#566475">Legitimate question</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.2;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:18px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;color:#6B7886">2</p><p style="font-size:26px;font-weight:600;line-height:1.2">Retrieval</p><p style="font-size:24px;line-height:1.25;color:#566475">Embed message, find top-5 chunks (ChromaDB)</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#FFF4D6;padding:18px 20px;border-radius:12px;border:2px solid #B7791F"><p style="font-size:24px;color:#6B7886">3</p><p style="font-size:26px;font-weight:600;line-height:1.2">ACL mode</p><p style="font-size:24px;line-height:1.25;color:#3B4A59"><b style="color:#C2410C">M1:</b> keep all labels<br><b style="color:#17724F">M2:</b> drop confidential</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.2;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:18px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;color:#6B7886">4</p><p style="font-size:26px;font-weight:600;line-height:1.2">Prompt</p><p style="font-size:24px;line-height:1.25;color:#566475">Rules + 5 chunks + message</p></div>
+</div>
+<div style="display:flex;align-items:stretch;gap:14px">
+<div style="flex:1"></div>
+<p style="font-size:40px;color:#F3F5F7;align-self:center">→</p>
+<div style="flex:1.2;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:18px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;color:#6B7886">7</p><p style="font-size:26px;font-weight:600;line-height:1.2">Output + log</p><p style="font-size:24px;line-height:1.25;color:#566475">What the customer sees; JSONL row</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">←</p>
+<div style="flex:1.5;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:18px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;color:#6B7886">6</p><p style="font-size:26px;font-weight:600;line-height:1.2">JSON decision</p><p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.25;color:#3B4A59">escalated · refusal_type · routing_target · answer_text</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">←</p>
+<div style="flex:1.2;display:flex;flex-direction:column;gap:6px;background:#E6EFF8;padding:18px 20px;border-radius:12px;border:2px solid #2B5C8F"><p style="font-size:24px;color:#6B7886">5</p><p style="font-size:26px;font-weight:600;line-height:1.2">LLM</p><p style="font-size:24px;line-height:1.25;color:#3B4A59">gemma3 or qwen2.5, temperature 0</p></div>
+</div>
+<div style="background:#E6EFF8;padding:16px 28px;border-radius:12px">
+<p style="font-size:26px;line-height:1.35">The only difference between M1 and M2 is step 3. Temperature 0 makes the agent deterministic, so differences come from the context, not randomness.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">MiniLM embeddings · ChromaDB · Ollama (local models)</p>
+<aside>Walk through the seven steps. The first row runs left to right, then step 4 hands the prompt down to step 5 and the second row runs right to left. The structured JSON decision is useful because it turns behavior into a few categorical features we can analyze: did it escalate, what kind of refusal, which team did it route to. Everything is logged as one JSONL row per call, together with the ids of the retrieved documents, so we can verify that the confidential canary was in the context under M1 and absent under M2. Models run locally through Ollama; no external API was used.</aside>
+</section>

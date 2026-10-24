@@ -1,0 +1,25 @@
+<section id="mask" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:72px 128px 150px;display:flex;flex-direction:column;gap:22px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1">Masking: keep the document, hide the details</h2>
+<div style="display:flex;align-items:center;gap:14px">
+<div style="flex:1;background:#FFFFFF;padding:16px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;line-height:1.3;font-weight:600">Search (M1)</p><p style="font-size:24px;line-height:1.25;color:#566475">top-5, confidential included</p></div>
+<p style="font-size:36px;color:#566475">→</p>
+<div style="flex:1.2;background:#FFF4D6;padding:16px 20px;border-radius:12px;border:2px solid #B7791F"><p style="font-size:24px;line-height:1.3;font-weight:600">Confidential chunk?</p><p style="font-size:24px;line-height:1.25;color:#3B4A59">yes → mask · no → keep</p></div>
+<p style="font-size:36px;color:#566475">→</p>
+<div style="flex:1;background:#FFFFFF;padding:16px 20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:24px;line-height:1.3;font-weight:600">LLM</p><p style="font-size:24px;line-height:1.25;color:#566475">sees masked text</p></div>
+</div>
+<div style="background:#FFFFFF;padding:16px 26px;border-radius:12px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;line-height:1.5;color:#3B4A59">original: “… merger with Veltrix Holdings … board meets on the 24th.”<br>oracle:&nbsp;&nbsp;&nbsp;“… merger with Veltrix Holdings … board meets on the [REDACTED].”<br>rule:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“… merger with [NAME] [NAME] … board meets on the [DATE].”</p>
+</div>
+<table style="font-size:25px;width:100%">
+<tr><th style="width:26%;text-align:left">gemma3</th><th style="width:16%;text-align:right">Text AUC</th><th style="width:22%;text-align:right">Direct leakage</th><th style="width:16%;text-align:right">Resolution</th><th style="width:20%;text-align:right">Approved line</th></tr>
+<tr><td>M1 (none)</td><td style="text-align:right;color:#C2410C"><b>0.82</b></td><td style="text-align:right;color:#C2410C"><b>0.50</b></td><td style="text-align:right">0.92</td><td style="text-align:right">0.33</td></tr>
+<tr><td>M2</td><td style="text-align:right;color:#17724F"><b>0.45</b></td><td style="text-align:right;color:#17724F"><b>0.00</b></td><td style="text-align:right;color:#C2410C"><b>0.67</b></td><td style="text-align:right;color:#C2410C"><b>0.00</b></td></tr>
+<tr><td>mask · oracle</td><td style="text-align:right;color:#C2410C"><b>0.84</b></td><td style="text-align:right;color:#17724F"><b>0.00</b></td><td style="text-align:right">0.90</td><td style="text-align:right">0.33</td></tr>
+<tr><td>mask · rule</td><td style="text-align:right;color:#C2410C"><b>0.69</b></td><td style="text-align:right;color:#17724F"><b>0.00</b></td><td style="text-align:right">0.92</td><td style="text-align:right">0.39</td></tr>
+</table>
+<div style="background:#E6EFF8;padding:16px 28px;border-radius:12px">
+<p style="font-size:25px;line-height:1.35"><b>Content leakage closed, utility kept; the topic’s existence still leaks.</b> A masked document still says that the topic exists. “Approved line” = the agent says the officially approved sentence, e.g. “we do not comment on rumours”.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">oracle = hand-listed secret spans (upper bound) · rule = frozen regex rules</p>
+<aside>Masking is applied only to confidential chunks, just before they enter the prompt. Oracle masks a hand-written list of secret spans; rule uses generic regex rules frozen before the run. Direct leakage drops to zero for both models, and answer quality stays near the undefended agent, unlike M2 and scoped context. But the text-style channel stays open: gemma3 AUC is 0.84 with oracle masking and 0.69 with rule masking, against 0.45 for M2. A masked document still tells the model that a confidential topic exists, and the model reflects that in its style; replies also sometimes copy the placeholder, which is a hint by itself.</aside>
+</section>

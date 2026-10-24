@@ -1,0 +1,31 @@
+<section id="decoder" data-transition="fade" style="background:#F3F5F7;color:#14212E;font-family:'IBM Plex Sans', Arial, sans-serif;padding:80px 128px 150px;display:flex;flex-direction:column;gap:26px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">Measurement: the decoder (attacker model)</h2>
+<div style="display:flex;align-items:stretch;gap:14px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:26px;font-weight:600;line-height:1.2">Agent output</p><p style="font-size:24px;line-height:1.25;color:#566475">800 logged replies</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.3;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:26px;font-weight:600;line-height:1.2">Features</p><p style="font-size:24px;line-height:1.25;color:#566475">behavior · text style</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.3;display:flex;flex-direction:column;gap:6px;background:#E6EFF8;padding:20px;border-radius:12px;border:2px solid #2B5C8F"><p style="font-size:26px;font-weight:600;line-height:1.2">Decoder</p><p style="font-size:24px;line-height:1.25;color:#3B4A59">logistic regression</p></div>
+<p style="font-size:40px;color:#566475;align-self:center">→</p>
+<div style="flex:1.3;display:flex;flex-direction:column;gap:6px;background:#FFFFFF;padding:20px;border-radius:12px;border:2px solid #CBD5DF"><p style="font-size:26px;font-weight:600;line-height:1.2">Guess</p><p style="font-size:24px;line-height:1.25;color:#566475">confidential document on this topic?</p></div>
+</div>
+<div style="display:flex;gap:22px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-radius:12px">
+<h3 style="font-size:29px;font-weight:600">Features</h3>
+<p style="font-size:24px;line-height:1.35">Behavior: escalation, refusal type, routing team, length, time. Text: 22 style markers (pronouns, punctuation) + embeddings.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-radius:12px">
+<h3 style="font-size:29px;font-weight:600">Fixed, simple model</h3>
+<p style="font-size:24px;line-height:1.35">L2 logistic regression, no tuning. A weak decoder that still succeeds proves the signal is real.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;padding:22px 26px;border-radius:12px">
+<h3 style="font-size:29px;font-weight:600">Leave-one-topic-out</h3>
+<p style="font-size:24px;line-height:1.35">Train on 19 topics, test on the 20th. The decoder cannot memorize topic words.</p>
+</div>
+</div>
+<div style="background:#FDEEE4;padding:18px 30px;border-radius:12px">
+<p style="font-size:26px;line-height:1.35"><b>Randomized controls (mandatory):</b> shuffle topic labels 500 times (p-value), shuffle rows, and run a placebo decoder on control rows. “Channel open” = p &lt; 0.05 and AUC confidence interval above 0.5.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:56px;font-size:24px;color:#6B7886">BLG558E · Security &amp; Privacy · Final Project</p>
+<aside>The decoder plays the attacker. Its job is a binary guess per topic. We keep it deliberately simple and fixed so that a positive result means the signal exists in the data, not that we found a clever model. Leave-one-topic-out evaluation prevents the classic mistake of memorizing topic keywords. Randomized controls estimate how high the score can get by chance with the same procedure, which gives us p-values and a noise floor.</aside>
+</section>
