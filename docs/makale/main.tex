@@ -61,7 +61,7 @@ The rest of the paper is organized as follows. Section~\ref{sec:related} reviews
 \section{CanaryProbe: A Controlled Framework for Measuring Behavioral Leakage in ACL-Protected Service Agents}
 \label{sec:solution}
 
-We propose CanaryProbe, a framework that measures how much an external observer learns about confidential documents from an agent's legitimate replies, and that scores defenses on security and utility. Figure~\ref{fig:pipeline} shows the pipeline.
+We propose CanaryProbe, a framework that measures how much an external observer learns about confidential documents from an agent's legitimate replies, and that scores defenses on security and utility. The design follows three principles. First, the ground truth must be known, so we plant fabricated canary documents. Second, the observer must be weak and realistic, so it sends only legitimate messages. Third, every claim must survive a chance baseline, so each result comes with randomized controls. Figure~\ref{fig:pipeline} shows the agent pipeline and the observer.
 
 \begin{figure}[t]
 \centering
@@ -80,16 +80,77 @@ We propose CanaryProbe, a framework that measures how much an external observer 
 \end{figure}
 
 \subsection{Threat model and agent under test}
-The observer is an ordinary customer. It sends legitimate messages only, without prompt injection, and sees the reply text, three decision fields (\texttt{escalated}, \texttt{refusal\_type}, \texttt{routing\_target}) and the response time. It never sees the documents. The agent embeds the message, retrieves the top-5 chunks from a vector index, builds a prompt with a fixed system instruction and calls a local LLM (\texttt{gemma3} or \texttt{qwen2.5:7b}, temperature 0). The model returns a JSON object with the decision fields and the reply. Documents carry an ACL label (public, internal, confidential). In the \emph{weak} mode M1 the search returns all labels and only the prompt forbids revealing confidential content. In the \emph{strong} mode M2 confidential chunks are filtered at search time, so the model never reads them.
+The observer is an ordinary customer. It sends legitimate messages only, without prompt injection, and sees the reply text, three decision fields (\texttt{escalated}, \texttt{refusal\_type}, \texttt{routing\_target}) and the response time. It never sees the documents. We choose such a weak observer on purpose: if leakage exists for it, it exists for every customer. The agent embeds the message, retrieves the top-5 chunks from a vector index, builds a prompt with a fixed system instruction and calls a local LLM (\texttt{gemma3} or \texttt{qwen2.5:7b}, temperature 0, so differences come from the context and not from sampling). The model returns a JSON object with the decision fields and the reply. Documents carry an ACL label (public, internal, confidential). In the \emph{weak} mode M1 the search returns all labels and only the prompt forbids revealing confidential content, which is a common deployment. In the \emph{strong} mode M2 confidential chunks are filtered at search time, so the model never reads them.
 
 \subsection{Canary data and probe/control design}
-The index holds 2030 documents (2000 public Enron e-mails and 30 fabricated canary e-mails, 7520 chunks). We define 20 topics: 10 topics have three confidential canary e-mails, each containing secret details such as dates and figures (markers), and 10 topics have none. Because we write the canaries, the ground truth is known. For each topic we hand-write five \emph{probe} messages that touch the topic and five \emph{control} messages with the same sentence structure, a length within 25\%, and no canary topic. The main matrix has $20\times2\times5\times2\times2=800$ calls (topic, kind, variant, ACL mode, model).
+The index holds 2030 documents (2000 public Enron e-mails and 30 fabricated canary e-mails, 7520 chunks). We define 20 topics: 10 topics have three confidential canary e-mails, each containing secret details such as dates and figures (markers), and 10 topics have none. Because we write the canaries, the ground truth is known. For each topic we hand-write five \emph{probe} messages that touch the topic and five \emph{control} messages with the same sentence structure, a length within 25\%, and no canary topic. The control isolates the effect of the topic from the effect of wording. The main matrix has $20\times2\times5\times2\times2=800$ calls (topic, kind, variant, ACL mode, model).
 
-\subsection{Decoder, randomized controls and metrics}
-The decoder plays the attacker. It predicts, per topic, whether confidential documents exist. We use four feature groups: behavior without latency, behavior with latency, text style (length, 22 stylometric markers, embedding components) and their union. The classifier is a fixed L2 logistic regression without tuning, so a positive result reflects signal in the data and not a clever model. Evaluation is leave-one-topic-out, so the decoder cannot memorize topic words. Every result comes with randomized controls: topic-label permutation (500 Monte Carlo relabelings of the balanced 10/10 split) for the p-value, row-level label shuffling, and a placebo decoder on control rows. A channel is called \emph{open} only if the permutation p-value is below 0.05 and the lower bound of the bootstrap AUC interval exceeds 0.5. We report the area under the ROC curve (AUC), TPR at 1\% FPR, the number of messages needed to reach a topic-level AUC of 0.9, and leaked bits per message. We choose AUC as the main metric because it needs no decision threshold, is not distorted by class imbalance, and gives one comparable number: it is the probability that a topic with confidential documents receives a higher score than one without, so 0.5 means no leakage.
+\subsection{Decoder and evaluation protocol}
+The decoder plays the attacker. It predicts, per topic, whether confidential documents exist. Table~\ref{tab:features} lists the four feature groups. The classifier is a fixed L2 logistic regression without tuning, so a positive result reflects signal in the data and not a clever model: if even this weak attacker succeeds, the leak is real.
+
+\begin{table}[t]
+\caption{Feature groups used by the decoder.}
+\label{tab:features}
+\centering\small
+\begin{tabular}{lp{5.4cm}}
+\toprule
+Group & Content \\
+\midrule
+behavior (no latency) & escalation flag, refusal type, routing team, reply length \\
+behavior & the above plus response time \\
+text & length, 22 stylometric markers (pronouns, punctuation, apology, contact data), 5 embedding components \\
+behavior + text & union of both groups \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Evaluation is leave-one-topic-out (Figure~\ref{fig:loto}): the decoder is trained on 19 topics and scores the held-out topic, so it cannot memorize topic words. Every result comes with randomized controls: topic-label permutation (500 Monte Carlo relabelings of the balanced 10/10 split) for the p-value, row-level label shuffling, and a placebo decoder on control rows. A channel is called \emph{open} only if the permutation p-value is below 0.05 and the lower bound of the bootstrap AUC interval exceeds 0.5.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize,>=Stealth]
+\foreach \i in {0,...,19}{\draw[fill=blue!15] (\i*0.34,0) rectangle ++(0.3,0.3);}
+\draw[fill=red!45] (2.38,0) rectangle ++(0.3,0.3);
+\node[align=center] at (3.4,-0.35) {20 topics (10 with, 10 without confidential documents)};
+\node[draw,align=center,text width=2.9cm] (tr) at (1.7,-1.35) {train decoder\\on 19 topics};
+\node[draw,align=center,text width=2.9cm] (te) at (5.1,-1.35) {score the held-out\\topic (red)};
+\node[draw,align=center,text width=6.3cm] (ag) at (3.4,-2.45) {repeat for every topic: 20 held-out scores\\$\rightarrow$ AUC, bootstrap interval, permutation $p$};
+\draw[->] (tr)--(ag); \draw[->] (te)--(ag);
+\end{tikzpicture}
+\caption{Leave-one-topic-out evaluation.}
+\label{fig:loto}
+\end{figure}
+
+\subsection{Metrics and why AUC}
+We use the area under the ROC curve (AUC) as the main metric. If $s(\cdot)$ is the decoder score, then
+\begin{equation}
+\mathrm{AUC}=\Pr\!\left[s(x^{+})>s(x^{-})\right]+\tfrac12\Pr\!\left[s(x^{+})=s(x^{-})\right],
+\end{equation}
+where $x^{+}$ is a topic with confidential documents and $x^{-}$ one without. We prefer it over accuracy for three reasons. It needs no decision threshold, so the result does not depend on how the decoder is calibrated. It does not depend on the class prior, which matters because the chance level of accuracy changes with the class balance, while the chance level of AUC is always 0.5. It also gives one number that can be compared across models, feature groups and defenses (Figure~\ref{fig:auc}). Its weakness is that it hides the operating point, so we add complementary metrics: TPR at 1\% FPR (what a cautious attacker who cannot afford false alarms would obtain), the number of messages needed to reach a topic-level AUC of 0.9, and the leaked bits per message.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.5cm,y=0.95cm,font=\scriptsize]
+\draw[->] (-3,0)--(7.4,0) node[right]{score};
+\draw[domain=-3:3.2,samples=40,smooth,thick] plot (\x,{exp(-(\x)*(\x)/1.6)});
+\draw[domain=-2.9:3.3,samples=40,smooth,thick,dashed] plot (\x,{exp(-(\x-0.1)*(\x-0.1)/1.6)});
+\node[align=left] at (5.3,0.7) {(a) no leakage\\AUC $\approx 0.5$};
+\end{tikzpicture}
+
+\vspace{4pt}
+\begin{tikzpicture}[x=0.5cm,y=0.95cm,font=\scriptsize]
+\draw[->] (-3,0)--(7.4,0) node[right]{score};
+\draw[domain=-3:3.2,samples=40,smooth,thick] plot (\x,{exp(-(\x)*(\x)/1.6)});
+\draw[domain=-1.8:4.6,samples=40,smooth,thick,dashed] plot (\x,{exp(-(\x-1.2)*(\x-1.2)/1.6)});
+\node[align=left] at (5.3,0.7) {(b) leakage\\AUC $\approx 0.82$};
+\end{tikzpicture}
+\caption{Meaning of AUC. Solid: scores of topics without confidential documents; dashed: with. The less the two distributions overlap, the higher the AUC.}
+\label{fig:auc}
+\end{figure}
 
 \subsection{Defenses and security--utility scoring}
-We evaluate four defenses on the weak mode. \texttt{behavior\_norm} replaces refusals and escalations with one template and one refusal type. \texttt{decision\_hiding} takes the decision fields from a second, context-free call and pads latency to a constant. \texttt{scoped\_context} retrieves public documents only. \emph{Masking} keeps confidential chunks in the context but masks sensitive spans before the prompt is built; the \emph{oracle} variant replaces a hand-written list of secret spans, and the \emph{rule} variant applies frozen regular expressions for numbers, dates, contact data and capitalized names. Each defense is scored on security (decoder AUC, marker leakage in direct questions) and on utility: resolution rate on control messages, routing agreement with the undefended agent, recall of correct facts on a 23-question set built from public and internal documents, and the rate at which the agent states an officially approved sentence on confidential topics.
+We evaluate four defenses on the weak mode. \texttt{behavior\_norm} replaces refusals and escalations with one template and one refusal type. \texttt{decision\_hiding} takes the decision fields from a context-free call and pads latency to a constant. \texttt{scoped\_context} retrieves public documents only. \emph{Masking} keeps confidential chunks in the context but masks sensitive spans before the prompt is built; the \emph{oracle} variant replaces a hand-written list of secret spans, and the \emph{rule} variant applies frozen regular expressions for numbers, dates, contact data and capitalized names. Each defense is scored on security (decoder AUC, marker leakage in direct questions) and on utility: resolution rate on control messages, routing agreement with the undefended agent, recall of correct facts on a 23-question set built from public and internal documents, and the rate at which the agent states an officially approved sentence on confidential topics. A defense that closes the channel by destroying usefulness is therefore not counted as a solution.
+
 
 \subsection{Cross-user extension}
 Real assistants remember conversations. We let user A share private notes (10 topics) and user B send the same legitimate messages. Three memory modes are compared: X1 searches the memory of all users, X3 keeps one running summary of all notes in every context, and X2 filters entries by owner \emph{before} similarity ranking, so A's note is not even a candidate for B. In X2 the memory view of B is empty, which makes it the negative control.
@@ -99,10 +160,10 @@ Real assistants remember conversations. We let user A share private notes (10 to
 \label{sec:analysis}
 
 \subsection{Setup}
-We ran the main matrix (800 calls), a sweep over the number of confidential documents per topic ($k\in\{1,2,3\}$), the defenses, the masking variants with their comparison baselines (about 1200 calls) and the cross-user study (1200 calls). All models run locally with temperature 0. The scale is small (10 positive and 10 negative topics, five variants, one repetition in most analyses), so we interpret confidence intervals and p-values rather than point estimates alone.
+We ran the main matrix (800 calls), a sweep over the number of confidential documents per topic ($k\in\{1,2,3\}$), the defenses, the masking variants with their comparison baselines (about 1200 calls) and the cross-user study (1200 calls). All models run locally with temperature 0. The scale is small (10 positive and 10 negative topics, five variants, one repetition in most analyses), so we interpret confidence intervals and p-values rather than point estimates alone. As a sanity check of the randomized controls, the row-shuffled decoders reach a mean AUC of 0.46--0.51 and the placebo decoders 0.33--0.55, so chance-level scores look like these and not like the values in Table~\ref{tab:main}.
 
 \subsection{Direct leakage and the side channel}
-Direct questions about secret details confirm the access-control assumption. Under M1 the secret appears in 16 of 20 answers for \texttt{gemma3} and 13 of 20 for \texttt{qwen2.5}, and under M2 in none of the 40. Table~\ref{tab:main} shows the decoder results. Behavior features carry no significant signal for either model (e.g., AUC 0.48, $p=0.46$ for \texttt{gemma3}). The text of the reply, however, reveals the topic for \texttt{gemma3} under M1 (AUC 0.82, 95\% CI 0.75--0.91, $p=0.004$), and two messages suffice to reach a topic-level AUC of 0.9. Under M2 no group leaks (all $p\ge0.48$). For \texttt{qwen2.5} the M1 values (0.58 and 0.61) are not significant after the permutation test, so we treat them as hints only.
+Direct questions about secret details confirm the access-control assumption. Under M1 the secret appears in 16 of 20 answers for \texttt{gemma3} and 13 of 20 for \texttt{qwen2.5}, and under M2 in none of the 40. Table~\ref{tab:main} shows the decoder results. Behavior features carry no significant signal for either model (e.g., AUC 0.48, $p=0.46$ for \texttt{gemma3}). The text of the reply, however, reveals the topic for \texttt{gemma3} under M1 (AUC 0.82, 95\% CI 0.75--0.91, $p=0.004$), and two messages suffice to reach a topic-level AUC of 0.9. Under M2 no group leaks (all $p\ge0.48$). For \texttt{qwen2.5} the M1 values (0.58 and 0.61) are not significant after the permutation test, so we treat them as hints only. A possible reason for the difference between the models is that \texttt{qwen2.5} changes its style less when confidential context is present, but our sample is too small to test this.
 
 \begin{table}[t]
 \caption{Decoder AUC (leave-one-topic-out, 20 topics, $k=3$).}
@@ -122,11 +183,37 @@ qwen2.5 & M2, text & 0.42 & 0.32--0.53 & 0.69 \\
 \end{tabular}
 \end{table}
 
+\subsection{A qualitative example}
+Take one probe in which a customer asks how a rumored merger affects the service contract. Neither reply of \texttt{gemma3} states a figure. Under M1 it talks like an insider and repeats details of the confidential e-mail (``Project Falcon is undergoing confirmatory diligence \ldots{} any references to `Falcon' should be avoided in calendar invites''), while under M2 it apologizes and hands over to a colleague (``Unfortunately, I don't have specific details \ldots{} I can forward your email to Mark''). Differences of this kind, not secrets, are what the decoder learns.
+
 \subsection{Where the signal comes from}
-A natural explanation is that secret words leak into the replies. To test it, we masked topic words, digits, number words, mid-sentence capitalized words and 210 words that occur only in confidential documents, and re-ran the decoder. The AUC stayed at 0.82--0.83, so the signal is not lexical. A comparison of style markers on topics with and without confidential documents shows that, with confidential context, \texttt{gemma3} uses ``we/our'' more often (rate 0.050 vs.\ 0.017), uses ``I'' less often (0.009 vs.\ 0.032), almost never apologizes with ``unfortunately'' (0 vs.\ 0.14 of the answers), and gives phone numbers or e-mail addresses less often (0.06 vs.\ 0.24). The model speaks like an insider. These tests are exploratory and not corrected for multiple comparisons. The sweep over $k$ supports the causal link only partly: the retrieval dose rises monotonically (1.9, 2.5, 3.3 confidential chunks in the top-5), but the text AUC does not (0.71, 0.64, 0.82), and the intervals overlap. The robust finding is that a single confidential document is already enough for a significant text signal.
+A natural explanation is that secret words leak into the replies. To test it, we masked topic words, digits, number words, mid-sentence capitalized words and 210 words that occur only in confidential documents, and re-ran the decoder. The AUC stayed at 0.82--0.83, so the signal is not lexical. A comparison of style markers on topics with and without confidential documents shows that, with confidential context, \texttt{gemma3} uses ``we/our'' more often (rate 0.050 vs.\ 0.017), uses ``I'' less often (0.009 vs.\ 0.032), almost never apologizes with ``unfortunately'' (0 vs.\ 0.14 of the answers), and gives phone numbers or e-mail addresses less often (0.06 vs.\ 0.24). The model speaks like an insider. These tests are exploratory and not corrected for multiple comparisons.
+
+\subsection{Dose of confidential documents}
+Figure~\ref{fig:k} shows the sweep over $k$. The retrieval dose rises monotonically (1.9, 2.5 and 3.3 confidential chunks in the top-5), but the text AUC does not (0.71, 0.64 and 0.82), and the intervals overlap, so we cannot claim that more confidential documents leak more. The robust finding is that a single confidential document is already enough for a significant text signal ($p=0.012$).
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize]
+% y = (AUC-0.5)*7 cm ; x = (k-1)*1.5 cm
+\draw[->] (-0.3,0)--(3.6,0); \draw[->] (-0.3,0)--(-0.3,3.15);
+\foreach \y/\l in {0/0.5,1.4/0.7,2.8/0.9}{\draw (-0.35,\y)--(-0.25,\y); \node[left] at (-0.35,\y) {\l};}
+\draw[dashed,gray] (-0.3,0)--(3.4,0);
+\node[above,gray] at (3.0,0) {chance};
+\draw[dashed] (0,1.498)--(1.5,0.952)--(3,2.275);
+\foreach \x/\a/\lo/\hi in {0/1.498/0.672/2.121, 1.5/0.952/0.042/1.736, 3/2.275/1.729/2.835}{
+  \draw (\x,\lo)--(\x,\hi); \draw (\x-0.08,\lo)--(\x+0.08,\lo); \draw (\x-0.08,\hi)--(\x+0.08,\hi);
+  \fill (\x,\a) circle (1.6pt);}
+\node[below,align=center] at (0,-0.1) {1\\(1.9)}; \node[below,align=center] at (1.5,-0.1) {2\\(2.5)}; \node[below,align=center] at (3,-0.1) {3\\(3.3)};
+\node[rotate=90] at (-1.0,1.6) {text AUC, gemma3};
+\node at (1.5,-1.05) {$k$ (confidential chunks in top-5)};
+\end{tikzpicture}
+\caption{Text AUC of \texttt{gemma3} (M1) with 95\% intervals against the number $k$ of confidential documents per topic.}
+\label{fig:k}
+\end{figure}
 
 \subsection{Defenses}
-Table~\ref{tab:def} summarizes the security--utility results for \texttt{gemma3}. Output-side defenses leave the text channel open (AUC 0.82), which fits the finding that the style of ordinary replies leaks, not the decision fields. Keeping confidential text out of the context closes the channel: \texttt{scoped\_context} reaches 0.44 but loses all facts from internal documents (recall loss 0.30, routing agreement 0.60), while M2 reaches 0.45 with a recall loss of 0.04 and a lower resolution rate (0.92 to 0.67). Masking removes content leakage in direct questions (0.50 to 0.00 for \texttt{gemma3}, 0.35 to 0.00 for \texttt{qwen2.5}) and keeps utility close to the undefended agent. Masked agents still state the approved sentence at least as often as the undefended one (0.33 and 0.39 vs.\ 0.33), whereas M2 and \texttt{scoped\_context} never do (0.00). The style channel, however, stays open: AUC is 0.84 ($p=0.002$) with oracle and 0.69 ($p=0.016$) with rule masking. A masked document still tells the model that a confidential topic exists, and in the rule variant the replies sometimes copy the placeholder (20 of 50 probe replies on topics with confidential documents). For \texttt{qwen2.5} the masked AUCs are 0.60 and 0.59 and not significant.
+Table~\ref{tab:def} and Figure~\ref{fig:sec} summarize the security--utility results for \texttt{gemma3}. Output-side defenses leave the text channel open (AUC 0.82), which fits the finding that the style of ordinary replies leaks, not the decision fields. Keeping confidential text out of the context closes the channel: \texttt{scoped\_context} reaches 0.44 but loses all facts from internal documents (recall loss 0.30, routing agreement 0.60), while M2 reaches 0.45 with a recall loss of 0.04 and a lower resolution rate (0.92 to 0.67). Masking removes content leakage in direct questions (0.50 to 0.00 for \texttt{gemma3}, 0.35 to 0.00 for \texttt{qwen2.5}) and keeps utility close to the undefended agent. Masked agents still state the approved sentence at least as often as the undefended one (0.33 and 0.39 vs.\ 0.33), whereas M2 and \texttt{scoped\_context} never do (0.00). The style channel, however, stays open: AUC is 0.84 ($p=0.002$) with oracle and 0.69 ($p=0.016$) with rule masking. A masked document still tells the model that a confidential topic exists, and in the rule variant the replies sometimes copy the placeholder (20 of 50 probe replies on topics with confidential documents). For \texttt{qwen2.5} the masked AUCs are 0.60 and 0.59 and not significant.
 
 \begin{table}[t]
 \caption{Security and utility of defenses (\texttt{gemma3}, weak ACL).}
@@ -147,8 +234,32 @@ masking (rule) & 0.69 & 0.00 & resolution 0.92 \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize]
+% x = recall loss * 10 cm ; y = (AUC-0.4)*6 cm
+\draw[->] (0,0)--(3.5,0); \draw[->] (0,0)--(0,3.4);
+\foreach \x/\l in {0/0,1/0.1,2/0.2,3/0.3}{\draw (\x,-0.05)--(\x,0.05); \node[below] at (\x,-0.05) {\l};}
+\foreach \y/\l in {0.6/0.5,1.8/0.7,3.0/0.9}{\draw (-0.05,\y)--(0.05,\y); \node[left] at (-0.05,\y) {\l};}
+\draw[dashed,gray] (0,0.6)--(3.4,0.6); \node[gray,above] at (2.8,0.6) {chance};
+\fill[red!70!black] (0,2.55) circle (1.8pt) node[left=2pt] {A,C};
+\fill[red!70!black] (0.43,2.51) circle (1.8pt) node[right=2pt] {B};
+\fill[red!70!black] (0,2.67) circle (1.8pt) node[above=1pt] {F};
+\fill[red!70!black] (0.43,1.74) circle (1.8pt) node[right=2pt] {G};
+\fill[green!50!black] (0.43,0.30) circle (1.8pt) node[above=1pt] {E};
+\fill[green!50!black] (3.04,0.26) circle (1.8pt) node[above=1pt] {D};
+\node at (1.75,-0.85) {recall loss on internal/public facts};
+\node[rotate=90] at (-0.9,1.7) {text AUC};
+\end{tikzpicture}
+\caption{Security--utility plane (\texttt{gemma3}). A none, B behavior\_norm, C decision\_hiding, D scoped\_context, E M2, F masking (oracle), G masking (rule). Red points leave the channel open; green points close it. The best defense would lie at the bottom left.}
+\label{fig:sec}
+\end{figure}
+
 \subsection{Cross-user leakage}
 With shared memory, user A's private details appear in B's reply in 36 of 50 cases for \texttt{gemma3} (X1) and 26 of 50 for \texttt{qwen2.5}; with the shared summary (X3) in 35 and 28 of 50, even though the prompt forbids revealing other customers' data. With owner-filtered memory (X2) the rate falls to 1 of 50 and 0 of 50, which is the noise floor of numbers that occur by coincidence. When A shared nothing on a topic, no mode leaks. Isolation therefore works where the prompt rule does not. Of 24 decoder cells in this study, only one passed the open-channel test (\texttt{qwen2.5}, X3, text, AUC 0.67, $p=0.03$), which is about what chance would give without multiple-comparison correction.
+
+\subsection{Practical implications}
+Access control must be enforced before the model: only a retrieval-time filter closed the style channel, and prompt rules failed for confidential documents and for cross-user memory. Output post-processing cannot hide that confidential material exists, because the leak is in the style of ordinary replies. Masking protects content, not existence; if the existence of a topic is sensitive, the document must stay out of the context, at the price of lower utility.
 
 \subsection{Threats to validity}
 The study has 10 positive and 10 negative topics, so small effects cannot be excluded and a missing behavioral signal means \emph{not found}, not \emph{not present}: the agents almost never escalate and rarely refuse, which leaves little behavior to measure. Only two small local models were tested. One author wrote the canaries, messages and the definition of ``secret'', which is a policy choice. Latency is unreliable on shared hardware. Utility is measured with marker recall, not answer correctness. Leave-one-topic-out can push AUC below 0.5 under noise, so we rely on permutation p-values. In the cross-user study the identity of the observer is given by the setup, so authentication is not modeled.
