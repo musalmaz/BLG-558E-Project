@@ -20,7 +20,8 @@
 - `src/decoders/` Faz 4: istatistik testi, sınıflandırıcı, randomized control
 - `src/experiments/` Faz 5: matris koşturucu + analiz
 - `src/defenses/` Faz 6: savunmalar + güvenlik-fayda
-- `src/multiuser/` Ek pilot: çok kullanıcılı hafıza (A -> B sızıntısı)
+- `src/multiuser/` Ek çalışma: çok kullanıcılı hafıza (A -> B sızıntısı)
+- `docs/` rapor (`ilerleme_raporu.md`, `proje_raporu.html`), `soru_cevap_hazirlik.md`; `docs/makale/` IEEE makale (`main.tex`, `verify_numbers.py`); `docs/sunum/` 8 slaytlık sunum (`presentation.pptx`)
 - `data/{raw,labeled,canaries}`, `results/`, `tests/`
 
 ## Kod stili

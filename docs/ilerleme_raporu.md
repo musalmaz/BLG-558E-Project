@@ -1,6 +1,6 @@
 # İlerleme Raporu — Dış AI ajanlarında davranışsal yan kanal sızıntısı
 
-Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0–6 (Faz 4 20 konuya ölçeklendi) · Sıradaki: makale taslağı / yorum
+Son güncelleme: 2026-10-24 · Tamamlanan: Faz 0–6, maskeleme savunması, çok kullanıcılı ek çalışma, rapor, 8 slaytlık sunum, makale taslağı · Sıradaki: makalenin gözden geçirilmesi, künyelerin tamamlanması, teslim (06.12.2026)
 
 ## 1. Faz özeti
 
@@ -12,7 +12,10 @@ Son güncelleme: 2026-10-18 · Tamamlanan fazlar: 0–6 (Faz 4 20 konuya ölçek
 | 3 | Probe/control seti, runner, baseline check, tam matris (repeats=1) | Tamam | `1473694` + sonuçlar |
 | 4 | Özellikler, decoder, randomized control, istatistik testleri; 20 konuya ölçekleme | Tamam | `b84f958` |
 | 5 | Ana tablo, M1 vs M2, gizli belge sayısı taraması (k=1,2,3), figürler | Tamam | `6dad717`, `f6a256c` |
-| 6 | Savunmalar (behavior_norm, scoped_context, decision_hiding), güvenlik-fayda eğrisi | Tamam | bu güncelleme |
+| 6 | Savunmalar (behavior_norm, scoped_context, decision_hiding), güvenlik-fayda eğrisi | Tamam | `968559c` |
+| 6.1 | Maskeleme savunması (oracle ve rule), onaylı-cümle fayda seti (bölüm 8.1) | Tamam | `43ef76b`, `9757781` |
+| Ek | Çok kullanıcılı ek çalışma: A'nın verisi B'ye sızıyor mu (bölüm 9) | Tamam | `e2e2fe4`, `cc4e118` |
+| Çıktı | Proje raporu (HTML), 8 slaytlık sunum (.pptx), IEEE makale taslağı (`docs/makale/`) | Tamam, gözden geçirilecek | `9a3c201` … `e4011e2` |
 
 ## 2. Veri (Faz 1, 20 konuya genişletildi)
 - 2030 doküman (2000 Enron + 30 elle yazılmış kanarya), 7520 chunk. ACL: internal 1596, confidential 271, public 163.
@@ -251,4 +254,40 @@ Koşu notları: Ollama bellek şişmesi nedeniyle koşu 10'luk parçalarla yapı
 - Latency kanalı güvenilir değil (tek GPU, ısınma/sıra etkileri); runner sırayı karıştırarak etkiyi dağıtıyor.
 
 ## 11. Sıradaki adım
-Makale taslağı ve sonuçların birlikte yorumu; ardından açık noktalar: qwen2.5-M1 ret-türü ipucunun daha fazla konuyla (ör. 40 konu) sınanması; gemma3-M1 metin sinyalinin içerik sızıntısından ayrıştırılması için konu/kanarya terimlerini maskeleyen analiz; ticari API modeli (anahtar yok).
+1. Makalenin gözden geçirilmesi (kullanıcı): metni okumak, Overleaf'te derleyip **sayfa sayısını** (5–5,5) kontrol etmek, kaynakça `[TODO]` künyelerini yayıncı sayfasından tamamlamak, en az 5 dergi makalesinin (2024 sonrası) gerçekten dergi olduğunu doğrulamak.
+2. Teslim: makale PDF'i Ninova'ya, son tarih **06.12.2026**. Sunum için son tarih 22.12.2026; sunum gönderilmez, sınıfta gösterilir (en çok 8 sayfa, 6 dk anlatım + 4 dk soru).
+3. Açık teknik işler (zorunlu değil): daha çok konu (ör. 40) ve tekrar; ticari model (API anahtarı yok; DeepSeek bulut modeli denemesi plan hatası verdi, bkz. 13); kimlik doğrulamalı izolasyon; farklı "sır" politikaları.
+
+## 12. Makale, sunum ve teslim durumu
+**Makale** (`docs/makale/`): `main.tex` (IEEEtran, conference). Başlık, abstract (137 kelime), keywords, Introduction, Related Work, "CanaryProbe" (önerilen çözüm), Analysis, Conclusion ve 14 kaynak. Metin AI desteğiyle yazıldı; ödev PDF'inde AI yasağı yazıyor ama kullanıcı, hocanın AI desteğine izin verdiğini bildirdi (bu onayın yazılı kaydı kullanıcıda saklanmalı). `verify_numbers.py` makaledeki ~100 sayıyı `results/` dosyalarından yeniden hesaplıyor (uyuşmazlık: 0). `kaynak_adaylari.md`: okunacak kaynaklar; `deney_sayilari.md`: sayı ve kaynak dosya eşlemesi. Henüz derlenmedi (yerelde LaTeX yok); künyeler `[TODO]`.
+**Sunum** (`docs/sunum/`): `presentation.pptx` (8 slayt, İngilizce, konuşmacı notları dahil; sırayla kapak, problem, ACL ve fark, tasarım, bulgular (neden AUC dahil), maskeleme, savunmalar, zorluklar ve sonuç). Uzun sürüm: `presentation_full19.pptx`; web kaynağı: `deck.json` + `slides/`. Üretim: `build_pptx.py` (python-pptx).
+**Rapor:** `docs/proje_raporu.html` (Türkçe, diyagramlı, sıfırdan anlatım + sık sorulan sorular + karar günlüğü), `docs/soru_cevap_hazirlik.md` (olası sorular ve cevaplar).
+
+## 13. Karar günlüğü ve operasyonel notlar
+**Önemli kararlar ve nedenleri**
+- *8 → 20 konu:* pilotun gücü düşüktü; 12 konu eklendi (18 belge, 120 mesaj).
+- *Sabit lojistik regresyon:* sonuç "iyi ayarlanmış model" değil, "sinyal var" olsun diye.
+- *LOTO hatası:* dengeli konu etiketlerinde kesişim terimi etiketle ters ilişkili skor üretiyordu (AUC 0,0); `class_weight="balanced"` ile giderildi; karar ölçütü mutlak AUC değil permütasyon p.
+- *Kanal-açık ölçütü* (önceden sabit): permütasyon p < 0,05 ve AUC alt sınırı > 0,5.
+- *Maskeleme analizi (6.x)* sinyalin kelimeden değil üslupten geldiğini gösterdi; önceki "içerik sızıntısı" yorumu geri alındı.
+- *Fayda ölçümü Faz 6'da zorunlu:* yalnızca çözüm oranına bakılsaydı scoped_context bedelsiz görünürdü.
+- *Pilot → "ek çalışma":* ana çalışmaya ek olduğu için sunumda böyle adlandırıldı; X0 ayrıca koşulmadı (X2'de B'nin hafızası boş, X0 ile aynı).
+- *Maskeleme:* oracle (üst sınır, sızıntı yapı gereği 0) ve rule (dondurulmuş regex) birlikte; sır tanımı tek yazarlı politika kararı (`data/probes/secret_spans.json`); onaylı-cümle seti (`utility_conf.json`) mevcut fayda setindeki gizli kaynak eksikliğini kapatıyor.
+- *Sunum 19 → 8 slayt:* ödev sınırı (en çok 8 sayfa).
+
+**Operasyonel sorunlar ve çözümleri**
+- *Ollama bellek şişmesi* (`llama-server` ~9 GB, 15,7 GB RAM, takas yok): koşu kısa parçalara bölündü (40 → 20 → 10 çağrı), parçalar arası model boşaltıldı, Ollama yeniden başlatıldı; >20 sn gecikmeli (thrash) satırlar silinip yeniden koşuldu.
+- *Tekrar döngüsü:* modelin sonsuz üretimi koşuyu kilitledi; ajan çağrısına `max_tokens=700` eklendi ve Ollama sunucu iptali başarısız deneme sayıldı (önceki koşuları etkilemez).
+- *Doğrudan sorularda `message_id` çakışması:* aynı konudaki iki soru aynı kimliği alıyordu; varyant indeksiyle düzeltildi, dört koşul yeniden koşuldu.
+- *Gecikme özelliği güvenilmez* (pil/performans profili, CUDA düşmesi, bellek baskısı); makalede ve sunumda zayıf kanıt sayıldı.
+
+**Bilinen açık noktalar**
+- DeepSeek `deepseek-v4.1-flash:cloud`: kullanıcının terminalinde çalıştığı bildirildi, ancak yerel Ollama servisi benim çağrımda "Free plan" hatası verdi; test edilmedi. Veri bulut servise gideceği için ayrıca onay gerekir.
+- Makale kaynakçasında dergi/venue doğrulaması kullanıcıda.
+
+## 14. Dosya haritası (kısa)
+- Kod: `src/data_layer/`, `agent/`, `probes/`, `features/`, `decoders/`, `experiments/`, `defenses/` (maskeleme dahil), `multiuser/`; testler `tests/` (51 birim test).
+- Veri: `data/canaries/`, `data/probes/` (probes, direct_queries, utility_queries, secret_spans, utility_conf), `data/xuser/shares.json`.
+- Sonuçlar: `results/*.csv|md|json`, ham loglar `results/runs/*.jsonl`, şekiller `results/figures/`.
+- Planlar: `plans/` (faz2, faz6, pilot, maskeleme). Çıktılar: `docs/`.
+- Tüm faz komutları ve sonuç tabloları bu raporun ilgili bölümlerinde.

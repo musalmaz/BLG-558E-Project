@@ -90,6 +90,10 @@ footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:v
 <li><a href="#sinir">Sınırlılıklar</a></li>
 <li><a href="#sonuc">Sonuç ve gelecek iş</a></li>
 <li><a href="#tekrar">Tekrarlanabilirlik: dosyalar ve komutlar</a></li>
+<li><a href="#karar">Karar günlüğü: neden böyle yaptık?</a></li>
+<li><a href="#sss">Sık sorulan sorular</a></li>
+<li><a href="#zaman">Zaman çizelgesi</a></li>
+<li><a href="#teslim">Makale, sunum ve teslim</a></li>
 </ol></nav>
 
 <h2 id="ozet">1. Bir sayfada özet</h2>
@@ -430,6 +434,52 @@ python -m src.defenses.evaluate_masking evaluate       # maskeleme savunması
 python -m src.multiuser.run_pilot run                  # çok kullanıcılı pilot
 python -m pytest -q tests                              # 51 birim test</pre>
 <p>Ayrıntılı faz notları ve tüm tablolar <code>docs/ilerleme_raporu.md</code> dosyasındadır.</p>
+
+<h2 id="karar">17. Karar günlüğü: neden böyle yaptık?</h2>
+<div class="scroll"><table>
+<tr><th>Karar</th><th>Neden</th></tr>
+<tr><td>8 konudan 20 konuya geçiş</td><td>İlk pilotun istatistik gücü düşüktü; 12 konu, 18 gizli belge ve 120 mesaj eklendi.</td></tr>
+<tr><td>Sabit, ayarsız lojistik regresyon</td><td>Sonuç "iyi ayarlanmış model"i değil, verideki sinyalin varlığını göstersin.</td></tr>
+<tr><td>Leave-one-topic-out + randomized control</td><td>Konu kelimelerini ezberlemeyi ve şansı dışlamak için; "kanal açık" ölçütü (p &lt; 0,05 ve AUC alt sınırı &gt; 0,5) önceden sabitlendi.</td></tr>
+<tr><td><code>class_weight="balanced"</code></td><td>Dengeli konu etiketlerinde lojistik regresyonun kesişimi etiketle ters ilişkili skor üretiyordu (AUC 0,0). Düzeltme sonrası karar ölçütü mutlak AUC yerine permütasyon p oldu.</td></tr>
+<tr><td>Kelime maskeleme analizi</td><td>Sinyalin sızan gizli kelimelerden gelip gelmediğini ayırmak için; AUC düşmedi, sinyalin üslup kaynaklı olduğu anlaşıldı. Önceki "içerik sızıntısı" yorumu bu yüzden geri alındı.</td></tr>
+<tr><td>Savunmalar fayda ile birlikte puanlandı</td><td>Yalnızca çözüm oranına bakılsaydı scoped_context bedelsiz görünürdü; fayda setinde internal bilgi tamamen kayboluyordu.</td></tr>
+<tr><td>Maskeleme için oracle ve rule</td><td>Oracle üst sınırdır (sızıntı yapı gereği sıfır); rule gerçekçidir ve kaçırabilir. Kurallar çalıştırmadan önce dondurulduğu için işaretçilere göre ayarlanmadı.</td></tr>
+<tr><td>Onaylı-cümle fayda seti</td><td>Mevcut 23 soruluk sette gizli kaynak yok; M2 ile maskeleme farkını görünür kılmak için gizli konuların sır olmayan yönlerini soran yeni bir set yazıldı.</td></tr>
+<tr><td>Çok kullanıcılı çalışma ek çalışma olarak adlandırıldı</td><td>Ana deneyin bir parçası değil, bir genişletme. X0 (boş hafıza) ayrıca koşulmadı: X2'de B'nin hafızası boş olduğundan B'nin bağlamı X0 ile aynıdır.</td></tr>
+<tr><td>Koşular 10–40 çağrılık parçalara bölündü</td><td>Ollama <code>llama-server</code> süreci ~9 GB bellek biriktirip sistemi sıkıştırıyordu. Parçalar arası model boşaltıldı, 20 saniyeyi aşan satırlar yeniden koşuldu, <code>max_tokens=700</code> sınırı konuldu.</td></tr>
+<tr><td>Sunum 19'dan 8 slayta indi</td><td>Ödev "en çok 8 sayfa" diyor (6 dk anlatım, 4 dk soru). Uzun sürüm arşivde.</td></tr>
+</table></div>
+
+<h2 id="sss">18. Sık sorulan sorular</h2>
+<p>Daha geniş liste (37 soru) için <code>docs/soru_cevap_hazirlik.md</code>.</p>
+<dl class="gloss">
+<dt>Davranış kanalı yok mu?</dt><dd>"Bulunamadı", "yok" değil. Ajan neredeyse hiç eskalasyon yapmıyor ve nadiren reddediyor, yani ölçülecek davranış çeşitliliği az.</dd>
+<dt>Neden AUC?</dt><dd>Eşik gerektirmez, sınıf dengesizliğinden etkilenmez, tek karşılaştırılabilir sayı verir (0,5 = yazı-tura).</dd>
+<dt>Neden M2 çalışıyor?</dt><dd>Gizli belge modele hiç ulaşmadığı için ne içerik ne üslup ona bağlı olabilir. Süzme model öncesinde yapılıyor.</dd>
+<dt>Maskeleme neden yetmedi?</dt><dd>İçerik sızıntısını kapatıyor ama maskeli belge de konunun var olduğunu söylüyor; model bunu üsluba yansıtıyor (AUC 0,84 oracle, 0,69 rule).</dd>
+<dt>İzolasyon neden çalışıyor?</dt><dd>Arama, kayıtların sahibine göre benzerlik sıralamasından önce süzülüyor; A'nın kaydı B için aday bile olmuyor. Prompt kuralı ise modele güveniyor.</dd>
+<dt>En büyük sınır?</dt><dd>Ölçek (10+10 konu, çoğunda tek tekrar), iki küçük yerel model ve tek yazarlı veri ve sır tanımı.</dd>
+</dl>
+
+<h2 id="zaman">19. Zaman çizelgesi</h2>
+<div class="scroll"><table>
+<tr><th>Aşama</th><th>İçerik</th><th>Commit</th></tr>
+<tr><td>Faz 0–2</td><td>İskelet, veri katmanı, ajan boru hattı</td><td><code>5108fb1</code>, <code>c56c8a0</code>, <code>05a3747</code></td></tr>
+<tr><td>Faz 3–4</td><td>Probe/control, baseline, özellikler, decoder, randomized control, 20 konu</td><td><code>1473694</code>, <code>f2e8c8d</code>, <code>b84f958</code></td></tr>
+<tr><td>Faz 5</td><td>Ana tablo, M1/M2, k taraması, maskeleme analizi</td><td><code>1f7054d</code>, <code>6dad717</code>, <code>f6a256c</code></td></tr>
+<tr><td>Faz 6</td><td>Savunmalar ve güvenlik-fayda</td><td><code>968559c</code></td></tr>
+<tr><td>Ek çalışma</td><td>Çok kullanıcılı hafıza, 1200 çağrı</td><td><code>e2e2fe4</code>, <code>cc4e118</code></td></tr>
+<tr><td>Maskeleme savunması</td><td>Oracle ve rule, fayda setleri</td><td><code>43ef76b</code>, <code>9757781</code></td></tr>
+<tr><td>Çıktılar</td><td>Rapor, sunum, makale taslağı</td><td><code>9a3c201</code> … <code>e4011e2</code></td></tr>
+</table></div>
+
+<h2 id="teslim">20. Makale, sunum ve teslim</h2>
+<ul>
+<li><strong>Makale:</strong> <code>docs/makale/main.tex</code> (IEEEtran). Önerilen çözümün adı CanaryProbe. Sayılar <code>verify_numbers.py</code> ile loglardan doğrulandı. Kaynakçada <code>[TODO]</code> künyeler kullanıcıda. Son tarih 06.12.2026, Ninova'ya PDF.</li>
+<li><strong>Sunum:</strong> <code>docs/sunum/presentation.pptx</code> (8 slayt, İngilizce, konuşmacı notlu). Son tarih 22.12.2026; gönderilmez, sınıfta gösterilir.</li>
+<li><strong>Kural notu:</strong> Ödevde AI içeriği yasağı yazıyor; hoca AI desteğine izin verdiğini bildirdi (yazılı kaydı sakla). Rapordaki her ayrıntıyı bilmek ve sorulara cevap vermek zorunlu.</li>
+</ul>
 
 <footer>BLG 558E proje raporu · Veri: kamuya açık Enron e-postaları ve uydurma kanarya belgeler · Çıktılar yerel modellerle üretilmiştir.</footer>
 </div>
