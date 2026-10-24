@@ -149,8 +149,30 @@ where $x^{+}$ is a topic with confidential documents and $x^{-}$ one without. We
 \end{figure}
 
 \subsection{Defenses and security--utility scoring}
-We evaluate four defenses on the weak mode. \texttt{behavior\_norm} replaces refusals and escalations with one template and one refusal type. \texttt{decision\_hiding} takes the decision fields from a context-free call and pads latency to a constant. \texttt{scoped\_context} retrieves public documents only. \emph{Masking} keeps confidential chunks in the context but masks sensitive spans before the prompt is built; the \emph{oracle} variant replaces a hand-written list of secret spans, and the \emph{rule} variant applies frozen regular expressions for numbers, dates, contact data and capitalized names. Each defense is scored on security (decoder AUC, marker leakage in direct questions) and on utility: resolution rate on control messages, routing agreement with the undefended agent, recall of correct facts on a 23-question set built from public and internal documents, and the rate at which the agent states an officially approved sentence on confidential topics. A defense that closes the channel by destroying usefulness is therefore not counted as a solution.
+We evaluate four defenses on the weak mode. \texttt{behavior\_norm} replaces refusals and escalations with one template and one refusal type. \texttt{decision\_hiding} takes the decision fields from a context-free call and pads latency to a constant. \texttt{scoped\_context} retrieves public documents only. \emph{Masking}, described next, keeps the confidential chunks in the context but hides their sensitive details. Each defense is scored on security (decoder AUC, marker leakage in direct questions) and on utility: resolution rate on control messages, routing agreement with the undefended agent, recall of correct facts on a 23-question set built from public and internal documents, and the rate at which the agent states an officially approved sentence on confidential topics. A defense that closes the channel by destroying usefulness is therefore not counted as a solution.
 
+
+\subsection{Masking: keeping the document, hiding the details}
+Masking is the only defense that does not remove the confidential document. Retrieval runs as in M1, and every retrieved chunk labeled confidential passes through a masker before the prompt is built. Public and internal chunks are untouched, and the model gets the same prompt as in M1. The idea is that the model keeps the general context it needs for a useful answer while the sensitive details are gone. We compare two maskers. The \emph{oracle} masker replaces the spans of a hand-written list (figures, dates, budgets, headcounts, supplier and site details, negotiation positions) with \texttt{[REDACTED]}. By construction it removes every secret marker, so it gives an upper bound for what masking can protect. The \emph{rule} masker uses regular expressions that were frozen before any run and not tuned to the markers: numbers and number words, dates, e-mail addresses and phone numbers, and capitalized words that do not start a sentence become typed placeholders (\texttt{[NUM]}, \texttt{[DATE]}, \texttt{[NAME]}). It is more realistic, but it can miss secrets without such a pattern (for example an ``outsourcing vendor'') and it also masks harmless names. Which facts count as secret is a policy choice: the existence of a topic and the officially approved customer sentence are not masked. Table~\ref{tab:mask} shows both maskers on a canary chunk and the effect on a reply.
+
+\begin{table}[t]
+\caption{Masking example. Top: one sentence of a confidential canary e-mail. Bottom: reply of \texttt{gemma3} to the question ``How many traders will remain on the Westmere trading desk after Project Cobalt?''}
+\label{tab:mask}
+\centering\small
+\begin{tabular}{lp{5.7cm}}
+\toprule
+Version & Text \\
+\midrule
+original & \texttt{\ldots{} the Project Falcon merger with Veltrix Holdings \ldots{} The board meets on the 24th.} \\
+oracle & \texttt{\ldots{} the Project Falcon merger with Veltrix Holdings \ldots{} The board meets on the [REDACTED].} \\
+rule & \texttt{\ldots{} the [NAME] [NAME] merger with [NAME] [NAME] \ldots{} The board meets on the [DATE].} \\
+\midrule
+reply, M1 & ``After Project Cobalt, we expect to have 9 traders remaining on the Westmere trading desk.'' \\
+reply, oracle & ``We anticipate a reduction of approximately [REDACTED] traders on the Westmere trading desk \ldots{}'' \\
+reply, M2 & ``\ldots{} Unfortunately, I don't have the specific number of traders remaining.'' \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Cross-user extension}
 Real assistants remember conversations. We let user A share private notes (10 topics) and user B send the same legitimate messages. Three memory modes are compared: X1 searches the memory of all users, X3 keeps one running summary of all notes in every context, and X2 filters entries by owner \emph{before} similarity ranking, so A's note is not even a candidate for B. In X2 the memory view of B is empty, which makes it the negative control.
@@ -213,7 +235,7 @@ Figure~\ref{fig:k} shows the sweep over $k$. The retrieval dose rises monotonica
 \end{figure}
 
 \subsection{Defenses}
-Table~\ref{tab:def} and Figure~\ref{fig:sec} summarize the security--utility results for \texttt{gemma3}. Output-side defenses leave the text channel open (AUC 0.82), which fits the finding that the style of ordinary replies leaks, not the decision fields. Keeping confidential text out of the context closes the channel: \texttt{scoped\_context} reaches 0.44 but loses all facts from internal documents (recall loss 0.30, routing agreement 0.60), while M2 reaches 0.45 with a recall loss of 0.04 and a lower resolution rate (0.92 to 0.67). Masking removes content leakage in direct questions (0.50 to 0.00 for \texttt{gemma3}, 0.35 to 0.00 for \texttt{qwen2.5}) and keeps utility close to the undefended agent. Masked agents still state the approved sentence at least as often as the undefended one (0.33 and 0.39 vs.\ 0.33), whereas M2 and \texttt{scoped\_context} never do (0.00). The style channel, however, stays open: AUC is 0.84 ($p=0.002$) with oracle and 0.69 ($p=0.016$) with rule masking. A masked document still tells the model that a confidential topic exists, and in the rule variant the replies sometimes copy the placeholder (20 of 50 probe replies on topics with confidential documents). For \texttt{qwen2.5} the masked AUCs are 0.60 and 0.59 and not significant.
+Table~\ref{tab:def} and Figure~\ref{fig:sec} summarize the security--utility results for \texttt{gemma3}. Output-side defenses leave the text channel open (AUC 0.82), which fits the finding that the style of ordinary replies leaks, not the decision fields. Keeping confidential text out of the context closes the channel: \texttt{scoped\_context} reaches 0.44 but loses all facts from internal documents (recall loss 0.30, routing agreement 0.60), while M2 reaches 0.45 with a recall loss of 0.04 and a lower resolution rate (0.92 to 0.67). Masking removes content leakage in direct questions (0.50 to 0.00 for \texttt{gemma3}, 0.35 to 0.00 for \texttt{qwen2.5}; Table~\ref{tab:mask} shows an example reply) and keeps utility close to the undefended agent. Masked agents still state the approved sentence at least as often as the undefended one (0.33 and 0.39 vs.\ 0.33), whereas M2 and \texttt{scoped\_context} never do (0.00). The style channel, however, stays open: AUC is 0.84 ($p=0.002$) with oracle and 0.69 ($p=0.016$) with rule masking. A masked document still tells the model that a confidential topic exists, and in the rule variant the replies sometimes copy the placeholder (20 of 50 probe replies on topics with confidential documents). For \texttt{qwen2.5} the masked AUCs are 0.60 and 0.59 and not significant.
 
 \begin{table}[t]
 \caption{Security and utility of defenses (\texttt{gemma3}, weak ACL).}

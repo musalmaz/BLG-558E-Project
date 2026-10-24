@@ -159,6 +159,21 @@ base_recall = mr("gemma3", "none").recall_util23
 chk("plane F masking oracle recall loss", 0.0, base_recall - mr("gemma3", "mask_oracle").recall_util23, tol=0.002); chk("plane F AUC", 0.845, mr("gemma3", "mask_oracle").auc, tol=0.002)
 chk("plane G masking rule recall loss", 0.043, base_recall - mr("gemma3", "mask_rule").recall_util23, tol=0.002); chk("plane G AUC", 0.690, mr("gemma3", "mask_rule").auc, tol=0.002)
 
+# ---- masking example table (Table masking): chunk versions and replies
+from src.defenses.masking import load_spans, mask_oracle, mask_rule  # noqa: E402
+doc = next(x for x in json.load(open(ROOT / "data/canaries/canaries.json"))["docs"] if x["id"] == "canary_c00_2")
+txt = "Subject: " + doc["subject"] + " " + doc["body"]
+chk("example original has '24th'", True, "The board meets on the 24th." in txt)
+chk("example oracle", True, "The board meets on the [REDACTED]." in mask_oracle(txt, load_spans(cfg)) and "Veltrix Holdings" in mask_oracle(txt, load_spans(cfg)))
+mr_ = mask_rule(txt)
+chk("example rule", True, "the [NAME] [NAME] merger with [NAME] [NAME]" in mr_ and "The board meets on the [DATE]." in mr_)
+def reply(fname, model="gemma3"):
+    r = next(x for x in jl(R / "runs" / fname) if x["model"] == model and x["message_id"].startswith("c02|direct|v0"))
+    return r["answer_text"]
+chk("example reply M1", True, "we expect to have 9 traders remaining on the Westmere trading desk" in reply("direct_none.jsonl"))
+chk("example reply oracle", True, "approximately [REDACTED] traders on the Westmere trading desk" in reply("direct_mask_oracle.jsonl"))
+chk("example reply M2", True, "I don't have the specific number of traders remaining" in reply("direct_m2.jsonl"))
+
 # ---- config
 chk("bootstrap resamples", 200, cfg["decoders"]["n_boot"], tol=0); chk("topic permutations", 500, cfg["decoders"]["n_topic_perm"], tol=0)
 chk("main matrix rows", 800, len(jl(R / "runs/probe_matrix_20topics_repeats1.jsonl")), tol=0)
