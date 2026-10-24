@@ -224,12 +224,12 @@ card(s, X0, 5.3, W, 1.4, T_INFO, [[("Data: ", dict(size=15, bold=True)), ("2000 
 # ---------------------------------------------------------------- 6 findings
 s = new_slide("Findings (60 s). Under the weak ACL, gemma3's reply text lets the decoder tell secret topics apart: AUC 0.82, p 0.004. Behavior fields show no significant signal, "
               "and under the strong ACL nothing leaks. Masking topic words, numbers, names and 210 secret-only words did not reduce the signal (0.83 to 0.82): the signal is "
-              "writing style. With confidential context the model uses we and our more, apologizes less and gives fewer contact details.")
+              "writing style. We report AUC because it needs no threshold, is not fooled by class imbalance and gives one comparable number: the chance that a topic with a secret scores above one without; 0.5 is a coin flip. With confidential context the model uses we and our more, apologizes less and gives fewer contact details.")
 title(s, "Findings: reply style gives the topic away")
 cd = CategoryChartData()
 cd.categories = ["gemma3 · M1 · text", "gemma3 · M1 · behavior", "gemma3 · M2 · text", "qwen2.5 · M1 · text", "qwen2.5 · M1 · behavior", "qwen2.5 · M2 · text"]
 cd.add_series("AUC", [0.82, 0.48, 0.45, 0.61, 0.58, 0.42])
-gf = s.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED, Inches(X0), Inches(1.4), Inches(6.5), Inches(3.9), cd)
+gf = s.shapes.add_chart(XL_CHART_TYPE.BAR_CLUSTERED, Inches(X0), Inches(1.4), Inches(6.5), Inches(3.3), cd)
 ch = gf.chart
 ch.has_legend = False; ch.has_title = False; ch.font.size = Pt(13); ch.font.name = BODY
 va = ch.value_axis
@@ -243,13 +243,14 @@ pl.data_labels.position = XL_LABEL_POSITION.OUTSIDE_END
 pl.data_labels.font.size = Pt(13); pl.data_labels.font.bold = True
 for i, col in enumerate([LEAK, INFO, SAFE, INFO, INFO, SAFE]):
     pt = pl.series[0].points[i]; pt.format.fill.solid(); pt.format.fill.fore_color.rgb = rgb(col)
-text(s, X0, 5.33, 6.5, 0.3, [[("AUC = chance that a topic with a secret outranks one without; 0.5 = coin flip. Red = open, green = closed.", dict(size=12, color=MUTED))]])
+text(s, X0, 4.75, 6.5, 0.3, [[("AUC; 0.5 = coin flip. Red = open channel, green = closed.", dict(size=12, color=MUTED))]])
 rows = [["Style marker (gemma3, M1)", ("Secret", dict(align=R)), ("No secret", dict(align=R))],
         ["“we / our” rate", num("0.050"), num("0.017")], ["“I” rate", num("0.009"), num("0.032")],
         ["“unfortunately”", num("0.00"), num("0.14")], ["gives phone / email", num("0.06"), num("0.24")]]
 table(s, X0 + 6.75, 1.45, [2.6, 1.2, 1.18], rows, size=13, row_h=0.45)
 card(s, X0 + 6.75, 3.85, 4.98, 1.45, T_LEAK, [[("The tone leaks, not the content. ", dict(size=14, bold=True)), ("Masking topic words, numbers, names and 210 secret-only words left AUC unchanged (0.83 → 0.82).", dict(size=14))]], anchor=MSO_ANCHOR.MIDDLE)
-card(s, X0, 5.85, W, 0.85, T_INFO, [[("Behavior fields ", dict(size=15, bold=True)), ("(escalation, refusal, routing) show no significant signal; the agent rarely escalates or refuses. Under M2 nothing leaks.", dict(size=15))]], anchor=MSO_ANCHOR.MIDDLE)
+card(s, X0, 5.35, 6.5, 1.4, WHITE, [[("Why AUC? ", dict(size=15, bold=True, color=INFO)), ("It is the chance that a topic with a secret scores above one without. It needs no threshold, is not fooled by class imbalance and gives one comparable number (0.5 = coin flip, 1.0 = perfect).", dict(size=14))]], anchor=MSO_ANCHOR.MIDDLE)
+card(s, X0 + 6.75, 5.35, 4.98, 1.4, T_INFO, [[("Behavior fields ", dict(size=15, bold=True)), ("(escalation, refusal, routing) show no significant signal; the agent rarely escalates or refuses. Under M2 nothing leaks.", dict(size=14))]], anchor=MSO_ANCHOR.MIDDLE)
 
 # ---------------------------------------------------------------- 6 masking
 s = new_slide("Masking (55 s). Instead of dropping a confidential document, we keep it in the context but mask its sensitive parts just before the prompt is built. Oracle masking replaces a hand-listed set of secret spans; rule masking uses frozen regex rules for numbers, dates and names. Direct leakage drops from 0.50 to zero and utility stays near the undefended agent, unlike M2 whose resolution rate falls to 0.67. But the style channel stays open: AUC is 0.84 with oracle and 0.69 with rule masking, against 0.45 for M2, because a masked document still says that the topic exists.")
