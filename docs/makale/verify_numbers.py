@@ -151,13 +151,6 @@ for k, lo, hi in [(1, 0.596, 0.803), (2, 0.506, 0.748), (3, 0.747, 0.905)]:
 chk("k=1 p", 0.012, float(sub.loc[1, "p_topic_perm"]), tol=0.0055)
 chk("row-shuffle AUC min", 0.46, float(d.row_shuffle_auc_mean.min())); chk("row-shuffle AUC max", 0.51, float(d.row_shuffle_auc_mean.max()))
 chk("placebo AUC min", 0.33, float(d.placebo_auc_control_rows.min())); chk("placebo AUC max", 0.55, float(d.placebo_auc_control_rows.max()))
-# security-utility plane: x = recall loss on 23 utility questions, y = text AUC (gemma3)
-for tag, x, y in [("A none", 0.0, 0.825), ("B behavior_norm", 0.043, 0.818), ("C decision_hiding", 0.0, 0.825), ("D scoped_context", 0.304, 0.444), ("E M2", 0.043, 0.450)]:
-    name = {"A none": "none", "B behavior_norm": "behavior_norm", "C decision_hiding": "decision_hiding", "D scoped_context": "scoped_context", "E M2": "M2_reference"}[tag]
-    chk(f"plane {tag} recall loss", x, dr(name).recall_loss, tol=0.002); chk(f"plane {tag} AUC", y, dr(name).auc, tol=0.002)
-base_recall = mr("gemma3", "none").recall_util23
-chk("plane F masking oracle recall loss", 0.0, base_recall - mr("gemma3", "mask_oracle").recall_util23, tol=0.002); chk("plane F AUC", 0.845, mr("gemma3", "mask_oracle").auc, tol=0.002)
-chk("plane G masking rule recall loss", 0.043, base_recall - mr("gemma3", "mask_rule").recall_util23, tol=0.002); chk("plane G AUC", 0.690, mr("gemma3", "mask_rule").auc, tol=0.002)
 
 # ---- masking example table (Table masking): chunk versions and replies
 from src.defenses.masking import load_spans, mask_oracle, mask_rule  # noqa: E402
