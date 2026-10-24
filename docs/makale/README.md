@@ -1,7 +1,7 @@
 # Makale iskeleti (Assignment 2)
 
 Dosyalar:
-- `main.tex`: IEEEtran (conference) makalesi. Related Work, Proposed Solution (CanaryProbe), Analysis ve Conclusion bölümleri **AI desteğiyle yazılmış taslaktır** (hoca AI desteğine izin verdi); abstract ve introduction sana bırakıldı. Kaynakçada `[TODO]` olan künyeleri yayıncı sayfasından tamamla.
+- `main.tex`: IEEEtran (conference) makalesi. abstract, introduction, Related Work, Proposed Solution (CanaryProbe), Analysis ve Conclusion bölümleri **AI desteğiyle yazılmış taslaktır** (hoca AI desteğine izin verdi). Kaynakçada `[TODO]` olan künyeleri yayıncı sayfasından tamamla.
 - `kaynak_adaylari.md`: okuman için kaynak adayları (künyeler henüz sayfadan doğrulanmadı, aşağıya bak).
 - `deney_sayilari.md`: deneylerden çıkan sayılar ve nereden geldikleri (yalnızca veri; metin değil).
 

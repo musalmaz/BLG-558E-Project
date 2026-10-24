@@ -1,6 +1,5 @@
 % BLG558E Term Project - Assignment 2 (IEEE conference format).
-% Sections 2-5 (Related Work, Proposed Solution, Analysis, Conclusion) are DRAFTS written with AI assistance
-% (the course instructor permitted AI support). Abstract and Introduction are left for the author.
+% All text sections are DRAFTS written with AI assistance (the course instructor permitted AI support). Review and edit them.
 % Not compiled on the drafting machine (no LaTeX installed): compile on Overleaf and check the page count (5 to 5.5 pages).
 % Every number below comes from docs/ilerleme_raporu.md and results/*.csv; see docs/makale/deney_sayilari.md.
 % Entries marked [TODO] in the bibliography must be completed from the publisher pages before submission.
@@ -27,16 +26,24 @@
 
 \begin{abstract}
 % max 150 words
-[Write your abstract here.]
+Customer-service agents based on retrieval-augmented generation read company documents, and some of these documents are confidential. We ask whether an ordinary customer can learn that confidential documents exist from the agent's behavior alone, even when the agent never writes the secret. We present CanaryProbe, a framework with fabricated canary documents, matched probe and control messages, a fixed decoder with randomized controls, and a security--utility scoring of defenses. Under weak access control, the style of a reply identifies topics with confidential documents (AUC 0.82), while decision fields show no reliable signal. Only keeping confidential text out of the context closes this channel. Output normalization fails, and masking removes content leakage but not the existence signal. In a shared conversational memory, one user's private data reached another user in 52--72\% of replies, and owner-based isolation removed it.
 \end{abstract}
 
 \begin{IEEEkeywords}
-[keyword 1, keyword 2, keyword 3, keyword 4]
+retrieval-augmented generation, side channel, access control, data leakage, LLM agents
 \end{IEEEkeywords}
 
 \section{Introduction}
 % ~1 page including title and abstract: the subject, its importance, what has been done in this paper.
-[Write here.]
+Companies increasingly answer customer questions with agents built on large language models. Most of these agents use retrieval-augmented generation (RAG): the message is matched against company documents, the best matches are placed in the prompt, and the model writes the reply \cite{zeng24,survey25}. The document store is a valuable and sensitive asset. Besides public and internal material, it can contain confidential documents such as merger plans, layoffs or legal settlements. If an agent that serves external customers gets access to such documents, the company must make sure that nothing about them reaches the customer.
+
+The usual protection has two parts. Documents carry an access-control label, and the prompt tells the model not to reveal confidential content. In many deployments the second part is the only barrier, because the confidential documents are still retrieved and read by the model. We call this a \emph{weak} access control. In our setting it fails visibly: direct questions made the agent write secret details in 16 of 20 cases for one model and 13 of 20 for another. Preventing such direct leakage is, however, not enough. Even if the agent never writes the secret, its \emph{behavior} (the tone of the reply, refusals, the team it routes the customer to, the time it needs) may show that a confidential document exists on the topic. For a company, the information that a merger or a layoff is being prepared can already be damaging.
+
+Earlier studies show that information can leave language model services through side channels. Token lengths and packet sizes of streamed answers, response timing, shared prompt caches and hardware caches reveal conversation topics, system prompts or the prompts of other users \cite{weiss24,carlini24,song25,wu25,gao25}. Other studies extract document text or infer the membership of documents in a RAG store with crafted or injected prompts \cite{zeng24,qi25,anderson24,liu25,raggleaks25}. These works use network or hardware observations, or they attack the system with special prompts, and they ask whether content or membership can be recovered. Among the studies we reviewed, none asks whether an ordinary customer who sends only legitimate messages can learn from the behavior of an access-controlled agent that confidential documents exist, and none scores defenses on security and utility together.
+
+In this paper we study this question with a controlled framework, CanaryProbe. We plant fabricated canary documents in a corpus of public e-mails, send matched probe and control messages to the agent under a weak and a strong access control, and train a simple decoder that tries to tell topics with confidential documents from topics without them. Randomized controls and leave-one-topic-out evaluation protect the result from chance and memorization. We then evaluate four defenses and a cross-user memory extension. Our contributions are as follows. (i) We show that, under weak access control, the style of a reply reveals the existence of confidential documents (AUC 0.82), whereas decision fields do not give a reliable signal at our scale. (ii) We show that only keeping confidential text out of the context closes this channel, while output normalization fails and masking closes content leakage but not the existence signal. (iii) We show that a shared conversational memory leaks private data between users and that isolating memory by owner removes this leak.
+
+The rest of the paper is organized as follows. Section~\ref{sec:related} reviews related work, Section~\ref{sec:solution} presents CanaryProbe, Section~\ref{sec:analysis} analyzes the results, and Section~\ref{sec:conclusion} concludes.
 
 %==============================================================================
 \section{Side Channels and Data Leakage in LLM Services and RAG Systems}
