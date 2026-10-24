@@ -1,19 +1,9 @@
-% BLG558E Term Project - Assignment 2 skeleton (IEEE conference format).
-% Content is intentionally EMPTY: the assignment requires you to write the text yourself, in your own words.
-% If Ninova provides its own template, copy the section structure below into that template.
-%
-% Requirements from the assignment PDF (check before submitting):
-%  - IEEE Conference Paper format, PDF, 5 to 5.5 pages (at least 5 FULL pages)
-%  - Title, authors, address, e-mail
-%  - Abstract: max 150 words
-%  - Introduction (~1 page including title and abstract): the subject, its importance, what has been done in your paper
-%  - Related Work: give it a SPECIFIC name (max 1 page)
-%  - Proposed solution: give it a SPECIFIC name (at least 1 page)
-%  - Analysis of your proposed solution (at least 1 page)
-%  - Conclusion and Future Work: problem, solution, contributions (less than half a page)
-%  - References: 10 to 15, at least 5 journal papers published since 2024;
-%    open sources (web pages, newsletters, technical reports) are NOT accepted
-%  - Not a survey paper. Do not copy-paste; do not use AI tools for summary or content.
+% BLG558E Term Project - Assignment 2 (IEEE conference format).
+% Sections 2-5 (Related Work, Proposed Solution, Analysis, Conclusion) are DRAFTS written with AI assistance
+% (the course instructor permitted AI support). Abstract and Introduction are left for the author.
+% Not compiled on the drafting machine (no LaTeX installed): compile on Overleaf and check the page count (5 to 5.5 pages).
+% Every number below comes from docs/ilerleme_raporu.md and results/*.csv; see docs/makale/deney_sayilari.md.
+% Entries marked [TODO] in the bibliography must be completed from the publisher pages before submission.
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 \usepackage{cite}
@@ -21,6 +11,8 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
 
 \begin{document}
 
@@ -43,47 +35,139 @@
 \end{IEEEkeywords}
 
 \section{Introduction}
-% ~1 page including title and abstract.
-% Answer: what is the subject? why is it important? what has been done in this paper?
+% ~1 page including title and abstract: the subject, its importance, what has been done in this paper.
 [Write here.]
 
-\section{[Specific Name for the Related Work Section]}
-% max 1 page.
-[Write here.]
+%==============================================================================
+\section{Side Channels and Data Leakage in LLM Services and RAG Systems}
+\label{sec:related}
 
-\section{[Specific Name for Your Proposed Solution]}
-% at least 1 page.
-[Write here.]
+\textbf{Side channels in LLM serving.} Several studies show that the way a language model service delivers its answers can leak information even when the traffic is encrypted. Weiss et al.\ observe that streaming assistants send tokens one by one, so packet sizes reveal token lengths, and they use this length sequence to reconstruct parts of encrypted responses \cite{weiss24}. Carlini and Nasr show that efficiency techniques such as speculative decoding make the response time depend on the content, which lets a network observer infer the topic of a conversation \cite{carlini24}. These attacks need a position on the network path and read information that the user sends or receives. A second line of work targets shared infrastructure. Song et al.\ and Wu et al.\ show that prefix caches shared among users create timing differences between cache hits and misses, which reveal system prompts or the prompts of other tenants \cite{song25,wu25}. Gao et al.\ extend this idea to hardware cache side channels during local inference, where token values can be recovered from cache access patterns \cite{gao25}. In all of these works the leak comes from the serving stack (network, cache, hardware), and the target is the text of a prompt or a response.
 
-% Optional drop-in for existing result figures (uncomment and adjust the path):
-% \begin{figure}[t]
-%   \centering
-%   \includegraphics[width=\columnwidth]{../../results/figures/auc_m1_vs_m2.png}
-%   \caption{[Caption]}
-%   \label{fig:auc}
-% \end{figure}
+\textbf{Extraction and membership inference in RAG.} Retrieval-augmented generation adds a second asset to protect: the document store. Zeng et al.\ demonstrate that black-box queries can make a RAG system disclose its private retrieval database \cite{zeng24}. Qi et al.\ use instruction-following behavior, a form of prompt injection, to extract datastore text almost verbatim, including from customized GPTs \cite{qi25}. Membership inference asks a weaker question, namely whether a given passage is in the store. Anderson et al.\ answer it with a simple prompt-based attack on the system output \cite{anderson24}, Liu et al.\ with a mask-based attack \cite{liu25}, and RAG-leaks with a difficulty-calibrated score \cite{raggleaks25}. These attacks use crafted or injected prompts, and they measure whether content or membership of specific documents can be recovered.
 
-\section{Analysis of the Proposed Solution}
-% at least 1 page.
-[Write here.]
+\textbf{Defenses.} Defenses for RAG privacy mostly transform what the model sees or says. Local entity perturbation \cite{lprag25} and multi-agent semantic rewriting of retrieved content \cite{rewrite26} aim to keep the answer useful while removing sensitive details, which is close in spirit to the masking we evaluate in this paper. Anderson et al.\ add protective instructions to the prompt template and report that it works only for some datasets and models \cite{anderson24}. Surveys and threat analyses place these issues in the wider landscape of LLM and agent security \cite{survey25,agents25}.
 
+\textbf{Gap.} Among the studies we reviewed, none asks whether an \emph{ordinary customer}, who sends only legitimate messages, can learn from the \emph{behavior of an access-controlled agent} that confidential documents exist on a topic. The existing attacks work on the network or hardware layer, or they rely on crafted prompts and measure content or membership recovery. They also do not score defenses on answer quality together with security, and they do not examine leakage through conversational memory shared among users. Our work targets this gap at the application layer.
+
+%==============================================================================
+\section{CanaryProbe: A Controlled Framework for Measuring Behavioral Leakage in ACL-Protected Service Agents}
+\label{sec:solution}
+
+We propose CanaryProbe, a framework that measures how much an external observer learns about confidential documents from an agent's legitimate replies, and that scores defenses on security and utility. Figure~\ref{fig:pipeline} shows the pipeline.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[->,>=Stealth,node distance=0.22cm,
+  box/.style={draw,rounded corners=1pt,align=center,font=\scriptsize,text width=2.1cm,minimum height=0.85cm,inner sep=2pt}]
+\node[box] (a) {1. Customer\\message};
+\node[box,right=of a] (b) {2. Retrieval\\top-5 chunks};
+\node[box,right=of b] (c) {3. ACL mode\\M1: keep all\\M2: drop confidential};
+\node[box,below=0.5cm of c] (d) {4. Prompt + LLM\\(temperature 0)};
+\node[box,left=of d] (e) {5. JSON decision\\+ reply};
+\node[box,left=of e] (f) {6. Observer:\\features $\rightarrow$ decoder};
+\draw (a)--(b); \draw (b)--(c); \draw (c)--(d); \draw (d)--(e); \draw (e)--(f);
+\end{tikzpicture}
+\caption{CanaryProbe pipeline. Only step 3 differs between the weak (M1) and strong (M2) access-control modes.}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Threat model and agent under test}
+The observer is an ordinary customer. It sends legitimate messages only, without prompt injection, and sees the reply text, three decision fields (\texttt{escalated}, \texttt{refusal\_type}, \texttt{routing\_target}) and the response time. It never sees the documents. The agent embeds the message, retrieves the top-5 chunks from a vector index, builds a prompt with a fixed system instruction and calls a local LLM (\texttt{gemma3} or \texttt{qwen2.5:7b}, temperature 0). The model returns a JSON object with the decision fields and the reply. Documents carry an ACL label (public, internal, confidential). In the \emph{weak} mode M1 the search returns all labels and only the prompt forbids revealing confidential content. In the \emph{strong} mode M2 confidential chunks are filtered at search time, so the model never reads them.
+
+\subsection{Canary data and probe/control design}
+The index holds 2030 documents (2000 public Enron e-mails and 30 fabricated canary e-mails, 7520 chunks). We define 20 topics: 10 topics have three confidential canary e-mails, each containing secret details such as dates and figures (markers), and 10 topics have none. Because we write the canaries, the ground truth is known. For each topic we hand-write five \emph{probe} messages that touch the topic and five \emph{control} messages with the same sentence structure, a length within 25\%, and no canary topic. The main matrix has $20\times2\times5\times2\times2=800$ calls (topic, kind, variant, ACL mode, model).
+
+\subsection{Decoder, randomized controls and metrics}
+The decoder plays the attacker. It predicts, per topic, whether confidential documents exist. We use four feature groups: behavior without latency, behavior with latency, text style (length, 22 stylometric markers, embedding components) and their union. The classifier is a fixed L2 logistic regression without tuning, so a positive result reflects signal in the data and not a clever model. Evaluation is leave-one-topic-out, so the decoder cannot memorize topic words. Every result comes with randomized controls: topic-label permutation (500 Monte Carlo relabelings of the balanced 10/10 split) for the p-value, row-level label shuffling, and a placebo decoder on control rows. A channel is called \emph{open} only if the permutation p-value is below 0.05 and the lower bound of the bootstrap AUC interval exceeds 0.5. We report the area under the ROC curve (AUC), TPR at 1\% FPR, the number of messages needed to reach a topic-level AUC of 0.9, and leaked bits per message. We choose AUC as the main metric because it needs no decision threshold, is not distorted by class imbalance, and gives one comparable number: it is the probability that a topic with confidential documents receives a higher score than one without, so 0.5 means no leakage.
+
+\subsection{Defenses and security--utility scoring}
+We evaluate four defenses on the weak mode. \texttt{behavior\_norm} replaces refusals and escalations with one template and one refusal type. \texttt{decision\_hiding} takes the decision fields from a second, context-free call and pads latency to a constant. \texttt{scoped\_context} retrieves public documents only. \emph{Masking} keeps confidential chunks in the context but masks sensitive spans before the prompt is built; the \emph{oracle} variant replaces a hand-written list of secret spans, and the \emph{rule} variant applies frozen regular expressions for numbers, dates, contact data and capitalized names. Each defense is scored on security (decoder AUC, marker leakage in direct questions) and on utility: resolution rate on control messages, routing agreement with the undefended agent, recall of correct facts on a 23-question set built from public and internal documents, and the rate at which the agent states an officially approved sentence on confidential topics.
+
+\subsection{Cross-user extension}
+Real assistants remember conversations. We let user A share private notes (10 topics) and user B send the same legitimate messages. Three memory modes are compared: X1 searches the memory of all users, X3 keeps one running summary of all notes in every context, and X2 filters entries by owner \emph{before} similarity ranking, so A's note is not even a candidate for B. In X2 the memory view of B is empty, which makes it the negative control.
+
+%==============================================================================
+\section{Analysis of CanaryProbe}
+\label{sec:analysis}
+
+\subsection{Setup}
+We ran the main matrix (800 calls), a sweep over the number of confidential documents per topic ($k\in\{1,2,3\}$), the defenses, the masking variants (about 1100 calls) and the cross-user study (1200 calls). All models run locally with temperature 0. The scale is small (10 positive and 10 negative topics, five variants, one repetition in most analyses), so we interpret confidence intervals and p-values rather than point estimates alone.
+
+\subsection{Direct leakage and the side channel}
+Direct questions about secret details confirm the access-control assumption. Under M1 the secret appears in 16 of 20 answers for \texttt{gemma3} and 13 of 20 for \texttt{qwen2.5}, and under M2 in none of the 40. Table~\ref{tab:main} shows the decoder results. Behavior features carry no significant signal for either model (e.g., AUC 0.48, $p=0.46$ for \texttt{gemma3}). The text of the reply, however, reveals the topic for \texttt{gemma3} under M1 (AUC 0.82, 95\% CI 0.75--0.91, $p=0.004$), and two messages suffice to reach a topic-level AUC of 0.9. Under M2 no group leaks (all $p\ge0.48$). For \texttt{qwen2.5} the M1 values (0.58 and 0.61) are not significant after the permutation test, so we treat them as hints only.
+
+\begin{table}[t]
+\caption{Decoder AUC (leave-one-topic-out, 20 topics, $k=3$).}
+\label{tab:main}
+\centering\small
+\begin{tabular}{llccc}
+\toprule
+Model & Mode / features & AUC & 95\% CI & $p$ \\
+\midrule
+gemma3 & M1, behavior & 0.48 & 0.33--0.63 & 0.46 \\
+gemma3 & M1, text & \textbf{0.82} & 0.75--0.91 & \textbf{0.004} \\
+gemma3 & M2, text & 0.45 & 0.34--0.56 & 0.56 \\
+qwen2.5 & M1, behavior & 0.58 & 0.41--0.76 & 0.18 \\
+qwen2.5 & M1, text & 0.61 & 0.48--0.72 & 0.13 \\
+qwen2.5 & M2, text & 0.42 & 0.32--0.53 & 0.69 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Where the signal comes from}
+A natural explanation is that secret words leak into the replies. To test it, we masked topic words, digits, number words, mid-sentence capitalized words and 210 words that occur only in confidential documents, and re-ran the decoder. The AUC stayed at 0.82--0.83, so the signal is not lexical. A comparison of style markers on topics with and without confidential documents shows that, with confidential context, \texttt{gemma3} uses ``we/our'' more often (rate 0.050 vs.\ 0.017), uses ``I'' less often (0.009 vs.\ 0.032), almost never apologizes with ``unfortunately'' (0 vs.\ 0.14 of the answers), and gives phone numbers or e-mail addresses less often (0.06 vs.\ 0.24). The model speaks like an insider. These tests are exploratory and not corrected for multiple comparisons. The sweep over $k$ supports the causal link only partly: the retrieval dose rises monotonically (1.9, 2.5, 3.3 confidential chunks in the top-5), but the text AUC does not (0.71, 0.64, 0.82), and the intervals overlap. The robust finding is that a single confidential document is already enough for a significant text signal.
+
+\subsection{Defenses}
+Table~\ref{tab:def} summarizes the security--utility results for \texttt{gemma3}. Output-side defenses leave the text channel open (AUC 0.82), which fits the finding that the style of ordinary replies leaks, not the decision fields. Keeping confidential text out of the context closes the channel: \texttt{scoped\_context} reaches 0.44 but loses all facts from internal documents (recall loss 0.30, routing agreement 0.60), while M2 reaches 0.45 with a recall loss of 0.04 and a lower resolution rate (0.92 to 0.67). Masking removes content leakage in direct questions (0.50 to 0.00 for \texttt{gemma3}, 0.35 to 0.00 for \texttt{qwen2.5}) and keeps utility close to the undefended agent. Masked agents still state the approved sentence at least as often as the undefended one (0.33 and 0.39 vs.\ 0.33), whereas M2 and \texttt{scoped\_context} never do (0.00). The style channel, however, stays open: AUC is 0.84 ($p=0.002$) with oracle and 0.69 ($p=0.016$) with rule masking. A masked document still tells the model that a confidential topic exists, and in the rule variant the replies sometimes copy the placeholder (20 of 50 probe replies on topics with confidential documents). For \texttt{qwen2.5} the masked AUCs are 0.60 and 0.59 and not significant.
+
+\begin{table}[t]
+\caption{Security and utility of defenses (\texttt{gemma3}, weak ACL).}
+\label{tab:def}
+\centering\small
+\begin{tabular}{lccl}
+\toprule
+Defense & Text AUC & Direct leak. & Utility cost \\
+\midrule
+none (M1) & 0.82 & 0.50 & -- \\
+behavior\_norm & 0.82 & -- & recall $-0.04$ \\
+decision\_hiding & 0.82 & -- & routing agr.\ 0.61 \\
+scoped\_context & 0.44 & -- & recall $-0.30$ \\
+M2 & 0.45 & 0.00 & resolution 0.92$\to$0.67 \\
+masking (oracle) & 0.84 & 0.00 & resolution 0.90 \\
+masking (rule) & 0.69 & 0.00 & resolution 0.92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-user leakage}
+With shared memory, user A's private details appear in B's reply in 36 of 50 cases for \texttt{gemma3} (X1) and 26 of 50 for \texttt{qwen2.5}; with the shared summary (X3) in 35 and 28 of 50, even though the prompt forbids revealing other customers' data. With owner-filtered memory (X2) the rate falls to 1 of 50 and 0 of 50, which is the noise floor of numbers that occur by coincidence. When A shared nothing on a topic, no mode leaks. Isolation therefore works where the prompt rule does not. Of 24 decoder cells in this study, only one passed the open-channel test (\texttt{qwen2.5}, X3, text, AUC 0.67, $p=0.03$), which is about what chance would give without multiple-comparison correction.
+
+\subsection{Threats to validity}
+The study has 10 positive and 10 negative topics, so small effects cannot be excluded and a missing behavioral signal means \emph{not found}, not \emph{not present}: the agents almost never escalate and rarely refuse, which leaves little behavior to measure. Only two small local models were tested. One author wrote the canaries, messages and the definition of ``secret'', which is a policy choice. Latency is unreliable on shared hardware. Utility is measured with marker recall, not answer correctness. Leave-one-topic-out can push AUC below 0.5 under noise, so we rely on permutation p-values. In the cross-user study the identity of the observer is given by the setup, so authentication is not modeled.
+
+%==============================================================================
 \section{Conclusion and Future Work}
-% less than half a page: problem, solution, contributions.
-[Write here.]
+\label{sec:conclusion}
+\textbf{Problem.} Service agents that read confidential documents may reveal their existence through behavior even if they never write the secret. \textbf{Solution.} We presented CanaryProbe, which combines fabricated canary documents, matched probe and control messages, a fixed decoder with randomized controls, and a security--utility scoring of defenses. \textbf{Contributions.} (i) Under a weak access control the style of the reply identifies topics with confidential documents (AUC 0.82), while decision fields show no reliable signal. (ii) Only keeping confidential text out of the context closes the style channel; output normalization does not, and masking removes content leakage while keeping utility but leaves the existence signal. (iii) A shared conversational memory leaks one user's data to another in 52--72\% of replies, and owner-based isolation removes it. Future work includes more topics and repetitions, commercial models, other definitions of secrecy, learned maskers, and isolation with real authentication.
 
+%==============================================================================
 \begin{thebibliography}{00}
-% 10 to 15 references. At least 5 journal papers published since 2024.
-% See kaynak_adaylari.md for candidate sources to READ; fill each entry from the publisher page.
-\bibitem{b1} [Author(s), ``Title,'' \emph{Journal/Conference}, vol., no., pp., year.]
-\bibitem{b2} [ ]
-\bibitem{b3} [ ]
-\bibitem{b4} [ ]
-\bibitem{b5} [ ]
-\bibitem{b6} [ ]
-\bibitem{b7} [ ]
-\bibitem{b8} [ ]
-\bibitem{b9} [ ]
-\bibitem{b10} [ ]
+% Complete every [TODO] from the publisher page. At least 5 journal papers since 2024 are required.
+\bibitem{weiss24} R. Weiss, D. Ayzenshteyn, G. Amit, and Y. Mirsky, ``What was your prompt? A remote keylogging attack on AI assistants,'' in \emph{Proc. 33rd USENIX Security Symp.}, 2024.
+\bibitem{carlini24} N. Carlini and M. Nasr, ``Remote timing attacks on efficient language model inference,'' [TODO: venue and year of the peer-reviewed version; arXiv:2410.17175].
+\bibitem{song25} L. Song, Z. Pang, W. Wang, Z. Wang, X. Wang, H. Chen, W. Song, Y. Jin, D. Meng, and R. Hou, ``The early bird catches the leak: Unveiling timing side channels in LLM serving systems,'' [TODO: venue and year; IEEE Xplore 11206380].
+\bibitem{wu25} G. Wu \emph{et al.}, ``I know what you asked: Prompt leakage via KV-cache sharing in multi-tenant LLM serving,'' in \emph{Proc. Network and Distributed System Security Symp. (NDSS)}, 2025.
+\bibitem{gao25} Z. Gao \emph{et al.}, ``I know what you said: Unveiling hardware cache side-channels in local large language model inference,'' in \emph{Proc. 34th USENIX Security Symp.}, 2025.
+\bibitem{zeng24} S. Zeng \emph{et al.}, ``The good and the bad: Exploring privacy issues in retrieval-augmented generation (RAG),'' in \emph{Findings of the Assoc. Comput. Linguistics: ACL 2024}, pp. 4505--4524.
+\bibitem{qi25} Z. Qi, H. Zhang, E. Xing, S. Kakade, and H. Lakkaraju, ``Follow my instruction and spill the beans: Scalable data extraction from retrieval-augmented generation systems,'' in \emph{Proc. Int. Conf. Learn. Representations (ICLR)}, 2025.
+\bibitem{anderson24} M. Anderson, G. Amit, and A. Goldsteen, ``Is my data in your retrieval database? Membership inference attacks against retrieval augmented generation,'' [TODO: confirm venue and year; arXiv:2405.20446].
+\bibitem{liu25} [TODO: authors], ``Mask-based membership inference attacks for retrieval-augmented generation,'' in \emph{Proc. ACM Web Conf. (WWW)}, 2025, doi:10.1145/3696410.3714771.
+\bibitem{raggleaks25} [TODO: authors], ``RAG-leaks: Difficulty-calibrated membership inference attacks on retrieval-augmented generation,'' \emph{Sci. China Inf. Sci.}, 2025, doi:10.1007/s11432-024-4441-4. [TODO: vol., no., pages]
+\bibitem{lprag25} [TODO: authors], ``Mitigating privacy risks in retrieval-augmented generation via locally private entity perturbation,'' [TODO: journal (ScienceDirect article S0306457325000913), vol., no., year].
+\bibitem{rewrite26} [TODO: authors], ``Privacy-preserving RAG via multi-agent semantic rewriting: Achieving confidentiality without compromising contextual fidelity,'' [TODO: journal (ScienceDirect article S0306457326003924), vol., no., year].
+\bibitem{agents25} [TODO: authors], ``From prompt injections to protocol exploits: Threats in LLM-powered AI agents workflows,'' [TODO: journal (ScienceDirect article S2405959525001997), vol., no., year].
+\bibitem{survey25} [TODO: authors], ``Unique security and privacy threats of large language models: A comprehensive survey,'' \emph{ACM Comput. Surv.}, 2025, doi:10.1145/3764113.
 \end{thebibliography}
 
 \end{document}
