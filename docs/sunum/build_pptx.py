@@ -221,30 +221,6 @@ card(s, X0 + hw + 0.3, 3.3, hw, 1.75, WHITE, [[("Control · same shape, other to
 card(s, X0, 5.3, W, 1.4, T_INFO, [[("Data: ", dict(size=15, bold=True)), ("2000 public Enron emails + 30 fabricated canary emails; 20 topics (10 with 3 confidential canaries, 10 without), so the ground truth is known.", dict(size=15))],
      [("800 calls = ", dict(size=15)), ("20 topics × 2 kinds × 5 variants × 2 ACL modes × 2 models", dict(size=15, bold=True))]], anchor=MSO_ANCHOR.MIDDLE, spacing=4)
 
-# ---------------------------------------------------------------- 5 measurement
-s = new_slide("Measurement (55 s). The attacker is a simple fixed logistic-regression decoder that guesses, per topic, whether a confidential document exists. "
-              "Leave-one-topic-out evaluation and randomized controls make sure the score is not memorization or luck. We report AUC because it needs no threshold, "
-              "is not fooled by class imbalance and is one comparable number: it is the probability that a topic with a secret scores above one without. "
-              "0.5 is a coin flip, 1.0 perfect. We add TPR at one percent false positives, messages needed and leaked bits.")
-title(s, "Measurement: the decoder, and why AUC")
-card(s, X0, 1.45, 5.6, 3.4, WHITE, [[("Decoder (attacker model)", dict(size=18, bold=True, color=INFO))],
-     [("Features: behavior (escalation, refusal, routing, length, time) and text style (22 markers + embeddings).", dict(size=14))],
-     [("Fixed L2 logistic regression, no tuning: a weak decoder that still succeeds proves the signal is real.", dict(size=14))],
-     [("Leave-one-topic-out: train on 19 topics, test on the 20th.", dict(size=14))],
-     [("Randomized controls: 500 label shuffles (p-value), row shuffle, placebo. “Open” = p < 0.05 and CI above 0.5.", dict(size=14))]], spacing=6)
-card(s, X0 + 5.85, 1.45, 5.88, 3.4, WHITE, [[("AUC: area under the ROC curve", dict(size=18, bold=True, color=INFO))],
-     [("Probability that a topic ", dict(size=14)), ("with", dict(size=14, bold=True)), (" a secret scores higher than one ", dict(size=14)), ("without", dict(size=14, bold=True)), (".", dict(size=14))],
-     [("• No threshold needed.  • Robust to class imbalance.  • One comparable number.", dict(size=14, color="3B4A59"))]], spacing=6)
-b1 = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(X0 + 6.05), Inches(3.55), Inches(2.7), Inches(0.32))
-b1.fill.solid(); b1.fill.fore_color.rgb = rgb(SOFT); b1.line.fill.background()
-b2 = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(X0 + 8.75), Inches(3.55), Inches(2.7), Inches(0.32))
-b2.fill.solid(); b2.fill.fore_color.rgb = rgb("F5D3BF"); b2.line.fill.background()
-text(s, X0 + 6.05, 3.92, 3, 0.3, [[("0.5 = coin flip", dict(size=13, color=MUTED))]])
-text(s, X0 + 8.45, 3.92, 3, 0.3, [[("1.0 = perfect", dict(size=13, color=MUTED))]], align=R)
-cw = (W - 0.5) / 3
-for i, (h, d) in enumerate([("TPR @ 1% FPR", "Secrets caught with only 1% false alarms."), ("Messages needed", "Probes until topic-level AUC reaches 0.9."), ("Leaked bits", "Information per message, in bits.")]):
-    card(s, X0 + i * (cw + 0.25), 5.15, cw, 1.4, WHITE, [[(h, dict(size=16, bold=True))], [(d, dict(size=14, color=MUTED))]], spacing=3)
-
 # ---------------------------------------------------------------- 6 findings
 s = new_slide("Findings (60 s). Under the weak ACL, gemma3's reply text lets the decoder tell secret topics apart: AUC 0.82, p 0.004. Behavior fields show no significant signal, "
               "and under the strong ACL nothing leaks. Masking topic words, numbers, names and 210 secret-only words did not reduce the signal (0.83 to 0.82): the signal is "
@@ -267,13 +243,35 @@ pl.data_labels.position = XL_LABEL_POSITION.OUTSIDE_END
 pl.data_labels.font.size = Pt(13); pl.data_labels.font.bold = True
 for i, col in enumerate([LEAK, INFO, SAFE, INFO, INFO, SAFE]):
     pt = pl.series[0].points[i]; pt.format.fill.solid(); pt.format.fill.fore_color.rgb = rgb(col)
-text(s, X0, 5.33, 6.5, 0.3, [[("AUC; 0.5 = coin flip. Red = open, green = closed (strong ACL).", dict(size=12, color=MUTED))]])
+text(s, X0, 5.33, 6.5, 0.3, [[("AUC = chance that a topic with a secret outranks one without; 0.5 = coin flip. Red = open, green = closed.", dict(size=12, color=MUTED))]])
 rows = [["Style marker (gemma3, M1)", ("Secret", dict(align=R)), ("No secret", dict(align=R))],
         ["“we / our” rate", num("0.050"), num("0.017")], ["“I” rate", num("0.009"), num("0.032")],
         ["“unfortunately”", num("0.00"), num("0.14")], ["gives phone / email", num("0.06"), num("0.24")]]
 table(s, X0 + 6.75, 1.45, [2.6, 1.2, 1.18], rows, size=13, row_h=0.45)
 card(s, X0 + 6.75, 3.85, 4.98, 1.45, T_LEAK, [[("The tone leaks, not the content. ", dict(size=14, bold=True)), ("Masking topic words, numbers, names and 210 secret-only words left AUC unchanged (0.83 → 0.82).", dict(size=14))]], anchor=MSO_ANCHOR.MIDDLE)
-card(s, X0, 5.7, W, 0.95, T_INFO, [[("Behavior fields ", dict(size=15, bold=True)), ("(escalation, refusal, routing) show no significant signal; the agent rarely escalates or refuses. Under M2 nothing leaks.", dict(size=15))]], anchor=MSO_ANCHOR.MIDDLE)
+card(s, X0, 5.85, W, 0.85, T_INFO, [[("Behavior fields ", dict(size=15, bold=True)), ("(escalation, refusal, routing) show no significant signal; the agent rarely escalates or refuses. Under M2 nothing leaks.", dict(size=15))]], anchor=MSO_ANCHOR.MIDDLE)
+
+# ---------------------------------------------------------------- 6 masking
+s = new_slide("Masking (55 s). Instead of dropping a confidential document, we keep it in the context but mask its sensitive parts just before the prompt is built. Oracle masking replaces a hand-listed set of secret spans; rule masking uses frozen regex rules for numbers, dates and names. Direct leakage drops from 0.50 to zero and utility stays near the undefended agent, unlike M2 whose resolution rate falls to 0.67. But the style channel stays open: AUC is 0.84 with oracle and 0.69 with rule masking, against 0.45 for M2, because a masked document still says that the topic exists.")
+title(s, "Masking: keep the document, hide the details")
+fw = [3.2, 3.9, 3.2]
+heads = [("Search (M1)", "top-5, confidential included", WHITE, LINE), ("Confidential chunk?", "yes → mask · no → keep", T_AMB, AMBER), ("LLM", "sees masked text", WHITE, LINE)]
+xx = X0
+for i, (h, b, f, l) in enumerate(heads):
+    card(s, xx, 1.45, fw[i], 0.95, f, [[(h, dict(size=16, bold=True))], [(b, dict(size=14, color=MUTED))]], line=l, spacing=2)
+    if i < 2:
+        arrow(s, xx + fw[i] + 0.0, 1.65, w=0.45)
+    xx += fw[i] + 0.45
+card(s, X0, 2.6, W, 1.1, WHITE, [[("original: “… merger with Veltrix Holdings … board meets on the 24th.”", dict(font=MONO, size=13, color="3B4A59"))],
+     [("oracle:   “… merger with Veltrix Holdings … board meets on the [REDACTED].”", dict(font=MONO, size=13, color="3B4A59"))],
+     [("rule:     “… merger with [NAME] [NAME] … board meets on the [DATE].”", dict(font=MONO, size=13, color="3B4A59"))]], spacing=2, anchor=MSO_ANCHOR.MIDDLE)
+rows = [["gemma3", ("Text AUC", dict(align=R)), ("Direct leakage", dict(align=R)), ("Resolution", dict(align=R)), ("Approved line", dict(align=R))],
+        ["M1 (none)", num("0.82", LEAK, True), num("0.50", LEAK, True), num("0.92"), num("0.33")],
+        ["M2", num("0.45", SAFE, True), num("0.00", SAFE, True), num("0.67", LEAK, True), num("0.00", LEAK, True)],
+        ["mask · oracle", num("0.84", LEAK, True), num("0.00", SAFE, True), num("0.90"), num("0.33")],
+        ["mask · rule", num("0.69", LEAK, True), num("0.00", SAFE, True), num("0.92"), num("0.39")]]
+table(s, X0, 3.9, [3.0, 2.0, 2.4, 2.0, 2.33], rows, size=15, row_h=0.42)
+card(s, X0, 6.1, W, 0.75, T_INFO, [[("Content leakage closed, utility kept; the topic’s existence still leaks. ", dict(size=14, bold=True)), ("“Approved line” = the agent says the officially approved sentence, e.g. “we do not comment on rumours”.", dict(size=14))]], anchor=MSO_ANCHOR.MIDDLE)
 
 # ---------------------------------------------------------------- 7 defenses
 s = new_slide("Defenses (60 s). We scored each defense on security and on utility. Normalizing refusals or hiding decisions does not help, because what leaks is the style of normal replies. "
